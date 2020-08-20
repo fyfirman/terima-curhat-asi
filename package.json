@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint ./src && prettier --write ./src"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
@@ -34,6 +34,12 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.1.0",
     "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "eslint-plugin-react-native": "^3.8.1",
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.60.0",
     "react-test-renderer": "16.13.1"

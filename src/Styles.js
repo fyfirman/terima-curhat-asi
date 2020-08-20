@@ -1,4 +1,4 @@
-import {PinkPrimary, PinkSecondary, Teal} from './Colors';
+import { PinkPrimary, PinkSecondary, Teal } from './Colors';
 export const input = {
   borderBottomColor: PinkSecondary,
   borderBottomWidth: 1,
@@ -6,16 +6,16 @@ export const input = {
   paddingVertical: 8,
   paddingHorizontal: 16,
   fontWeight: '300',
-  fontSize: 18,
+  fontSize: 18
 };
 export const label = {
   textTransform: 'uppercase',
   color: '#6C6C6C',
-  fontSize: 14,
+  fontSize: 14
 };
 
 export const button = {
-  paddingVertical: 16,
+  paddingVertical: 16
 };
 export const buttonLabel = {
   color: Teal,
@@ -27,24 +27,24 @@ export const buttonLabel = {
 export const buttonPrimary = {
   ...button,
   ...{
-    backgroundColor: PinkPrimary,
-  },
+    backgroundColor: PinkPrimary
+  }
 };
 export const buttonPrimaryLabel = {
   ...buttonLabel,
   ...{
-    color: PinkSecondary,
-  },
+    color: PinkSecondary
+  }
 };
 export const buttonSecondary = {
   ...button,
   ...{
-    backgroundColor: PinkSecondary,
-  },
+    backgroundColor: PinkSecondary
+  }
 };
 export const buttonSecondaryLabel = {
   ...buttonLabel,
   ...{
-    color: Teal,
-  },
+    color: Teal
+  }
 };
