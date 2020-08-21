@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
