@@ -1,4 +1,5 @@
-import { PinkPrimary, PinkSecondary, Teal } from './Colors';
+import { PinkPrimary, PinkSecondary, Teal } from './Theme/Colors';
+
 export const input = {
   borderBottomColor: PinkSecondary,
   borderBottomWidth: 1,

@@ -6,14 +6,14 @@ import Login from './Screens/Login';
 
 const Stack = createStackNavigator();
 
-export default class Container extends Component {
+export default class Routes extends Component {
   render() {
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName={'Login'}>
+          <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
-              name={'Login'}
+              name="Login"
               component={Login}
               options={{
                 headerShown: false

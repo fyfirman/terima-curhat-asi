@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { PinkSecondary, Teal } from '../Colors';
+import { PinkSecondary, Teal } from '../Theme/Colors';
 import * as Styles from '../Styles';
 
 export default class Input extends Component {

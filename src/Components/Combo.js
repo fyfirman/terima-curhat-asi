@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import _ from 'lodash';
 import * as Styles from '../Styles';
-import { PinkPrimary, PinkSecondary, Teal } from '../Colors';
+import { PinkPrimary, PinkSecondary, Teal } from '../Theme/Colors';
 
 export default class Combo extends Component {
   constructor(props) {

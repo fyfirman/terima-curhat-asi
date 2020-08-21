@@ -17,12 +17,6 @@ export default class Login extends Component {
   render() {
     return (
       <>
-        <StatusBar
-          barStyle="dark-content"
-          animated
-          translucent
-          backgroundColor="#ffffff"
-        />
         <View
           style={{
             flex: 1,
