@@ -1,4 +1,4 @@
-import Colors, { PinkPrimary, PinkSecondary, Teal } from '../../Theme/Colors';
+import Colors from '../../Theme/Colors';
 import { FontFamily } from '../../Theme';
 
 export const container = {
@@ -11,69 +11,9 @@ export const inner = {
   backgroundColor: 'white'
 };
 
-export const input = {
-  borderBottomColor: PinkSecondary,
-  borderBottomWidth: 1,
-  borderStyle: 'solid',
-  paddingVertical: 8,
-  paddingHorizontal: 16,
-  fontWeight: '300',
-  fontSize: 18
-};
-
-export const label = {
-  textTransform: 'uppercase',
-  color: '#6C6C6C',
-  fontSize: 14
-};
-
-export const button = {
-  paddingVertical: 16
-};
-
-export const buttonLabel = {
-  color: Teal,
-  textTransform: 'uppercase',
-  fontSize: 14,
-  textAlign: 'center'
-};
-
-export const buttonLabelFont = {
-  ...buttonLabel,
-  fontFamily: FontFamily.Muli.bold
-};
-
-export const buttonPrimary = {
-  ...button,
-  ...{
-    backgroundColor: PinkPrimary
-  }
-};
-
-export const buttonPrimaryLabel = {
-  ...buttonLabel,
-  ...{
-    color: PinkSecondary
-  }
-};
-
-export const buttonSecondary = {
-  ...button,
-  ...{
-    backgroundColor: PinkSecondary
-  }
-};
-
-export const buttonSecondaryLabel = {
-  ...buttonLabel,
-  ...{
-    color: Teal
-  }
-};
-
 export const headerContainer = {
   width: '100%',
-  flex: 4,
+  flex: 3,
   justifyContent: 'center'
 };
 
@@ -113,12 +53,33 @@ export const titlePink = {
 
 export const formContainer = {
   flex: 5,
-  justifyContent: 'center',
-  paddingVertical: 32,
+  paddingTop: -100,
   paddingHorizontal: 32
 };
 
 export const formContainerKeyboardPop = {
   ...formContainer,
   paddingTop: 100
+};
+
+export const buttonLogin = {
+  marginTop: 16
+};
+
+export const forgotTextContainer = {
+  marginTop: 36,
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  alignSelf: 'center'
+};
+
+export const forgotPinText = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 15
+};
+
+export const touchHereText = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 15,
+  color: Colors.java
 };

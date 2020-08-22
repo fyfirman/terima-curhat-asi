@@ -1,16 +1,13 @@
-import { Colors } from '../../Theme';
+import { Colors, FontFamily } from '../../Theme';
 
-export const labelTextStyle = {
-  fontFamily: 'OpenSans-Regular',
-  color: Colors.textPrimary
+export const root = {
+  borderRadius: 10,
+  padding: 32
 };
 
-export const titleTextStyle = {
-  fontFamily: 'OpenSans-Regular',
-  color: Colors.textSecondary
-};
-
-export const affixTextStyle = {
-  fontFamily: 'OpenSans-Regular',
+export const titleStyle = {
+  textTransform: 'none',
+  fontSize: 18,
+  fontFamily: FontFamily.Muli.bold,
   color: Colors.textPrimary
 };
