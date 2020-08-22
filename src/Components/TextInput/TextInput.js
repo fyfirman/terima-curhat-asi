@@ -15,6 +15,7 @@ const TextInput = (props) => {
       {...rest}
       baseColor={Colors.textSecondary}
       tintColor={Colors.java}
+      style={styles.inputContainerStyle}
       labelTextStyle={styles.labelTextStyle}
       titleTextStyle={styles.titleTextStyle}
       affixTextStyle={styles.affixTextStyle}

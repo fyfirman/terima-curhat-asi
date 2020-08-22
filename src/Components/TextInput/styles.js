@@ -14,3 +14,8 @@ export const affixTextStyle = {
   fontFamily: FontFamily.OpenSans.regular,
   color: Colors.textPrimary
 };
+
+export const inputContainerStyle = {
+  fontFamily: FontFamily.OpenSans.regular,
+  color: Colors.textPrimary
+};
