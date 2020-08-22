@@ -15,15 +15,15 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <View style={{ flex: 1 }}>
-          <StatusBar
-            barStyle="light-content"
-            backgroundColor={Colors.cranberry}
-          />
-          <Routes />
-        </View>
-      </PersistGate>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <View style={{ flex: 1 }}>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor={Colors.cranberry}
+        />
+        <Routes />
+      </View>
+      {/* </PersistGate> */}
     </Provider>
   );
 };

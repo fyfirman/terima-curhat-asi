@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { TextInput } from '../../Components';
 import Input from '../../Components/Input';
-import * as Styles from '../../Styles';
 import Combo from '../../Components/Combo';
+import * as Styles from './Styles';
 
 const Login = () => {
   const [formState, setFormState] = useState({
     phoneNumber: '',
     pin: '',
-    role: ''
+    role: '',
+    uncryptedPin: ''
   });
+
+  useEffect(() => {
+    console.log(formState);
+  }, [formState]);
 
   return (
     <View
@@ -22,26 +28,22 @@ const Login = () => {
       }}
     >
       <View>
-        <Input
+        <TextInput
           label="Nomor HP"
-          placeholder="Contoh 081xxxxxxxxx"
           keyboardType="phone-pad"
+          prefix="+62"
+          placeholder="Masukkan nomor"
           onChangeText={(value) => {
             setFormState({ ...formState, phoneNumber: value });
           }}
-          align="center"
         />
-        <Input
+        <TextInput
           label="PIN"
-          placeholder="6 digit nomor rahasia"
-          keyboardType="phone-pad"
+          keyboardType="number-pad"
+          placeholder="Masukkan 6 digit nomor rahasia"
           secureTextEntry
-          align="center"
           onChangeText={(value) => {
             setFormState({ ...formState, pin: value });
-          }}
-          style={{
-            marginVertical: 16
           }}
         />
         <View
