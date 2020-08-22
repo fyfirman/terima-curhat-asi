@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TextField } from '@ubaids/react-native-material-textfield';
 import { Colors } from '../../Theme';
-import styles from './styles';
+import * as styles from './styles';
 
 const propTypes = {};
 
@@ -16,6 +15,9 @@ const TextInput = (props) => {
       {...rest}
       baseColor={Colors.textSecondary}
       tintColor={Colors.java}
+      labelTextStyle={styles.labelTextStyle}
+      titleTextStyle={styles.titleTextStyle}
+      affixTextStyle={styles.affixTextStyle}
     />
   );
 };

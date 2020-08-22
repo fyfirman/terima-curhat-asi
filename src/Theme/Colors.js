@@ -6,6 +6,7 @@ export const PinkSecondary = '#F7D6E5';
 const Colors = {
   cranberry: '#D64D8D',
   java: '#1BB1BD',
+  textPrimary: '#333333',
   textSecondary: '#999999'
 };
 
