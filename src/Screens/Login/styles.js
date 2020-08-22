@@ -1,12 +1,14 @@
-import { PinkPrimary, PinkSecondary, Teal } from '../../Theme/Colors';
+import Colors, { PinkPrimary, PinkSecondary, Teal } from '../../Theme/Colors';
+import { FontFamily } from '../../Theme';
 
 export const container = {
-  flex: 1
+  flex: 1,
+  flexGrow: 1
 };
 
 export const inner = {
   flex: 1,
-  justifyContent: 'space-around'
+  backgroundColor: 'white'
 };
 
 export const input = {
@@ -38,7 +40,7 @@ export const buttonLabel = {
 
 export const buttonLabelFont = {
   ...buttonLabel,
-  fontFamily: 'AdobeClean-Regular'
+  fontFamily: FontFamily.Muli.bold
 };
 
 export const buttonPrimary = {
@@ -71,23 +73,52 @@ export const buttonSecondaryLabel = {
 
 export const headerContainer = {
   width: '100%',
-  height: '50%',
-  marginTop: '-10%'
+  flex: 4,
+  justifyContent: 'center'
 };
 
-export const header = {
+export const headerBackground = {
   backgroundColor: 'white',
   position: 'absolute'
 };
 
-export const headerContent = {
-  marginTop: '10%'
+export const headerContent = {};
+
+export const logo = (keyboardShown) => {
+  const TINY = 56;
+  const MEDIUM = 108;
+  return {
+    width: keyboardShown ? TINY : MEDIUM,
+    height: keyboardShown ? TINY : MEDIUM,
+    alignSelf: 'center'
+  };
+};
+
+export const title = {
+  textAlign: 'center',
+  fontSize: 24
+};
+
+export const titleWhite = {
+  ...title,
+  color: 'white',
+  fontFamily: FontFamily.Muli.extraBold
+};
+
+export const titlePink = {
+  ...title,
+  color: Colors.persianPink,
+  fontFamily: FontFamily.Muli.extraBold
 };
 
 export const formContainer = {
-  flex: 1,
+  flex: 5,
   justifyContent: 'center',
-  paddingVertical: 16,
-  paddingHorizontal: 32,
-  backgroundColor: '#ffffff'
+  paddingVertical: 32,
+  paddingHorizontal: 32
+};
+
+export const formContainerKeyboardPop = {
+  ...formContainer,
+  paddingTop: 100
 };

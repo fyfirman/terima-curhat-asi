@@ -10,7 +10,9 @@
     "lint": "eslint ./src && prettier --write ./src"
   },
   "dependencies": {
+    "@codler/react-native-keyboard-aware-scroll-view": "git+https://github.com/codler/react-native-keyboard-aware-scroll-view.git",
     "@react-native-community/async-storage": "^1.11.0",
+    "@react-native-community/hooks": "^2.6.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.1",
     "@react-navigation/stack": "^5.7.1",

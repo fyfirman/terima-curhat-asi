@@ -1,8 +1,7 @@
 const FontFamily = {
-  AdobeClean: {
-    light: 'AdobeClean-Light',
-    regular: 'AdobeClean-Regular',
-    bold: 'AdobeClean-Bold'
+  Muli: {
+    bold: 'Muli-Bold',
+    extraBold: 'Muli-ExtraBold'
   },
   OpenSans: {
     light: 'OpenSans-Light',
