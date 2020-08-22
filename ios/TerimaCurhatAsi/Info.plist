@@ -71,6 +71,17 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>AdobeClean-Bold.ttf</string>
+		<string>AdobeClean-BoldIt.ttf</string>
+		<string>AdobeClean-BoldSemiCn.ttf</string>
+		<string>AdobeClean-BoldSemiCnIt.ttf</string>
+		<string>AdobeClean-It.ttf</string>
+		<string>AdobeClean-Light.ttf</string>
+		<string>AdobeClean-LightIt.ttf</string>
+		<string>AdobeClean-Regular.ttf</string>
+		<string>AdobeClean-SemiCn.ttf</string>
+		<string>AdobeClean-SemiCnIt.ttf</string>
+		<string>Montserrat-Thin.otf</string>
 	</array>
 </dict>
 </plist>

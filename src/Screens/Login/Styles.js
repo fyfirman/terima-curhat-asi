@@ -9,6 +9,7 @@ export const input = {
   fontWeight: '300',
   fontSize: 18
 };
+
 export const label = {
   textTransform: 'uppercase',
   color: '#6C6C6C',
@@ -18,31 +19,40 @@ export const label = {
 export const button = {
   paddingVertical: 16
 };
+
 export const buttonLabel = {
   color: Teal,
   textTransform: 'uppercase',
   fontSize: 14,
-  fontWeight: 'bold',
   textAlign: 'center'
 };
+
+export const buttonLabelFont = {
+  ...buttonLabel,
+  fontFamily: 'AdobeClean-Regular'
+};
+
 export const buttonPrimary = {
   ...button,
   ...{
     backgroundColor: PinkPrimary
   }
 };
+
 export const buttonPrimaryLabel = {
   ...buttonLabel,
   ...{
     color: PinkSecondary
   }
 };
+
 export const buttonSecondary = {
   ...button,
   ...{
     backgroundColor: PinkSecondary
   }
 };
+
 export const buttonSecondaryLabel = {
   ...buttonLabel,
   ...{

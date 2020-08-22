@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { TextInput } from '../../Components';
-import Input from '../../Components/Input';
 import Combo from '../../Components/Combo';
 import * as Styles from './Styles';
 
