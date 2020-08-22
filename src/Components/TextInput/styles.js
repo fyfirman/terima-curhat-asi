@@ -15,7 +15,12 @@ export const affixTextStyle = {
   color: Colors.textPrimary
 };
 
-export const inputContainerStyle = {
+export const root = {
   fontFamily: FontFamily.OpenSans.regular,
   color: Colors.textPrimary
+};
+
+export const inputContainerStyle = {
+  // borderBottomWidth: 1,
+  borderBottomColor: 'red'
 };

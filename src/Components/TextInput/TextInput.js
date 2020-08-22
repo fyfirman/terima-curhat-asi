@@ -15,10 +15,12 @@ const TextInput = (props) => {
       {...rest}
       baseColor={Colors.textSecondary}
       tintColor={Colors.java}
-      style={styles.inputContainerStyle}
+      style={styles.root}
+      inputContainerStyle={styles.inputContainerStyle}
       labelTextStyle={styles.labelTextStyle}
       titleTextStyle={styles.titleTextStyle}
       affixTextStyle={styles.affixTextStyle}
+      lineWidth={1}
     />
   );
 };
