@@ -8,5 +8,6 @@ export const container = {
 
 export const inner = {
   flex: 1,
-  backgroundColor: Colors.cherub
+  backgroundColor: 'white',
+  paddingHorizontal: 32
 };

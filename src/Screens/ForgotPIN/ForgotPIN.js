@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
-import { HeaderLogin } from '../../assets/svg';
-import { TextInput, ComboInput, Button } from '../../Components';
+import { Colors } from '../../Theme';
+import { TextInput, Button } from '../../Components';
 import * as styles from './styles';
 
 const ForgotPIN = () => {
@@ -22,9 +21,20 @@ const ForgotPIN = () => {
       enableOnAndroid
     >
       <View style={styles.inner}>
-        <Icon name="chevron-back-outline" size={50} color="red" />
+        <Text style={styles.primaryInfo}>Lupa dengan PIN keamanan anda?</Text>
+        <Text style={styles.secondaryInfo}>
+          Tenang! Kami akan mengirim PIN sementara via SMS ke nomor HP anda
+        </Text>
+
+        <TextInput
+          label="Nomor HP"
+          keyboardType="phone-pad"
+          prefix="+62"
+          placeholder="Masukkan nomor"
+          onChangeText={setPhoneNumber}
+        />
         <View style={styles.buttonLogin}>
-          <Button title="Masuk" onPress={() => {}} />
+          <Button color={Colors.java} title="Kirim" onPress={() => {}} />
         </View>
       </View>
     </KeyboardAwareScrollView>
