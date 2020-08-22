@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Login, ForgotPIN } from './Screens';
+import { StandardHeader } from './Theme';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,11 @@ const Routes = () => {
               headerShown: false
             }}
           />
-          <Stack.Screen name="ForgotPIN" component={ForgotPIN} />
+          <Stack.Screen
+            name="ForgotPIN"
+            component={ForgotPIN}
+            options={({ navigation }) => StandardHeader(navigation, 'Lupa Pin')}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
