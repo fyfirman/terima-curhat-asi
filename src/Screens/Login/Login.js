@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
-import Input from '../Components/Input';
-import * as Styles from '../Styles';
-import Combo from '../Components/Combo';
+import Input from '../../Components/Input';
+import * as Styles from '../../Styles';
+import Combo from '../../Components/Combo';
 
 export default class Login extends Component {
   constructor(props) {
