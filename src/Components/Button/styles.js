@@ -1,16 +1,16 @@
-import { Colors, FontFamily } from '../../Theme';
+import { Colors } from '../../Theme';
 
 export const labelTextStyle = {
-  fontFamily: FontFamily.OpenSans.regular,
+  fontFamily: 'OpenSans-Regular',
   color: Colors.textPrimary
 };
 
 export const titleTextStyle = {
-  fontFamily: FontFamily.OpenSans.regular,
+  fontFamily: 'OpenSans-Regular',
   color: Colors.textSecondary
 };
 
 export const affixTextStyle = {
-  fontFamily: FontFamily.OpenSans.regular,
+  fontFamily: 'OpenSans-Regular',
   color: Colors.textPrimary
 };

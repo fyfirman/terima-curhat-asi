@@ -6,7 +6,7 @@ import * as styles from './styles';
 const propTypes = {
   label: PropTypes.string.isRequired,
   initialIndex: PropTypes.number,
-  items: PropTypes.objectOf(PropTypes.any),
+  items: PropTypes.arrayOf(PropTypes.any),
   onChange: PropTypes.func
 };
 
@@ -37,14 +37,14 @@ const ComboInput = (props) => {
       return (
         <TouchableOpacity
           key={index}
-          style={styles.listStyle(index, chosen)}
+          style={styles.optionItem(index, chosen)}
           onPress={() => {
             setSelectedIndex(index);
             setOptionVisible(false);
             passToParent(item);
           }}
         >
-          <Text style={styles.textStyle}>{item.label}</Text>
+          <Text style={styles.optionText(chosen)}>{item.label}</Text>
         </TouchableOpacity>
       );
     });
@@ -67,7 +67,7 @@ const ComboInput = (props) => {
         </View>
       </Modal>
       <View>
-        <Text>{label}</Text>
+        <Text style={styles.labelText}>{label}</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => setOptionVisible(true)}

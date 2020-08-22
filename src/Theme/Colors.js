@@ -4,8 +4,10 @@ export const PinkPrimary = '#EF6EAA';
 export const PinkSecondary = '#F7D6E5';
 
 const Colors = {
+  persianPink: '#EF6EAA', // Primary
+  cherub: '#F7D6E5', // Secondary
+  java: '#1BB1BD', // Complementary
   cranberry: '#D64D8D',
-  java: '#1BB1BD',
   textPrimary: '#333333',
   textSecondary: '#999999'
 };

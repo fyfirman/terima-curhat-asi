@@ -1,18 +1,19 @@
-import { PinkPrimary, PinkSecondary, Teal } from '../../Theme/Colors';
+import { Colors, FontFamily } from '../../Theme';
 
-export const listStyle = (index, chosen) => {
+export const optionItem = (index, chosen) => {
   return {
-    backgroundColor: chosen ? PinkPrimary : 'transparent',
+    backgroundColor: chosen ? Colors.cherub : 'transparent',
     paddingVertical: 16,
     paddingHorizontal: 32,
-    borderTopColor: index === 0 ? 'transparent' : PinkSecondary
+    borderTopColor: index === 0 ? 'transparent' : Colors.cherub
   };
 };
 
-export const textStyle = (chosen) => {
+export const optionText = (chosen) => {
   return {
     textAlign: 'center',
-    color: chosen ? '#ffffff' : Teal
+    color: chosen ? Colors.java : Colors.textPrimary,
+    fontFamily: FontFamily.OpenSans.regular
   };
 };
 
@@ -33,7 +34,20 @@ export const optionContainer = { backgroundColor: '#ffffff' };
 
 export const button = {
   paddingVertical: 16,
-  backgroundColor: PinkSecondary
+  backgroundColor: Colors.cherub,
+  borderRadius: 10
 };
 
-export const buttonText = {};
+export const buttonText = {
+  fontFamily: FontFamily.OpenSans.regular,
+  textAlign: 'center',
+  color: Colors.java,
+  fontSize: 16
+};
+
+export const labelText = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 12,
+  color: Colors.textSecondary,
+  paddingBottom: 4
+};
