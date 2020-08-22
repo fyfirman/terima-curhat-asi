@@ -25,14 +25,15 @@ const ForgotPIN = () => {
         <Text style={styles.secondaryInfo}>
           Tenang! Kami akan mengirim PIN sementara via SMS ke nomor HP anda
         </Text>
-
-        <TextInput
-          label="Nomor HP"
-          keyboardType="phone-pad"
-          prefix="+62"
-          placeholder="Masukkan nomor"
-          onChangeText={setPhoneNumber}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            label="Nomor HP"
+            keyboardType="phone-pad"
+            prefix="+62"
+            placeholder="Masukkan nomor"
+            onChangeText={setPhoneNumber}
+          />
+        </View>
         <View style={styles.buttonLogin}>
           <Button color={Colors.java} title="Kirim" onPress={() => {}} />
         </View>
