@@ -1,5 +1,14 @@
 import { PinkPrimary, PinkSecondary, Teal } from '../../Theme/Colors';
 
+export const container = {
+  flex: 1
+};
+
+export const inner = {
+  flex: 1,
+  justifyContent: 'space-around'
+};
+
 export const input = {
   borderBottomColor: PinkSecondary,
   borderBottomWidth: 1,
@@ -58,4 +67,19 @@ export const buttonSecondaryLabel = {
   ...{
     color: Teal
   }
+};
+
+export const headerContainer = {
+  width: '100%',
+  height: '50%',
+  marginTop: '-10%'
+};
+
+export const header = {
+  backgroundColor: 'white',
+  position: 'absolute'
+};
+
+export const headerContent = {
+  marginTop: '10%'
 };
