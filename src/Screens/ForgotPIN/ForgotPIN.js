@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
@@ -7,15 +6,7 @@ import { HeaderLogin } from '../../assets/svg';
 import { TextInput, ComboInput, Button } from '../../Components';
 import * as styles from './styles';
 
-const propTypes = {
-  navigation: PropTypes.objectOf(PropTypes.any).isRequired
-};
-
-const defaultProps = {};
-
-const Login = (props) => {
-  const { navigation } = props;
-
+const ForgotPIN = () => {
   const [formState, setFormState] = useState({
     phoneNumber: '',
     pin: '',
@@ -91,9 +82,7 @@ const Login = (props) => {
             <Text style={styles.forgotPinText}>Anda lupa PIN? </Text>
             <TouchableOpacity
               style={styles.touchHereContainer}
-              onPress={() => {
-                navigation.navigate('ForgotPIN');
-              }}
+              onPress={() => {}}
             >
               <Text style={styles.touchHereText}>Sentuh disini</Text>
             </TouchableOpacity>
@@ -104,7 +93,4 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = propTypes;
-Login.defaultProps = defaultProps;
-
-export default Login;
+export default ForgotPIN;

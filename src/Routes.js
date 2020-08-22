@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './Screens/Login';
+import { Login, ForgotPIN } from './Screens';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +18,7 @@ const Routes = () => {
               headerShown: false
             }}
           />
+          <Stack.Screen name="ForgotPIN" component={ForgotPIN} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
