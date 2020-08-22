@@ -75,7 +75,8 @@ export const forgotTextContainer = {
 
 export const forgotPinText = {
   fontFamily: FontFamily.OpenSans.regular,
-  fontSize: 15
+  fontSize: 15,
+  color: Colors.textSecondary
 };
 
 export const touchHereText = {
