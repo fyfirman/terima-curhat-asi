@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { TextInput } from '../../Components';
-import Combo from '../../Components/Combo';
+import { TextInput, ComboInput } from '../../Components';
 import * as Styles from './Styles';
 
 const Login = () => {
@@ -45,32 +44,19 @@ const Login = () => {
             setFormState({ ...formState, pin: value });
           }}
         />
-        <View
-          style={{
-            marginBottom: 48
+        <ComboInput
+          label="Sebagai"
+          onChange={(node) => {
+            const { value } = node;
+            setFormState({ ...formState, role: value });
           }}
-        >
-          <Text
-            style={{
-              ...Styles.label,
-              ...{ textAlign: 'center', marginBottom: 8 }
-            }}
-          >
-            Sebagai
-          </Text>
-          <Combo
-            onChange={(node) => {
-              const { value } = node;
-              setFormState({ ...formState, role: value });
-            }}
-            items={[
-              { value: 'kader', label: 'Kader' },
-              { value: 'bidan', label: 'Bidan' },
-              { value: 'doctor', label: 'Dokter Umum' },
-              { value: 'specialist', label: 'Spesialis/Konselor' }
-            ]}
-          />
-        </View>
+          items={[
+            { value: 'kader', label: 'Kader' },
+            { value: 'bidan', label: 'Bidan' },
+            { value: 'doctor', label: 'Dokter Umum' },
+            { value: 'specialist', label: 'Spesialis/Konselor' }
+          ]}
+        />
         <TouchableOpacity style={Styles.buttonPrimary}>
           <Text style={Styles.buttonPrimaryLabel}>Login</Text>
         </TouchableOpacity>
