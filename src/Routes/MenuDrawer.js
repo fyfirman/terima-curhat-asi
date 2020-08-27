@@ -1,6 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ConsultationTab from './ConsultationTab';
+import { HeaderOptions } from '../Theme';
 import { Consultation } from '../Screens';
 
 const Drawer = createDrawerNavigator();

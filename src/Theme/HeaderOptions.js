@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from './Colors';
 import FontFamily from './FontFamily';
 
-const ICON_SIZE = 35;
+const ICON_SIZE = 30;
 
 const headerStyle = {
   backgroundColor: Colors.persianPink,
@@ -18,7 +18,11 @@ const headerTitleStyle = {
   marginLeft: -(ICON_SIZE + 15)
 };
 
-const StandartHeader = (navigation, title) => {
+const iconStyle = {
+  marginLeft: 8
+};
+
+const withBack = (navigation, title) => {
   return {
     title,
     headerStyle,
@@ -28,6 +32,7 @@ const StandartHeader = (navigation, title) => {
       <Icon
         name="chevron-back-outline"
         onPress={() => navigation.goBack()}
+        style={iconStyle}
         size={ICON_SIZE}
         color="white"
       />
@@ -35,4 +40,27 @@ const StandartHeader = (navigation, title) => {
   };
 };
 
-export default StandartHeader;
+const withMenu = (navigation, title) => {
+  return {
+    title,
+    headerStyle,
+    headerTitleStyle,
+    headerTintColor: 'white',
+    headerLeft: () => (
+      <Icon
+        name="menu-outline"
+        onPress={() => navigation.openDrawer()}
+        style={iconStyle}
+        size={ICON_SIZE}
+        color="white"
+      />
+    )
+  };
+};
+
+const HeaderOptions = {
+  withBack,
+  withMenu
+};
+
+export default HeaderOptions;
