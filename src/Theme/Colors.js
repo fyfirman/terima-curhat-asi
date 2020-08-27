@@ -4,7 +4,9 @@ const Colors = {
   java: '#1BB1BD', // Complementary
   cranberry: '#D64D8D',
   textPrimary: '#333333',
-  textSecondary: '#999999'
+  textSecondary: '#999999',
+  bottomTabs: '#FAFAFA',
+  bottomTabsBorder: '#EDEDED'
 };
 
 export default Colors;
