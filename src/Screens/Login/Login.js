@@ -85,7 +85,13 @@ const Login = (props) => {
             ]}
           />
           <View style={styles.buttonLogin}>
-            <Button title="Masuk" onPress={() => {}} />
+            <Button
+              title="Masuk"
+              onPress={() => {
+                navigation.navigate('MenuDrawer');
+                console.log('Masuk touched');
+              }}
+            />
           </View>
           <View style={styles.forgotTextContainer}>
             <Text style={styles.forgotPinText}>Anda lupa PIN? </Text>

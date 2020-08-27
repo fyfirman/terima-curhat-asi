@@ -2,8 +2,9 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Login, ForgotPIN } from './Screens';
-import { StandardHeader } from './Theme';
+import MenuDrawer from './MenuDrawer';
+import { Login, ForgotPIN } from '../Screens';
+import { StandardHeader } from '../Theme';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,13 @@ const Routes = () => {
             name="ForgotPIN"
             component={ForgotPIN}
             options={({ navigation }) => StandardHeader(navigation, 'Lupa Pin')}
+          />
+          <Stack.Screen
+            name="MenuDrawer"
+            component={MenuDrawer}
+            options={({ navigation }) =>
+              StandardHeader(navigation, 'Terima Curhat ASI')
+            }
           />
         </Stack.Navigator>
       </NavigationContainer>
