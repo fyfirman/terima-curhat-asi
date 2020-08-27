@@ -29,8 +29,7 @@ const Routes = () => {
             name="MenuDrawer"
             component={MenuDrawer}
             options={({ navigation }) =>
-              StandardHeader(navigation, 'Terima Curhat ASI')
-            }
+              StandardHeader(navigation, 'Terima Curhat ASI')}
           />
         </Stack.Navigator>
       </NavigationContainer>

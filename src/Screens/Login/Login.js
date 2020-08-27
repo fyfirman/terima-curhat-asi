@@ -89,7 +89,6 @@ const Login = (props) => {
               title="Masuk"
               onPress={() => {
                 navigation.navigate('MenuDrawer');
-                console.log('Masuk touched');
               }}
             />
           </View>
