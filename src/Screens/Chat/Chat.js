@@ -1,18 +1,31 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+import { View, Text, ScrollView, TextInput } from 'react-native';
 import * as styles from './styles';
+import { Button } from '../../Components';
 
 const Chat = () => {
+  const renderBubble = () => {
+    const bubbles = [];
+    for (let i = 0; i < 20; i++) {
+      bubbles.push(<Text style={{ padding: 20 }}>{`Test ${i}`}</Text>);
+    }
+    return bubbles;
+  };
+
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      enableOnAndroid
-    >
-      <View style={styles.inner}>
-        <Text style={styles.primaryInfo}>Chat</Text>
+    <View style={styles.inner}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={{ height: 40, flex: 1, borderColor: 'gray', borderWidth: 1 }}
+          placeholder="Masukkan Pesan"
+        />
+        <Button title="Kirim" />
+        {/* <Button> */}
       </View>
-    </KeyboardAwareScrollView>
+      <ScrollView style={styles.bubbleContainer} invertStickyHeaders>
+        {renderBubble()}
+      </ScrollView>
+    </View>
   );
 };
 

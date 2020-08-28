@@ -8,13 +8,18 @@ export const container = {
 
 export const inner = {
   flex: 1,
-  justifyContent: 'center',
-  backgroundColor: 'white',
-  paddingHorizontal: 32
+  flexDirection: 'column-reverse',
+  backgroundColor: '#EAEAEA'
 };
 
-export const primaryInfo = {
-  fontFamily: FontFamily.OpenSans.regular,
-  color: Colors.textPrimary,
-  fontSize: 15
+export const bubbleContainer = {
+  height: '100%',
+  width: '100%',
+  flex: 1,
+  flexDirection: 'column-reverse'
+};
+
+export const inputContainer = {
+  flexDirection: 'row',
+  paddingHorizontal: 16
 };
