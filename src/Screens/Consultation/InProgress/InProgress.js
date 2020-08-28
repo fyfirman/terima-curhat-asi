@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import * as styles from './styles';
 
 const InProgress = () => {
+  const [isEmpty, setIsEmpty] = useState(true);
+
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      enableOnAndroid
-    >
-      <View style={styles.inner}>
-        <Text style={styles.primaryInfo}>
-          {`Tidak ada konsultasi\nyang sedang berjalan`}
-        </Text>
-      </View>
-    </KeyboardAwareScrollView>
+    <View style={styles.container}>
+      {!isEmpty ? (
+        <Text> Not implemented </Text>
+      ) : (
+        <View style={styles.infoContainer}>
+          <Text style={styles.emptyInfo}>
+            {`Tidak ada konsultasi\nyang sedang berjalan`}
+          </Text>
+        </View>
+      )}
+    </View>
   );
 };
 

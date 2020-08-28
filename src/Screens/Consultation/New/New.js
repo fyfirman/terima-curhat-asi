@@ -4,7 +4,7 @@ import * as styles from './styles';
 import { NewConsultCard } from './Components';
 
 const New = () => {
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(true);
 
   const renderCard = () => {
     const cards = [];
@@ -19,9 +19,11 @@ const New = () => {
       {!isEmpty ? (
         renderCard()
       ) : (
-        <Text style={styles.emptyInfo}>
-          {`Tidak ada konsultasi\nyang baru`}
-        </Text>
+        <View style={styles.infoContainer}>
+          <Text style={styles.emptyInfo}>
+            {`Tidak ada konsultasi\nyang baru`}
+          </Text>
+        </View>
       )}
     </View>
   );
