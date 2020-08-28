@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import * as styles from './styles';
-import { ChatItem } from './Components';
+import { ChatItem } from '../Components';
 
 const InProgress = () => {
   const [isEmpty, setIsEmpty] = useState(false);
@@ -14,6 +14,7 @@ const InProgress = () => {
           key={i}
           name="Dessy"
           message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
+          time={new Date(2020, 7, 28, 11, 23)}
         />
       );
     }

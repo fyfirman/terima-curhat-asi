@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { DateFormatter } from '../../../../../Helper';
+import { DateFormatter } from '../../../../Helper';
 import * as styles from './styles';
 
 const propTypes = {
@@ -23,11 +23,13 @@ const ChatItem = (props) => {
     <TouchableOpacity style={styles.container} onPress={() => {}}>
       <Image
         style={styles.ava}
-        source={require('../../../../../assets/images/logo.png')}
+        source={require('../../../../assets/images/logo.png')}
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>{DateFormatter.getRelativeTime(time)}</Text>
-        <Text style={styles.name}>{name}</Text>
+        <View style={styles.topSection}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.time}>{DateFormatter.getRelativeTime(time)}</Text>
+        </View>
         <Text style={styles.message} numberOfLines={1}>
           {message}
         </Text>

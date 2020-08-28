@@ -1,4 +1,4 @@
-import { Colors, FontFamily } from '../../../../../Theme';
+import { Colors, FontFamily } from '../../../../Theme';
 
 const AVA_SIZE = 55;
 
@@ -22,6 +22,11 @@ export const infoContainer = {
   justifyContent: 'center'
 };
 
+export const topSection = {
+  flexDirection: 'row',
+  justifyContent: 'space-between'
+};
+
 export const name = {
   fontFamily: FontFamily.OpenSans.semiBold,
   fontSize: 16,
@@ -31,4 +36,9 @@ export const name = {
 export const message = {
   fontFamily: FontFamily.OpenSans.regular,
   fontSize: 14
+};
+
+export const time = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 11
 };

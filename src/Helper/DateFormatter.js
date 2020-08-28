@@ -11,7 +11,12 @@ const getRelativeTime = (date) => {
   if (isToday(date)) {
     return `${date.getHours()}:${date.getMinutes()}`;
   }
-  return date.toISOString();
+  return `${date
+    .toISOString()
+    .substring(0, 10)
+    .split('-')
+    .reverse()
+    .join('/')}`;
 };
 
 const DateFormatter = {
