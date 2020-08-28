@@ -22,7 +22,7 @@ const ConsultationTab = () => {
         labelName = 'Sedang Berjalan';
         break;
       case 'History':
-        labelName = 'History';
+        labelName = 'Riwayat';
         break;
       default:
         break;
