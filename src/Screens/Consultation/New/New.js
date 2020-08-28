@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import * as styles from './styles';
+import { NewConsultCard } from './Components';
 
 const New = () => {
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  const renderCard = () => {
+    const cards = [];
+    for (let i = 0; i < 5; i++) {
+      cards.push(<NewConsultCard key={i} name="Dessy" />);
+    }
+    return cards;
+  };
+
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      enableOnAndroid
-    >
-      <View style={styles.inner}>
-        <Text style={styles.primaryInfo}>
+    <View style={styles.container}>
+      {!isEmpty ? (
+        renderCard()
+      ) : (
+        <Text style={styles.emptyInfo}>
           {`Tidak ada konsultasi\nyang baru`}
         </Text>
-      </View>
-    </KeyboardAwareScrollView>
+      )}
+    </View>
   );
 };
 

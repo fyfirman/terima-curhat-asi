@@ -6,7 +6,8 @@ const Colors = {
   textPrimary: '#333333',
   textSecondary: '#999999',
   bottomTabs: '#FAFAFA',
-  bottomTabsBorder: '#EDEDED'
+  bottomTabsBorder: '#EDEDED',
+  borderBottomCard: '#DADADA'
 };
 
 export default Colors;

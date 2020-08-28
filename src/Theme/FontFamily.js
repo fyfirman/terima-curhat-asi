@@ -6,6 +6,7 @@ const FontFamily = {
   OpenSans: {
     light: 'OpenSans-Light',
     regular: 'OpenSans-Regular',
+    semiBold: 'OpenSans-Semibold',
     bold: 'OpenSans-Bold'
   }
 };

@@ -2,17 +2,12 @@ import { Colors, FontFamily } from '../../../Theme';
 
 export const container = {
   flex: 1,
-  flexGrow: 1
-};
-
-export const inner = {
-  flex: 1,
-  justifyContent: 'center',
+  flexGrow: 1,
   backgroundColor: 'white',
-  paddingHorizontal: 32
+  paddingHorizontal: 16
 };
 
-export const primaryInfo = {
+export const emptyInfo = {
   fontFamily: FontFamily.OpenSans.regular,
   color: Colors.textPrimary,
   fontSize: 15
