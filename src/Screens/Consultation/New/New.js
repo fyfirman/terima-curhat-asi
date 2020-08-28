@@ -4,7 +4,7 @@ import * as styles from './styles';
 import { NewConsultCard } from './Components';
 
 const New = () => {
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const renderCard = () => {
     const cards = [];
