@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Chat } from '../../../../Screens';
 import { InProgress } from '../../../../Screens/Consultation';
 import { HeaderOptions } from '../../../../Theme';
 

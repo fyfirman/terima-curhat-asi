@@ -7,20 +7,22 @@ import * as styles from './styles';
 const propTypes = {
   name: PropTypes.string,
   message: PropTypes.string,
-  time: PropTypes.instanceOf(Date)
+  time: PropTypes.instanceOf(Date),
+  onPress: PropTypes.func
 };
 
 const defaultProps = {
   name: 'User tidak mempunyai nama',
   message: '',
-  time: new Date(2020, 7, 28, 11, 20)
+  time: new Date(2020, 7, 28, 11, 20),
+  onPress: () => {}
 };
 
 const ChatItem = (props) => {
-  const { name, message, time } = props;
+  const { name, message, time, onPress } = props;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => {}}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image
         style={styles.ava}
         source={require('../../../../assets/images/logo.png')}

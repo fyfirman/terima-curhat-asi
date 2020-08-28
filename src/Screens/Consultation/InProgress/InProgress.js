@@ -4,7 +4,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import * as styles from './styles';
 import { ChatItem } from '../Components';
 
-const InProgress = () => {
+const InProgress = (props) => {
+  const { navigation } = props;
   const [isEmpty, setIsEmpty] = useState(false);
 
   const renderCard = () => {
@@ -16,6 +17,7 @@ const InProgress = () => {
           name="Dessy"
           message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
           time={new Date(2020, 7, 28, 11, 23)}
+          onPress={() => navigation.navigate('Chat')}
         />
       );
     }
