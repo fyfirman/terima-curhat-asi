@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import * as styles from './styles';
 import { NewConsultCard } from './Components';
 
@@ -8,16 +9,16 @@ const New = () => {
 
   const renderCard = () => {
     const cards = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       cards.push(<NewConsultCard key={i} name="Dessy" />);
     }
     return cards;
   };
 
   return (
-    <View style={styles.container}>
+    <>
       {!isEmpty ? (
-        renderCard()
+        <ScrollView style={styles.container}>{renderCard()}</ScrollView>
       ) : (
         <View style={styles.infoContainer}>
           <Text style={styles.emptyInfo}>
@@ -25,7 +26,7 @@ const New = () => {
           </Text>
         </View>
       )}
-    </View>
+    </>
   );
 };
 

@@ -9,7 +9,8 @@ export const container = {
 
 export const infoContainer = {
   flex: 1,
-  justifyContent: 'center'
+  justifyContent: 'center',
+  backgroundColor: 'white'
 };
 
 export const emptyInfo = {
