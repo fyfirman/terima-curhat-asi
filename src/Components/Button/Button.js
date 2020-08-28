@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextButton, RaisedTextButton } from 'react-native-material-buttons';
+import { TextButton } from 'react-native-material-buttons';
 import { Colors } from '../../Theme';
 import * as styles from './styles';
 
