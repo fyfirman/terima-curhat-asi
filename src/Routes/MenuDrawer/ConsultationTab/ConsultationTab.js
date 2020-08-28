@@ -4,9 +4,10 @@ import React from 'react';
 import { Text } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Consultation } from '../Screens';
-import { Colors, FontFamily, HeaderOptions } from '../Theme';
+import { Colors, FontFamily } from '../../../Theme';
 import InProgressStack from './InProgressStack';
+import HistoryStack from './HistoryStack';
+import NewStack from './NewStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -66,9 +67,9 @@ const ConsultationTab = () => {
         tabBarIcon: (options) => getTabBarIcon(route, options)
       })}
     >
-      <Tab.Screen name="New" component={Consultation} />
+      <Tab.Screen name="New" component={NewStack} />
       <Tab.Screen name="InProgress" component={InProgressStack} />
-      <Tab.Screen name="History" component={Consultation} />
+      <Tab.Screen name="History" component={HistoryStack} />
     </Tab.Navigator>
   );
 };

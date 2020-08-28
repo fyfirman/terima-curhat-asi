@@ -1,5 +1,4 @@
-import Colors from '../../Theme/Colors';
-import { FontFamily } from '../../Theme';
+import { Colors, FontFamily } from '../../../Theme';
 
 export const container = {
   flex: 1,
@@ -17,15 +16,4 @@ export const primaryInfo = {
   fontFamily: FontFamily.OpenSans.regular,
   color: Colors.textPrimary,
   fontSize: 15
-};
-
-export const secondaryInfo = {
-  fontFamily: FontFamily.OpenSans.regular,
-  color: Colors.textSecondary,
-  fontSize: 15
-};
-
-export const inputContainer = {
-  marginTop: 30,
-  marginBottom: 40
 };

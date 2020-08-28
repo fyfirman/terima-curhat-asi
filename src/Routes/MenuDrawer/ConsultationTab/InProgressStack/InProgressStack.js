@@ -1,10 +1,7 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MenuDrawer from './MenuDrawer';
-import { Login, ForgotPIN } from '../Screens';
-import { HeaderOptions } from '../Theme';
+import { InProgress } from '../../../../Screens/Consultation';
+import { HeaderOptions } from '../../../../Theme';
 
 const Stack = createStackNavigator();
 
@@ -13,10 +10,9 @@ const InProgressStack = () => {
     <Stack.Navigator initialRouteName="InProgress">
       <Stack.Screen
         name="InProgress"
-        component={Login}
+        component={InProgress}
         options={({ navigation }) =>
-          HeaderOptions.withMenu(navigation, 'Terima Curhat ASI')
-        }
+          HeaderOptions.withMenu(navigation, 'Terima Curhat ASI')}
       />
     </Stack.Navigator>
   );
