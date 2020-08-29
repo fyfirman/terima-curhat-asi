@@ -24,9 +24,9 @@ const Routes = () => {
           <Stack.Screen
             name="ForgotPIN"
             component={ForgotPIN}
-            options={{
-              headerShown: false
-            }}
+            options={({ navigation }) =>
+              HeaderOptions.withBack(navigation, 'Lupa PIN')
+            }
           />
           <Stack.Screen
             name="MenuDrawer"
@@ -35,13 +35,7 @@ const Routes = () => {
               headerShown: false
             }}
           />
-          <Stack.Screen
-            name="Chat"
-            component={Chat}
-            options={({ navigation }) =>
-              HeaderOptions.withBack(navigation, 'Dessy')
-            }
-          />
+          <Stack.Screen name="Chat" component={Chat} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

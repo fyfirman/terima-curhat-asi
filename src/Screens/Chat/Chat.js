@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, TextInput, FlatList } from 'react-native';
 import { Button } from 'react-native-paper';
+import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { ChatBubble } from './Components';
 import mockData from './mockData';
+import { HeaderOptions } from '../../Theme';
 
-const Chat = () => {
+const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
+const defaultProps = {};
+
+const Chat = (props) => {
+  const { navigation } = props;
+
+  useEffect(() => {
+    navigation.setOptions(HeaderOptions.Chat({ navigation }, 'Dessy'));
+  }, []);
+
   const renderItem = ({ item }) => (
     <ChatBubble
       senderName={item.senderName}
@@ -40,5 +54,8 @@ const Chat = () => {
     </View>
   );
 };
+
+Chat.propTypes = propTypes;
+Chat.defaultProps = defaultProps;
 
 export default Chat;

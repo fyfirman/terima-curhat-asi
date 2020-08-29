@@ -1,38 +1,21 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Colors from './Colors';
-import FontFamily from './FontFamily';
+import Chat from './Chat';
+import * as styles from './styles';
 
 const ICON_SIZE = 30;
-
-const headerStyle = {
-  backgroundColor: Colors.persianPink,
-  elevation: 0,
-  shadowOpacity: 0,
-  borderBottomWidth: 0
-};
-
-const headerTitleStyle = {
-  fontFamily: FontFamily.Muli.bold,
-  textAlign: 'center',
-  marginLeft: -(ICON_SIZE + 15)
-};
-
-const iconStyle = {
-  marginLeft: 8
-};
 
 const withBack = (navigation, title) => {
   return {
     title,
-    headerStyle,
-    headerTitleStyle,
+    headerStyle: styles.headerStyle,
+    headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'white',
     headerLeft: () => (
       <Icon
         name="chevron-back-outline"
         onPress={() => navigation.goBack()}
-        style={iconStyle}
+        style={styles.iconStyle}
         size={ICON_SIZE}
         color="white"
       />
@@ -43,14 +26,14 @@ const withBack = (navigation, title) => {
 const withMenu = (navigation, title) => {
   return {
     title,
-    headerStyle,
-    headerTitleStyle,
+    headerStyle: styles.headerStyle,
+    headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'white',
     headerLeft: () => (
       <Icon
         name="menu-outline"
         onPress={() => navigation.openDrawer()}
-        style={iconStyle}
+        style={styles.iconStyle}
         size={ICON_SIZE}
         color="white"
       />
@@ -60,7 +43,8 @@ const withMenu = (navigation, title) => {
 
 const HeaderOptions = {
   withBack,
-  withMenu
+  withMenu,
+  Chat
 };
 
 export default HeaderOptions;
