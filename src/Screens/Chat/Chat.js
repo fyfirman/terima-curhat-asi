@@ -1,16 +1,19 @@
 import React from 'react';
-import { View, Text, ScrollView, TextInput } from 'react-native';
+import { View, Text, ScrollView, TextInput, FlatList } from 'react-native';
 import * as styles from './styles';
+import { ChatBubble } from './Components';
 import { Button } from '../../Components';
+import mockData from './mockData';
 
 const Chat = () => {
-  const renderBubble = () => {
-    const bubbles = [];
-    for (let i = 0; i < 20; i++) {
-      bubbles.push(<Text style={{ padding: 20 }}>{`Test ${i}`}</Text>);
-    }
-    return bubbles;
-  };
+  const renderItem = ({ item }) => (
+    <ChatBubble
+      senderName={item.senderName}
+      message={item.message}
+      time={item.time}
+      self={item.self}
+    />
+  );
 
   return (
     <View style={styles.inner}>
@@ -20,11 +23,15 @@ const Chat = () => {
           placeholder="Masukkan Pesan"
         />
         <Button title="Kirim" />
-        {/* <Button> */}
       </View>
-      <ScrollView style={styles.bubbleContainer} invertStickyHeaders>
-        {renderBubble()}
-      </ScrollView>
+      <FlatList
+        data={mockData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        initialNumToRender={10}
+        initialScrollIndex={mockData - 1}
+        inverted
+      />
     </View>
   );
 };
