@@ -31,7 +31,12 @@ const ChatAppBar = (props) => {
           size={30}
           color="white"
         />
-        <Avatar.Image size={36} label="D" style={styles.avatar} />
+        <Avatar.Text
+          size={36}
+          label="D"
+          labelStyle={styles.labelStyle}
+          style={styles.avatar}
+        />
       </TouchableOpacity>
       <Appbar.Content
         titleStyle={styles.headerTitleStyle}

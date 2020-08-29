@@ -1,7 +1,5 @@
 import { Colors, FontFamily } from '../../../../Theme';
 
-const ICON_SIZE = 30;
-
 export const headerStyle = {
   backgroundColor: Colors.persianPink,
   elevation: 0,
@@ -17,6 +15,11 @@ export const headerTitleStyle = {
 
 export const headerLeft = {
   flexDirection: 'row'
+};
+
+export const labelStyle = {
+  fontFamily: FontFamily.Muli.bold,
+  color: 'white'
 };
 
 export const backIcon = {};
