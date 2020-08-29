@@ -1,37 +1,61 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { IconButton } from 'react-native-paper';
-import { FlatList } from 'react-native-gesture-handler';
+import { Button } from 'react-native-paper';
 import * as styles from './styles';
-import { Colors } from '../../Theme';
+import ArticleCard from './Components/ArticleCard/ArticleCard';
+import { HeaderHome } from '../../assets/svg';
+import Menu from './Components/Menu/Menu';
 
-const Home = () => {
+const Home = (props) => {
+  const { navigation } = props;
+
   return (
     <View contentContainerStyle={styles.container}>
       <View style={styles.header}>
-        <IconButton
-          icon="camera"
-          color={Colors.java}
-          size={20}
-          onPress={() => {}}
+        <HeaderHome
+          width="100%"
+          height="100%"
+          style={styles.headerBackground}
         />
-        <Text style={styles.primaryInfo}>{`Terima\nCurhat ASI`}</Text>
-        <Image
-          style={styles.vector}
-          source={require('../../assets/images/logo.png')}
+        <Button
+          icon="menu"
+          mode="contained"
+          labelStyle={styles.menuIcon}
+          onPress={() => navigation.openDrawer()}
+          style={styles.menuButton}
         />
+        <View style={styles.headerBottom}>
+          <Text style={styles.headings}>{`Terima\nCurhat ASI`}</Text>
+          <Image
+            style={styles.vector}
+            source={require('../../assets/images/vector.png')}
+          />
+        </View>
       </View>
       <View style={styles.newArticle}>
-        <Text style={styles.primaryInfo}>Artikel</Text>
-        <Text style={styles.primaryInfo}>Lihat Semua</Text>
+        <View style={styles.titleHeader}>
+          <Text style={styles.titleSection}>Artikel Terbaru</Text>
+          <Text style={styles.seeMore}>Lihat Semua</Text>
+        </View>
         <View style={styles.articleContainer}>
-          <Text style={styles.primaryInfo}>Artikel 2</Text>
-          <Text style={styles.primaryInfo}>Artikel 2</Text>
+          <ArticleCard
+            title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
+            content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
+          />
+          <ArticleCard
+            title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
+            content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
+          />
         </View>
       </View>
       <View style={styles.menu}>
-        <Text style={styles.primaryInfo}>Konsultasi</Text>
-        <Text style={styles.primaryInfo}>Artikel</Text>
+        <View style={styles.titleHeader}>
+          <Text style={styles.titleSection}>Menu</Text>
+        </View>
+        <View style={styles.menuItems}>
+          <Menu iconName="chatbubbles-outline" title="Konsultasi" />
+          <Menu iconName="newspaper-outline" title="Artikel" />
+        </View>
       </View>
     </View>
   );

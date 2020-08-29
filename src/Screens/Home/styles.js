@@ -3,14 +3,28 @@ import { FontFamily } from '../../Theme';
 
 export const container = {
   flex: 1,
-  flexGrow: 1
+  backgroundColor: 'white',
+  justifyContent: 'space-between'
 };
 
-export const inner = {
-  flex: 1,
-  justifyContent: 'center',
-  backgroundColor: 'white',
-  paddingHorizontal: 32
+export const header = {
+  backgroundColor: '',
+  marginTop: -2
+};
+
+export const headerBottom = {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  paddingHorizontal: 16,
+  paddingTop: 0,
+  marginTop: -16
+};
+
+export const headings = {
+  fontFamily: FontFamily.Muli.extraBold,
+  fontSize: 24,
+  color: 'white',
+  alignSelf: 'center'
 };
 
 export const primaryInfo = {
@@ -20,6 +34,63 @@ export const primaryInfo = {
 };
 
 export const vector = {
-  width: 40,
-  height: 40
+  width: 200,
+  height: 150
+};
+
+export const headerBackground = {
+  backgroundColor: 'white',
+  position: 'absolute'
+};
+
+export const newArticle = {
+  backgroundColor: 'white'
+};
+
+export const menu = {
+  height: '100%',
+  backgroundColor: 'white'
+};
+
+export const menuButton = {
+  margin: 16,
+  height: 44,
+  width: 44,
+  minWidth: 44,
+  paddingLeft: 13,
+  paddingTop: -4,
+  borderRadius: 100,
+  backgroundColor: Colors.java,
+  elevation: 1
+};
+
+export const menuIcon = {
+  fontSize: 28,
+  marginTop: -2
+};
+
+export const menuItems = {
+  flexDirection: 'row'
+};
+
+export const titleHeader = {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  paddingHorizontal: 16,
+  paddingTop: 8,
+  paddingBottom: 4
+};
+
+export const titleSection = {
+  fontFamily: FontFamily.Muli.extraBold,
+  color: Colors.textPrimary
+};
+
+export const seeMore = {
+  fontFamily: FontFamily.OpenSans.regular,
+  color: Colors.textPrimary
+};
+
+export const articleContainer = {
+  paddingHorizontal: 16
 };
