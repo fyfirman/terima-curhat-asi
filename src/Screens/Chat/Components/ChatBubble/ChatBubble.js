@@ -21,12 +21,14 @@ const ChatBubble = (props) => {
   const { message, senderName, time, self } = props;
 
   return (
-    <View style={!self ? styles.root : styles.rootSelf}>
-      {!self && <Text style={styles.name}>{senderName}</Text>}
-      <Text style={styles.message}>{message}</Text>
-      <Text style={styles.time}>
-        {`${time.getHours()}:${time.getMinutes()}`}
-      </Text>
+    <View style={styles.root(self)}>
+      <View style={styles.container(self)}>
+        {!self && <Text style={styles.name}>{senderName}</Text>}
+        <Text style={styles.message}>{message}</Text>
+        <Text style={styles.time}>
+          {`${time.getHours()}:${time.getMinutes()}`}
+        </Text>
+      </View>
     </View>
   );
 };
