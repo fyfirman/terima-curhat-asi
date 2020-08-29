@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from '../../../Screens';
-import { HeaderOptions } from '../../../Theme';
 
 const Stack = createStackNavigator();
 
@@ -11,8 +10,9 @@ const HomeStack = () => {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={({ navigation }) =>
-          HeaderOptions.withMenu(navigation, 'Terima Curhat ASI')}
+        options={{
+          headerShown: false
+        }}
       />
     </Stack.Navigator>
   );

@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Invite">
+        <Stack.Navigator initialRouteName="MenuDrawer">
           <Stack.Screen
             name="Login"
             component={Login}
@@ -25,7 +25,8 @@ const Routes = () => {
             name="ForgotPIN"
             component={ForgotPIN}
             options={({ navigation }) =>
-              HeaderOptions.withBack(navigation, 'Lupa PIN')}
+              HeaderOptions.withBack(navigation, 'Lupa PIN')
+            }
           />
           <Stack.Screen
             name="MenuDrawer"
@@ -45,7 +46,8 @@ const Routes = () => {
             name="Invite"
             component={Invite}
             options={({ navigation }) =>
-              HeaderOptions.withBack(navigation, 'Tambahkan Bidan')}
+              HeaderOptions.withBack(navigation, 'Tambahkan Bidan')
+            }
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -18,8 +18,3 @@ export const primaryInfo = {
   color: Colors.textPrimary,
   fontSize: 15
 };
-
-export const vector = {
-  width: 40,
-  height: 40
-};

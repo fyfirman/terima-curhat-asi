@@ -1,18 +1,39 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+import { View, Text, Image } from 'react-native';
+import { IconButton } from 'react-native-paper';
+import { FlatList } from 'react-native-gesture-handler';
 import * as styles from './styles';
+import { Colors } from '../../Theme';
 
 const Home = () => {
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      enableOnAndroid
-    >
-      <View style={styles.inner}>
-        <Text style={styles.primaryInfo}>Home</Text>
+    <View contentContainerStyle={styles.container}>
+      <View style={styles.header}>
+        <IconButton
+          icon="camera"
+          color={Colors.java}
+          size={20}
+          onPress={() => {}}
+        />
+        <Text style={styles.primaryInfo}>{`Terima\nCurhat ASI`}</Text>
+        <Image
+          style={styles.vector}
+          source={require('../../assets/images/logo.png')}
+        />
       </View>
-    </KeyboardAwareScrollView>
+      <View style={styles.newArticle}>
+        <Text style={styles.primaryInfo}>Artikel</Text>
+        <Text style={styles.primaryInfo}>Lihat Semua</Text>
+        <View style={styles.articleContainer}>
+          <Text style={styles.primaryInfo}>Artikel 2</Text>
+          <Text style={styles.primaryInfo}>Artikel 2</Text>
+        </View>
+      </View>
+      <View style={styles.menu}>
+        <Text style={styles.primaryInfo}>Konsultasi</Text>
+        <Text style={styles.primaryInfo}>Artikel</Text>
+      </View>
+    </View>
   );
 };
 
