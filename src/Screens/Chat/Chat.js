@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, TextInput, FlatList } from 'react-native';
+import { Button } from 'react-native-paper';
 import * as styles from './styles';
 import { ChatBubble } from './Components';
-import { Button } from '../../Components';
 import mockData from './mockData';
 
 const Chat = () => {
@@ -19,7 +19,15 @@ const Chat = () => {
     <View style={styles.inner}>
       <View style={styles.inputContainer}>
         <TextInput style={styles.input} placeholder="Masukkan Pesan" />
-        <Button style={styles.sendButton} title="Kirim" />
+        <Button
+          style={styles.sendButton}
+          labelStyle={styles.buttonIcon}
+          contentStyle={styles.contentStyle}
+          icon="send"
+          mode="contained"
+          size={20}
+          compact
+        />
       </View>
       <FlatList
         data={mockData}

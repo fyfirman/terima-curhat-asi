@@ -40,7 +40,22 @@ export const input = {
 
 export const sendButton = {
   height: INPUT_HEIGHT,
+  width: INPUT_HEIGHT,
+  minWidth: INPUT_HEIGHT,
   borderRadius: 100,
   backgroundColor: Colors.java,
   elevation: 1
+};
+
+export const buttonIcon = {
+  color: 'white',
+  fontSize: 28,
+  marginLeft: 0
+};
+
+export const contentStyle = {
+  heigth: INPUT_HEIGHT,
+  width: INPUT_HEIGHT,
+  marginLeft: -2,
+  paddingBottom: 0
 };
