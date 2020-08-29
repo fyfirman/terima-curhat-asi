@@ -56,7 +56,13 @@ const ChatAppBar = (props) => {
           />
         }
       >
-        <Menu.Item onPress={() => {}} title="Tambahkan konselor" />
+        <Menu.Item
+          onPress={() => {
+            navigation.navigate('Invite');
+            toggleMenu();
+          }}
+          title="Tambahkan konselor"
+        />
         <Divider />
         <Menu.Item onPress={() => {}} title="Akhiri" />
       </Menu>

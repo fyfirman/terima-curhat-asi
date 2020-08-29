@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { ChatBubble, AppBar } from './Components';
 import mockData from './mockData';
-import { HeaderOptions } from '../../Theme';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired
@@ -16,39 +15,6 @@ const defaultProps = {};
 
 const Chat = (props) => {
   const { navigation } = props;
-
-  const [menuVisible, setMenuVisible] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuVisible((value) => !value);
-    console.log(!menuVisible);
-  };
-
-  // useEffect(() => {
-  //   const menu = (
-  //     <Menu
-  //       visible={menuVisible}
-  //       onDismiss={toggleMenu}
-  //       anchor={<Button onPress={toggleMenu}>Show menu</Button>}
-  //       // anchor={
-  //       //   <Icon
-  //       //     name="ellipsis-vertical"
-  //       //     style={styles.menuIcon}
-  //       //     size={24}
-  //       //     color="white"
-  //       //     onPress={toggleMenu}
-  //       //   />
-  //       // }
-  //     >
-  //       <Menu.Item onPress={() => {}} title="Item 1" />
-  //       <Menu.Item onPress={() => {}} title="Item 2" />
-  //       <Divider />
-  //       <Menu.Item onPress={() => {}} title="Item 3" />
-  //     </Menu>
-  //   );
-
-  //   navigation.setOptions(HeaderOptions.Chat(navigation, 'Dessy', menu));
-  // }, []);
 
   const renderItem = ({ item }) => (
     <ChatBubble
@@ -61,7 +27,7 @@ const Chat = (props) => {
 
   return (
     <>
-      <AppBar />
+      <AppBar navigation={navigation} />
       <View style={styles.inner}>
         <View style={styles.inputContainer}>
           <TextInput style={styles.input} placeholder="Masukkan Pesan" />
