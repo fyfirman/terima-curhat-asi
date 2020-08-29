@@ -4,14 +4,15 @@ import { FontFamily } from '../../../../Theme';
 export const root = (self) => ({
   flex: 1,
   flexDirection: 'row',
-  justifyContent: self ? 'flex-end' : 'flex-start'
+  justifyContent: self ? 'flex-end' : 'flex-start',
+  marginTop: 8
 });
 
 export const container = (self) => ({
   backgroundColor: self ? Colors.cherub : 'white',
   maxWidth: '80%',
   padding: 8,
-  marginBottom: 16,
+  marginBottom: 8,
   marginRight: 4,
   marginLeft: 4,
   borderRadius: 16,
@@ -19,6 +20,12 @@ export const container = (self) => ({
   borderTopLeftRadius: !self ? 0 : 16,
   elevation: 1
 });
+
+export const ava = {
+  width: 40,
+  height: 40,
+  marginHorizontal: 4
+};
 
 export const name = {
   fontFamily: FontFamily.OpenSans.bold,
