@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TextInput, FlatList } from 'react-native';
+import { View, TextInput, FlatList } from 'react-native';
 import * as styles from './styles';
 import { ChatBubble } from './Components';
 import { Button } from '../../Components';
