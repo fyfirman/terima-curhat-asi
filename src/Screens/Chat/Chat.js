@@ -18,11 +18,8 @@ const Chat = () => {
   return (
     <View style={styles.inner}>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={{ height: 40, flex: 1, borderColor: 'gray', borderWidth: 1 }}
-          placeholder="Masukkan Pesan"
-        />
-        <Button title="Kirim" />
+        <TextInput style={styles.input} placeholder="Masukkan Pesan" />
+        <Button style={styles.sendButton} title="Kirim" />
       </View>
       <FlatList
         data={mockData}

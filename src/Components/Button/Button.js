@@ -17,11 +17,11 @@ const StyledButton = (props) => {
 
   return (
     <TextButton
-      {...rest}
       color={color}
       titleStyle={styles.titleStyle}
       titleColor="white"
       style={styles.root}
+      {...rest}
     />
   );
 };
