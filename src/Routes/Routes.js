@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Chat">
           <Stack.Screen
             name="Login"
             component={Login}
@@ -35,7 +35,13 @@ const Routes = () => {
               headerShown: false
             }}
           />
-          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen
+            name="Chat"
+            component={Chat}
+            options={{
+              headerShown: false
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

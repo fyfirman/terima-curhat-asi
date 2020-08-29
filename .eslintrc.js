@@ -22,6 +22,12 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'prettier/prettier': ['error'],
     'react/jsx-props-no-spreading': 'off',
-    'react/no-array-index-key': 'off'
+    'react/no-array-index-key': 'off',
+    'react/jsx-wrap-multilines': [
+      'error',
+      {
+        prop: 'ignore'
+      }
+    ]
   }
 };

@@ -1,5 +1,4 @@
-import Colors from '../../Colors';
-import FontFamily from '../../FontFamily';
+import { Colors, FontFamily } from '../../../../Theme';
 
 const ICON_SIZE = 30;
 
@@ -12,7 +11,8 @@ export const headerStyle = {
 
 export const headerTitleStyle = {
   fontFamily: FontFamily.Muli.bold,
-  paddingLeft: 4
+  paddingLeft: 4,
+  color: 'white'
 };
 
 export const headerLeft = {
@@ -20,6 +20,10 @@ export const headerLeft = {
 };
 
 export const backIcon = {};
+
+export const menuIcon = {
+  // color: 'white'
+};
 
 export const avatar = {
   marginLeft: -8

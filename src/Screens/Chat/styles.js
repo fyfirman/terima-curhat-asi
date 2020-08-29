@@ -59,3 +59,7 @@ export const contentStyle = {
   marginLeft: -2,
   paddingBottom: 0
 };
+
+export const menuIcon = {
+  paddingRight: 8
+};

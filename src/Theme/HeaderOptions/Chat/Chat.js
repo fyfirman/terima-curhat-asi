@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Avatar } from 'react-native-paper';
 import * as styles from './styles';
 
-const Chat = (navigation, title) => ({
+const Chat = (navigation, title, menu) => ({
   title,
   headerStyle: styles.headerStyle,
   headerTitleStyle: styles.headerTitleStyle,
@@ -16,13 +16,14 @@ const Chat = (navigation, title) => ({
     >
       <Icon
         name="chevron-back-outline"
-        style={styles.iconStyle}
+        style={styles.backIcon}
         size={30}
         color="white"
       />
       <Avatar.Image size={36} label="D" style={styles.avatar} />
     </TouchableOpacity>
-  )
+  ),
+  headerRight: () => menu
 });
 
 export default Chat;
