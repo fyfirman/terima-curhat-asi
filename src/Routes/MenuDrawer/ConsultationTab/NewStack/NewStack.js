@@ -12,7 +12,8 @@ const NewStack = () => {
         name="New"
         component={New}
         options={({ navigation }) =>
-          HeaderOptions.withMenu(navigation, 'Terima Curhat ASI')}
+          HeaderOptions.withMenu(navigation, 'Konsultasi')
+        }
       />
     </Stack.Navigator>
   );

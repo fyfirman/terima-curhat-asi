@@ -6,20 +6,24 @@ import * as styles from './styles';
 const propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
-  ava: PropTypes.string
+  ava: PropTypes.string,
+  first: PropTypes.bool,
+  last: PropTypes.bool
 };
 
 const defaultProps = {
   title: '',
   content: '',
-  ava: ''
+  ava: '',
+  first: false,
+  last: false
 };
 
 const ArticleCard = (props) => {
-  const { title, content, ava } = props;
+  const { title, content, ava, first, last } = props;
 
   return (
-    <TouchableOpacity style={styles.root} onPress={() => {}}>
+    <TouchableOpacity style={styles.root({ first, last })} onPress={() => {}}>
       <Image
         style={styles.ava}
         source={require('../../../../assets/images/logo.png')}

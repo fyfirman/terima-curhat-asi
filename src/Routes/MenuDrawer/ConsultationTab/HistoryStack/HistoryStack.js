@@ -12,7 +12,8 @@ const HistoryStack = () => {
         name="InProgress"
         component={History}
         options={({ navigation }) =>
-          HeaderOptions.withMenu(navigation, 'Terima Curhat ASI')}
+          HeaderOptions.withMenu(navigation, 'Konsultasi')
+        }
       />
     </Stack.Navigator>
   );

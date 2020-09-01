@@ -1,14 +1,16 @@
 import { FontFamily, Colors } from '../../../../Theme';
 
-export const root = {
+export const root = ({ first, last }) => ({
   flexDirection: 'row',
   elevation: 3,
   padding: 16,
   marginHorizontal: 16,
   marginVertical: 8,
   backgroundColor: 'white',
-  borderRadius: 10
-};
+  borderRadius: 10,
+  marginTop: first ? 16 : 8,
+  marginBottom: last ? 16 : 8
+});
 
 export const ava = {
   flex: 1,

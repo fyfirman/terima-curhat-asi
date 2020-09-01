@@ -13,7 +13,8 @@ const InProgressStack = () => {
         name="InProgress"
         component={InProgress}
         options={({ navigation }) =>
-          HeaderOptions.withMenu(navigation, 'Terima Curhat ASI')}
+          HeaderOptions.withMenu(navigation, 'Konsultasi')
+        }
       />
     </Stack.Navigator>
   );

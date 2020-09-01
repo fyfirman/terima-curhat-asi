@@ -5,8 +5,15 @@ import mockData from './mockData';
 import * as styles from './styles';
 
 const Article = () => {
-  const renderItem = ({ item }) => {
-    return <ArticleCard title={item.title} content={item.content} />;
+  const renderItem = ({ item, index }) => {
+    return (
+      <ArticleCard
+        title={item.title}
+        content={item.content}
+        first={index === 0}
+        last={index === mockData.length - 1}
+      />
+    );
   };
 
   return (
