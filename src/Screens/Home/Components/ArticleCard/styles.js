@@ -1,4 +1,4 @@
-import { FontFamily } from '../../../../Theme';
+import { FontFamily, Colors } from '../../../../Theme';
 
 export const root = {
   flexDirection: 'row',
@@ -21,9 +21,11 @@ export const infoContainer = {
 
 export const content = {
   textAlign: 'justify',
-  fontFamily: FontFamily.OpenSans.regular
+  fontFamily: FontFamily.OpenSans.regular,
+  color: Colors.textPrimary
 };
 
 export const title = {
-  fontFamily: FontFamily.OpenSans.bold
+  fontFamily: FontFamily.OpenSans.bold,
+  color: Colors.textPrimary
 };
