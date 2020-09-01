@@ -1,18 +1,23 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+import { View, FlatList } from 'react-native';
+import { ArticleCard } from './Components';
+import mockData from './mockData';
 import * as styles from './styles';
 
 const Article = () => {
+  const renderItem = ({ item }) => {
+    return <ArticleCard title={item.title} content={item.content} />;
+  };
+
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
-      enableOnAndroid
-    >
-      <View style={styles.inner}>
-        <Text style={styles.primaryInfo}>Article</Text>
-      </View>
-    </KeyboardAwareScrollView>
+    <View style={styles.container}>
+      <FlatList
+        data={mockData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        initialNumToRender={10}
+      />
+    </View>
   );
 };
 
