@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+import { CoreServices } from '../../Services';
 import { HeaderLogin } from '../../assets/svg';
 import { TextInput, ComboInput, Button } from '../../Components';
 import * as styles from './styles';
+import { getFormData } from '../../Helper';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired
@@ -17,14 +19,31 @@ const Login = (props) => {
   const { navigation } = props;
 
   const [formState, setFormState] = useState({
-    phoneNumber: '',
-    pin: '',
-    role: '',
-    uncryptedPin: ''
+    phoneNumber: '08987654321',
+    pin: '112233',
+    role: 'bdn'
   });
 
   useEffect(() => {
-    console.log(formState);
+    const body = {
+      username: `${formState.role}:${formState.phoneNumber}`,
+      grant_type: 'password',
+      password: formState.pin
+    };
+    console.log(body);
+
+    CoreServices.postGenerateToken(body).then(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        if (error.response === null) {
+          console.error(error);
+        } else {
+          console.error(error.response.data.message);
+        }
+      }
+    );
   }, [formState]);
 
   const { keyboardShown } = useKeyboard();
@@ -78,10 +97,10 @@ const Login = (props) => {
               setFormState({ ...formState, role: value });
             }}
             items={[
-              { value: 'kader', label: 'Kader' },
-              { value: 'bidan', label: 'Bidan' },
-              { value: 'doctor', label: 'Dokter Umum' },
-              { value: 'specialist', label: 'Spesialis/Konselor' }
+              { value: 'kdr', label: 'Kader' },
+              { value: 'bdn', label: 'Bidan' },
+              { value: 'du', label: 'Dokter Umum' },
+              { value: 'dsp', label: 'Spesialis/Konselor' }
             ]}
           />
           <View style={styles.buttonLogin}>

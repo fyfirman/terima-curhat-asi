@@ -1,9 +1,10 @@
 import post from './Post';
+import Config from './Config';
 
 // Get
 
 // Post
-const postGenerateToken = (data) => post('auth?remember=true', data);
+const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
 
 // Put
 
