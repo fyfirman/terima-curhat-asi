@@ -27,6 +27,7 @@ const DrawerNavigator = () => {
         name="Home"
         component={HomeStack}
         options={{
+          drawerLabel: 'Beranda',
           drawerIcon: ({ focused, size }) =>
             getDrawerIcon(focused ? 'home' : 'home-outline', focused, size)
         }}
@@ -35,6 +36,7 @@ const DrawerNavigator = () => {
         name="Consultation"
         component={ConsultationTab}
         options={{
+          drawerLabel: 'Konsultasi',
           drawerIcon: ({ focused, size }) =>
             getDrawerIcon(
               focused ? 'chatbubbles' : 'chatbubbles-outline',
@@ -47,6 +49,7 @@ const DrawerNavigator = () => {
         name="Article"
         component={ArticleStack}
         options={{
+          drawerLabel: 'Artikel',
           drawerIcon: ({ focused, size }) =>
             getDrawerIcon(
               focused ? 'newspaper' : 'newspaper-outline',
