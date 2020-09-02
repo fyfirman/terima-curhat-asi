@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem
 } from '@react-navigation/drawer';
-import { Avatar, Title, Caption, Paragraph } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as styles from './styles';
 import { Colors } from '../../../Theme';
@@ -13,17 +13,19 @@ import { Colors } from '../../../Theme';
 const CustomDrawer = (props) => {
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.root}>
-      <View style={styles.userInfoSection}>
+      <TouchableOpacity style={styles.userInfoSection} onPress={() => {}}>
         <Avatar.Image
           source={{
             uri:
               'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg'
           }}
-          size={50}
+          size={64}
         />
-        <Title style={styles.title}>Dawid Urbaniak</Title>
-        <Caption style={styles.caption}>@trensik</Caption>
-      </View>
+        <View style={styles.infoSection}>
+          <Text style={styles.name}>Indah Pramestiwi</Text>
+          <Text style={styles.profession}>Kader</Text>
+        </View>
+      </TouchableOpacity>
       <DrawerItemList
         {...props}
         style={styles.menuItems}
@@ -37,8 +39,7 @@ const CustomDrawer = (props) => {
           onPress={() => {}}
           style={styles.signOutItem}
           labelStyle={styles.labelStyle}
-          activeTintColor={Colors.java}
-          inactiveTintColor={Colors.textPrimary}
+          inactiveTintColor={Colors.redAlert}
           icon={({ color, size }) => (
             <Icon color={color} size={size} name="log-out-outline" />
           )}

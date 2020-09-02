@@ -1,5 +1,6 @@
 const FontFamily = {
   Muli: {
+    regular: 'Muli-Regular',
     bold: 'Muli-Bold',
     extraBold: 'Muli-ExtraBold'
   },
