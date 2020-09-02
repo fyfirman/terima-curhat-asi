@@ -5,6 +5,7 @@ import CustomDrawer from './CustomDrawer';
 import ConsultationTab from './ConsultationTab';
 import HomeStack from './HomeStack';
 import ArticleStack from './ArticleStack';
+import HelpStack from './HelpStack';
 import { Colors } from '../../Theme';
 
 const Drawer = createDrawerNavigator();
@@ -53,6 +54,19 @@ const DrawerNavigator = () => {
           drawerIcon: ({ focused, size }) =>
             getDrawerIcon(
               focused ? 'newspaper' : 'newspaper-outline',
+              focused,
+              size
+            )
+        }}
+      />
+      <Drawer.Screen
+        name="Help"
+        component={HelpStack}
+        options={{
+          drawerLabel: 'Bantuan',
+          drawerIcon: ({ focused, size }) =>
+            getDrawerIcon(
+              focused ? 'help-circle' : 'help-circle-outline',
               focused,
               size
             )
