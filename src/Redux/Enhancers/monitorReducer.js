@@ -6,10 +6,8 @@ const monitorReducerEnhancer = (createStore) => (
   enhancer
 ) => {
   const monitoredReducer = (state, action) => {
-    // eslint-disable-next-line no-undef
     const start = performance.now();
     const newState = reducer(state, action);
-    // eslint-disable-next-line no-undef
     const end = performance.now();
     const diff = round(end - start);
 

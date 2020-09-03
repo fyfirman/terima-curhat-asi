@@ -1,4 +1,4 @@
-import { actions } from '../UserReducer';
+import { actions } from '../Reducers/UserReducer';
 
 export const fetched = (payload) => ({ type: actions.FETCHED, payload });
 export const patched = (payload) => ({ type: actions.PATCHED, payload });
