@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ToastAndroid
+} from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import { CoreServices } from '../../Services';
 import { HeaderLogin } from '../../assets/svg';
 import { TextInput, ComboInput, Button } from '../../Components';
 import * as styles from './styles';
-import { getFormData } from '../../Helper';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired
@@ -19,34 +24,51 @@ const Login = (props) => {
   const { navigation } = props;
 
   const [formState, setFormState] = useState({
+    // TODO: delete initial state
     phoneNumber: '08987654321',
     pin: '112233',
     role: 'bdn'
   });
 
-  useEffect(() => {
+  const isValid = () =>
+    !(
+      formState.phoneNumber === '' ||
+      formState.pin === '' ||
+      formState.role === ''
+    );
+
+  const { keyboardShown } = useKeyboard();
+
+  const submit = () => {
     const body = {
       username: `${formState.role}:${formState.phoneNumber}`,
       grant_type: 'password',
       password: formState.pin
     };
-    console.log(body);
 
     CoreServices.postGenerateToken(body).then(
       (res) => {
+        navigation.navigate('MenuDrawer');
+        ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
         console.log(res);
       },
       (error) => {
         if (error.response === null) {
+          ToastAndroid.show(
+            'Tidak terkoneksi dengan server',
+            ToastAndroid.SHORT
+          );
           console.error(error);
         } else {
+          ToastAndroid.show(
+            'Nomor HP atau PIN tidak cocok',
+            ToastAndroid.SHORT
+          );
           console.error(error.response.data.message);
         }
       }
     );
-  }, [formState]);
-
-  const { keyboardShown } = useKeyboard();
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -104,12 +126,7 @@ const Login = (props) => {
             ]}
           />
           <View style={styles.buttonLogin}>
-            <Button
-              title="Masuk"
-              onPress={() => {
-                navigation.navigate('MenuDrawer');
-              }}
-            />
+            <Button title="Masuk" onPress={submit} disabled={!isValid()} />
           </View>
           <View style={styles.forgotTextContainer}>
             <Text style={styles.forgotPinText}>Anda lupa PIN? </Text>

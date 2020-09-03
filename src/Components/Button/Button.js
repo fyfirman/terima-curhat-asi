@@ -18,6 +18,7 @@ const StyledButton = (props) => {
   return (
     <TextButton
       color={color}
+      disabledColor="#DFDFDF"
       titleStyle={styles.titleStyle}
       titleColor="white"
       style={styles.root}
