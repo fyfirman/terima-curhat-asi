@@ -1,3 +1,2 @@
-import * as users from './UserAction';
-import * as sessions from './SessionAction';
-export { sessions, users };
+export { default as UserAction } from './UserAction';
+export { default as SessionAction } from './SessionAction';

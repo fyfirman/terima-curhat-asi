@@ -1,17 +1,20 @@
-import { actions } from '../SessionReducer';
+import { SessionConstant } from '../Constant';
 
-export const grants = ({
-  access_token,
-  refresh_token,
-  token_type,
-  expires_in
-}) => ({
-  type: actions.GRANTS,
+const grants = ({ AccessToken, RefreshToken, TokenType, ExpiresIn }) => ({
+  type: SessionConstant.GRANTS,
   payload: {
-    access_token,
-    refresh_token,
-    token_type,
-    expires_in
+    AccessToken,
+    RefreshToken,
+    TokenType,
+    ExpiresIn
   }
 });
-export const flush = () => ({ type: actions.FLUSH, payload: {} });
+
+const flush = () => ({ type: SessionConstant.FLUSH, payload: {} });
+
+const SessionAction = {
+  grants,
+  flush
+};
+
+export default SessionAction;

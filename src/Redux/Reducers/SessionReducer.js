@@ -1,7 +1,4 @@
-export const actions = {
-  GRANTS: 'sessions:grants',
-  FLUSH: 'sessions:flush'
-};
+import { SessionConstant } from '../Constant';
 
 const defaultState = {
   access_token: '',
@@ -13,9 +10,9 @@ const defaultState = {
 export default (state = defaultState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case actions.FLUSH:
+    case SessionConstant.FLUSH:
       return defaultState;
-    case actions.GRANTS:
+    case SessionConstant.GRANTS:
       return { ...defaultState, ...payload };
     default:
       return state;
