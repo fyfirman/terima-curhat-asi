@@ -1,6 +1,6 @@
 import { SessionConstant } from '../Constant';
 
-const grants = ({ AccessToken, RefreshToken, TokenType, ExpiresIn }) => ({
+const setSession = ({ AccessToken, RefreshToken, TokenType, ExpiresIn }) => ({
   type: SessionConstant.GRANTS,
   payload: {
     AccessToken,
@@ -10,11 +10,11 @@ const grants = ({ AccessToken, RefreshToken, TokenType, ExpiresIn }) => ({
   }
 });
 
-const flush = () => ({ type: SessionConstant.FLUSH, payload: {} });
+const flushSession = () => ({ type: SessionConstant.FLUSH, payload: {} });
 
 const SessionAction = {
-  grants,
-  flush
+  setSession,
+  flushSession
 };
 
 export default SessionAction;

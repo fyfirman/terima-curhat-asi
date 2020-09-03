@@ -9,19 +9,24 @@ import {
 } from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { SessionAction, UserAction } from '../../Redux/Actions';
 import { CoreServices } from '../../Services';
 import { HeaderLogin } from '../../assets/svg';
 import { TextInput, ComboInput, Button } from '../../Components';
 import * as styles from './styles';
 
 const propTypes = {
-  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  setUser: PropTypes.func.isRequired,
+  setSession: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
 const Login = (props) => {
-  const { navigation } = props;
+  const { navigation, setUser, setSession } = props;
 
   const [formState, setFormState] = useState({
     // TODO: delete initial state
@@ -50,6 +55,8 @@ const Login = (props) => {
       (res) => {
         navigation.navigate('MenuDrawer');
         ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
+        // setSession(res.data);
+        setUser({ isLoggedIn: true });
         console.log(res);
       },
       (error) => {
@@ -148,4 +155,8 @@ const Login = (props) => {
 Login.propTypes = propTypes;
 Login.defaultProps = defaultProps;
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ ...SessionAction, ...UserAction }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Login);

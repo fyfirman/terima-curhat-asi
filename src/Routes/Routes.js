@@ -14,20 +14,21 @@ import { HeaderOptions } from '../Theme';
 const Stack = createStackNavigator();
 
 const propTypes = {
-  session: PropTypes.objectOf(PropTypes.any).isRequired
+  session: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const Routes = (props) => {
-  const { session } = props;
+  const { session, user } = props;
 
-  useEffect(() => {
-    console.log(session);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator
+          initialRouteName={user !== {} ? 'MenuDrawer' : 'Login'}
+        >
           <Stack.Screen
             name="Login"
             component={Login}
@@ -39,8 +40,7 @@ const Routes = (props) => {
             name="ForgotPIN"
             component={ForgotPIN}
             options={({ navigation }) =>
-              HeaderOptions.withBack(navigation, 'Lupa PIN')
-            }
+              HeaderOptions.withBack(navigation, 'Lupa PIN')}
           />
           <Stack.Screen
             name="MenuDrawer"
@@ -60,8 +60,7 @@ const Routes = (props) => {
             name="Invite"
             component={Invite}
             options={({ navigation }) =>
-              HeaderOptions.withBack(navigation, 'Tambahkan Bidan')
-            }
+              HeaderOptions.withBack(navigation, 'Tambahkan Bidan')}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -72,9 +71,9 @@ const Routes = (props) => {
 Routes.propTypes = propTypes;
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    session: state.session
+    session: state.session,
+    user: state.user
   };
 };
 

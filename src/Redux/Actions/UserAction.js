@@ -1,11 +1,11 @@
-import { UserConstant } from '../Config';
+import { UserConstant } from '../Constant';
 
-const fetched = (payload) => ({ type: UserConstant.FETCHED, payload });
+const setUser = (payload) => ({ type: UserConstant.FETCHED, payload });
 const patched = (payload) => ({ type: UserConstant.PATCHED, payload });
 const flush = () => ({ type: UserConstant.FLUSH, payload: {} });
 
 const UserAction = {
-  fetched,
+  setUser,
   patched,
   flush
 };
