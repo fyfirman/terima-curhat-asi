@@ -1,18 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem
 } from '@react-navigation/drawer';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { SessionAction, UserAction } from '../../../Redux/Actions';
 import * as styles from './styles';
 import { Colors } from '../../../Theme';
 
+const propTypes = {
+  flushUser: PropTypes.func.isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
+const defaultProps = {};
+
 const CustomDrawer = (props) => {
+  const { flushUser, user } = props;
+
   const logout = () => {
-    console.log('Logged out...');
+    console.log('User : ', user);
+    flushUser();
+    console.log('User after flush: ', user);
+    // console.log('Logged out...');
   };
 
   return (
@@ -53,4 +69,15 @@ const CustomDrawer = (props) => {
   );
 };
 
-export default CustomDrawer;
+CustomDrawer.propTypes = propTypes;
+CustomDrawer.defaultProps = defaultProps;
+
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ ...SessionAction, ...UserAction }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawer);

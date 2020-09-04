@@ -9,6 +9,8 @@ const UserReducer = (state = initialState, action) => {
       return payload;
     case UserConstant.PATCHED:
       return { ...state, ...payload };
+    case UserConstant.FLUSH:
+      return {};
     default:
       return state;
   }

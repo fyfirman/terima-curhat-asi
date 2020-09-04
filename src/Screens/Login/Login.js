@@ -55,7 +55,7 @@ const Login = (props) => {
       (res) => {
         navigation.navigate('MenuDrawer');
         ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
-        setSession(res.data);
+        // setSession(res.data);
         setUser({ isLoggedIn: true });
         console.log(res);
       },

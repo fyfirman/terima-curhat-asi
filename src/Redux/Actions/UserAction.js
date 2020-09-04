@@ -2,12 +2,12 @@ import { UserConstant } from '../Constant';
 
 const setUser = (payload) => ({ type: UserConstant.FETCHED, payload });
 const patched = (payload) => ({ type: UserConstant.PATCHED, payload });
-const flush = () => ({ type: UserConstant.FLUSH, payload: {} });
+const flushUser = () => ({ type: UserConstant.FLUSH, payload: {} });
 
 const UserAction = {
   setUser,
   patched,
-  flush
+  flushUser
 };
 
 export default UserAction;
