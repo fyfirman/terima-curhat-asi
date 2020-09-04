@@ -11,6 +11,10 @@ import * as styles from './styles';
 import { Colors } from '../../../Theme';
 
 const CustomDrawer = (props) => {
+  const logout = () => {
+    console.log('Logged out...');
+  };
+
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.root}>
       <TouchableOpacity style={styles.userInfoSection} onPress={() => {}}>
@@ -36,7 +40,7 @@ const CustomDrawer = (props) => {
       <View style={styles.footer}>
         <DrawerItem
           label="Keluar"
-          onPress={() => {}}
+          onPress={logout}
           style={styles.signOutItem}
           labelStyle={styles.labelStyle}
           inactiveTintColor={Colors.redAlert}
