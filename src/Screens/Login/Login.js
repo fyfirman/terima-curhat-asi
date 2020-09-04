@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
@@ -55,7 +55,7 @@ const Login = (props) => {
       (res) => {
         navigation.navigate('MenuDrawer');
         ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
-        // setSession(res.data);
+        setSession(res.data);
         setUser({ isLoggedIn: true });
         console.log(res);
       },
