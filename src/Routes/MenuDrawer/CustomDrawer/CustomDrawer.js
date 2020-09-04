@@ -15,6 +15,7 @@ import * as styles from './styles';
 import { Colors } from '../../../Theme';
 
 const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
   flushUser: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired
 };
@@ -22,13 +23,11 @@ const propTypes = {
 const defaultProps = {};
 
 const CustomDrawer = (props) => {
-  const { flushUser, user } = props;
+  const { flushUser, user, navigation } = props;
 
   const logout = () => {
-    console.log('User : ', user);
     flushUser();
-    console.log('User after flush: ', user);
-    // console.log('Logged out...');
+    navigation.navigate('Login');
   };
 
   return (
