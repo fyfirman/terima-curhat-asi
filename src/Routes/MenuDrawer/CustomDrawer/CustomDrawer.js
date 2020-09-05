@@ -28,6 +28,7 @@ const CustomDrawer = (props) => {
   const [promptVisibility, setPromptVisibility] = useState(false);
 
   const logout = () => {
+    setPromptVisibility(false);
     flushUser();
     navigation.navigate('Login');
   };
