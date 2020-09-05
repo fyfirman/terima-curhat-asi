@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
+import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
 import * as styles from './styles';
 import ArticleCard from './Components/ArticleCard/ArticleCard';
 import { HeaderHome } from '../../assets/svg';
 import Menu from './Components/Menu/Menu';
+
+const propTypes = { navigation: PropTypes.objectOf(PropTypes.any).isRequired };
+
+const defaultProps = {};
 
 const Home = (props) => {
   const { navigation } = props;
@@ -60,5 +65,8 @@ const Home = (props) => {
     </View>
   );
 };
+
+Home.propTypes = propTypes;
+Home.defaultProps = defaultProps;
 
 export default Home;
