@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, ScrollView } from 'react-native';
 import * as styles from './styles';
 import { ChatItem } from '../Components';
 
-const History = () => {
+const propTypes = {};
+
+const defaultProps = {};
+
+const History = (props) => {
+  const {} = props;
+
   const [isEmpty, setIsEmpty] = useState(false);
 
   const renderCard = () => {
@@ -35,5 +42,8 @@ const History = () => {
     </>
   );
 };
+
+History.propTypes = propTypes;
+History.defaultProps = defaultProps;
 
 export default History;

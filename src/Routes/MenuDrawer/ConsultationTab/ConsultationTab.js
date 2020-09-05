@@ -57,6 +57,7 @@ const ConsultationTab = () => {
       initialRouteName="New"
       activeColor={Colors.java}
       inactiveColor={Colors.textSecondary}
+      backBehavior="initialRoute"
       barStyle={{
         backgroundColor: Colors.bottomTabs,
         borderTopWidth: 0.5,

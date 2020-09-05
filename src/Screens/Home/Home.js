@@ -1,14 +1,12 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import * as styles from './styles';
 import ArticleCard from './Components/ArticleCard/ArticleCard';
 import { HeaderHome } from '../../assets/svg';
 import Menu from './Components/Menu/Menu';
-import { Colors } from '../../Theme';
-import { PromptDialog } from '../../Components';
 
 const propTypes = { navigation: PropTypes.objectOf(PropTypes.any).isRequired };
 
@@ -28,6 +26,7 @@ const Home = (props) => {
         );
     }, [])
   );
+
   return (
     <View contentContainerStyle={styles.container}>
       <View style={styles.header}>
