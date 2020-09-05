@@ -1,5 +1,20 @@
-export const root = {};
+import { Colors, FontFamily } from '../../../../Theme';
 
-export const label = {};
+export const root = {
+  backgroundColor: 'white',
+  padding: 16,
+  borderBottomWidth: 1,
+  borderBottomColor: Colors.borderBottomCard
+};
 
-export const info = {};
+export const label = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 12,
+  color: Colors.textSecondary
+};
+
+export const info = {
+  fontFamily: FontFamily.OpenSans.semiBold,
+  fontSize: 15,
+  color: Colors.textPrimary
+};

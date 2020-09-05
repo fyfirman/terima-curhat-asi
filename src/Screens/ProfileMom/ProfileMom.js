@@ -23,7 +23,8 @@ const ProfileMom = () => {
           inactiveTintColor: Colors.textSecondary,
           indicatorStyle: styles.tabIndicatorStyle,
           scrollEnabled: true,
-          tabStyle: styles.tabStyle
+          tabStyle: styles.tabStyle,
+          style: styles.tabContainer
         }}
       >
         <Tab.Screen

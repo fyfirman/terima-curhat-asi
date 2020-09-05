@@ -1,23 +1,28 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
-import * as styles from './styles';
+import { ScrollView } from 'react-native';
+import { InfoItem } from '../../Components';
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const Moms = (props) => {
-  const { navigation } = props;
-
+const Pregnancy = () => {
   return (
-    <View>
-      <Text>Moms</Text>
-    </View>
+    <ScrollView>
+      <InfoItem label="Tinggi Badan Sebelum Hamil" info="150 cm" />
+      <InfoItem label="Tinggi Badan Setelah Hamil" info="148 cm" />
+      <InfoItem label="Berat Badan Sebelum Hamil" info="54 kg" />
+      <InfoItem label="Berat Badan Setelah Hamil" info="60 kg" />
+      <InfoItem label="Kehamilan ke-" info="1" />
+      <InfoItem
+        label="Penyakit/Keluhan Saat Hamil"
+        info={'Tidak keluar ASI\nNyeri ketika BAB'}
+      />
+    </ScrollView>
   );
 };
 
-Moms.propTypes = propTypes;
-Moms.defaultProps = defaultProps;
+Pregnancy.propTypes = propTypes;
+Pregnancy.defaultProps = defaultProps;
 
-export default Moms;
+export default Pregnancy;

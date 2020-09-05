@@ -36,7 +36,7 @@ const Routes = (props) => {
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName={
-              Object.keys(user).length !== 0 ? 'ProfileMom' : 'Login'
+              Object.keys(user).length !== 0 ? 'MenuDrawer' : 'Login'
             }
           >
             <Stack.Screen
@@ -50,8 +50,7 @@ const Routes = (props) => {
               name="ForgotPIN"
               component={ForgotPIN}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Lupa PIN')
-              }
+                HeaderOptions.withBack(navigation, 'Lupa PIN')}
             />
             <Stack.Screen
               name="MenuDrawer"
@@ -71,15 +70,13 @@ const Routes = (props) => {
               name="Invite"
               component={Invite}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Tambahkan Bidan')
-              }
+                HeaderOptions.withBack(navigation, 'Tambahkan Bidan')}
             />
             <Stack.Screen
               name="ProfileMom"
               component={ProfileMom}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')
-              }
+                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')}
             />
           </Stack.Navigator>
         </NavigationContainer>
