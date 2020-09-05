@@ -2,14 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { SafeAreaView } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SessionAction } from '../Redux/Actions';
 import MenuDrawer from './MenuDrawer';
-import { Login, ForgotPIN, Chat, Invite } from '../Screens';
+import { Login, ForgotPIN, Chat, Invite, ProfileMom } from '../Screens';
 import { HeaderOptions } from '../Theme';
 import { LoadingScreen } from '../Components';
 
@@ -72,6 +71,12 @@ const Routes = (props) => {
               component={Invite}
               options={({ navigation }) =>
                 HeaderOptions.withBack(navigation, 'Tambahkan Bidan')}
+            />
+            <Stack.Screen
+              name="ProfileMom"
+              component={ProfileMom}
+              options={({ navigation }) =>
+                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')}
             />
           </Stack.Navigator>
         </NavigationContainer>
