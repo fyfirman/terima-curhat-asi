@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import { Avatar } from 'react-native-paper';
 import * as styles from './styles';
 
-const propTypes = {};
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired
+};
 
 const defaultProps = {};
 
-const TopSection = () => {
+const TopSection = (props) => {
+  const { name, phoneNumber } = props;
+
   return (
     <View style={styles.topSection}>
       <Avatar.Image
@@ -19,8 +24,8 @@ const TopSection = () => {
         size={64}
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>Mira Suryani</Text>
-        <Text style={styles.phoneNumber}>+687321221381</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.phoneNumber}>{phoneNumber}</Text>
       </View>
     </View>
   );

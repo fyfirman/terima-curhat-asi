@@ -1,14 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import {
-  Moms,
-  Baby,
-  Husband,
-  Pregnancy
-} from '../../Screens/ProfileMom/Screens';
-import { TopSection } from '../../Screens/ProfileMom';
+import { Moms, Baby, Husband, Pregnancy } from './Screens';
+import TopSection from './TopSection';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -16,10 +10,10 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const TopTabNavigator = () => {
+const ProfileMom = () => {
   return (
     <>
-      <TopSection />
+      <TopSection name="Mira Suryani" phoneNumber="+628337318282" />
       <Tab.Navigator>
         <Tab.Screen name="Moms" component={Moms} />
         <Tab.Screen name="Pregnancy" component={Pregnancy} />
@@ -30,7 +24,7 @@ const TopTabNavigator = () => {
   );
 };
 
-TopTabNavigator.propTypes = propTypes;
-TopTabNavigator.defaultProps = defaultProps;
+ProfileMom.propTypes = propTypes;
+ProfileMom.defaultProps = defaultProps;
 
-export default TopTabNavigator;
+export default ProfileMom;

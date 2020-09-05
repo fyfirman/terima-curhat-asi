@@ -1,1 +1,1 @@
-export { default as TopSection } from './TopSection';
+export { default } from './ProfileMom';
