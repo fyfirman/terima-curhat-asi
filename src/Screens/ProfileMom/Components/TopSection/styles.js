@@ -1,4 +1,4 @@
-import { FontFamily, Colors } from '../../../Theme';
+import { FontFamily, Colors } from '../../../../Theme';
 
 export const topSection = {
   backgroundColor: 'white',
