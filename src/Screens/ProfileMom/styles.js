@@ -3,7 +3,8 @@ import { FontFamily } from '../../Theme';
 
 export const container = {
   flex: 1,
-  flexGrow: 1
+  flexGrow: 1,
+  backgroundColor: '#DFDFDF'
 };
 
 export const inner = {
@@ -13,19 +14,25 @@ export const inner = {
   paddingHorizontal: 32
 };
 
-export const primaryInfo = {
-  fontFamily: FontFamily.OpenSans.regular,
-  color: Colors.textPrimary,
-  fontSize: 15
+export const topSection = {
+  backgroundColor: 'white',
+  padding: 16,
+  flexDirection: 'row',
+  elevation: 2
 };
 
-export const secondaryInfo = {
-  fontFamily: FontFamily.OpenSans.regular,
-  color: Colors.textSecondary,
-  fontSize: 15
+export const infoContainer = {
+  padding: 8,
+  justifyContent: 'space-around'
 };
 
-export const inputContainer = {
-  marginTop: 30,
-  marginBottom: 40
+export const name = {
+  fontFamily: FontFamily.OpenSans.semiBold,
+  fontSize: 16
+};
+
+export const phoneNumber = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 14,
+  color: Colors.textSecondary
 };
