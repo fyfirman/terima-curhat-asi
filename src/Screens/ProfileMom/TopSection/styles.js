@@ -1,23 +1,11 @@
 import { FontFamily, Colors } from '../../../Theme';
 
-export const container = {
-  flex: 1,
-  flexGrow: 1,
-  backgroundColor: '#DFDFDF'
-};
-
-export const inner = {
-  flex: 1,
-  justifyContent: 'center',
-  backgroundColor: 'white',
-  paddingHorizontal: 32
-};
-
 export const topSection = {
   backgroundColor: 'white',
   padding: 16,
   flexDirection: 'row',
-  elevation: 2
+  elevation: 2,
+  marginBottom: 16
 };
 
 export const infoContainer = {
