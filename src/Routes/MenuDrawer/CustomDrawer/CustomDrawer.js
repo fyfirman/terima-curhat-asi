@@ -8,11 +8,12 @@ import {
 } from '@react-navigation/drawer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Avatar, Button, Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SessionAction, UserAction } from '../../../Redux/Actions';
 import * as styles from './styles';
 import { Colors } from '../../../Theme';
+import { PromptDialog } from '../../../Components';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -67,31 +68,17 @@ const CustomDrawer = (props) => {
           )}
         />
       </View>
-      <Portal>
-        <Dialog
-          visible={promptVisibility}
-          onDismiss={() => setPromptVisibility(false)}
-        >
-          <Dialog.Title>Apakah kamu yakin akan keluar?</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>
-              Dengan menekan tombol yakin, akun anda akan tidak tertaut dengan
-              aplikasi. Anda bisa masuk kembali dengan akun yang anda miliki
-            </Paragraph>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button
-              onPress={() => setPromptVisibility(false)}
-              color={Colors.cranberry}
-            >
-              Kembali
-            </Button>
-            <Button onPress={logout} color={Colors.cranberry}>
-              Yakin
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+      <PromptDialog
+        visible={promptVisibility}
+        onDismiss={() => setPromptVisibility(false)}
+        onNoHandler={() => setPromptVisibility(false)}
+        onYesHandler={logout}
+        title="Apakah anda yakin akan logout?"
+        content="Dengan menekan tombol yakin, akun anda akan tidak tertaut dengan
+        aplikasi. Anda bisa masuk kembali dengan akun yang anda miliki?"
+        yesLabel="Yakin"
+        noLabel="Kembali"
+      />
     </DrawerContentScrollView>
   );
 };

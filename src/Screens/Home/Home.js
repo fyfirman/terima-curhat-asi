@@ -1,11 +1,14 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
-import { Button } from 'react-native-paper';
+import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import * as styles from './styles';
 import ArticleCard from './Components/ArticleCard/ArticleCard';
 import { HeaderHome } from '../../assets/svg';
 import Menu from './Components/Menu/Menu';
+import { Colors } from '../../Theme';
+import { PromptDialog } from '../../Components';
 
 const propTypes = { navigation: PropTypes.objectOf(PropTypes.any).isRequired };
 
@@ -14,6 +17,17 @@ const defaultProps = {};
 const Home = (props) => {
   const { navigation } = props;
 
+  useFocusEffect(
+    useCallback(() => {
+      BackHandler.addEventListener('hardwareBackPress', BackHandler.exitApp);
+
+      return () =>
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          BackHandler.exitApp
+        );
+    }, [])
+  );
   return (
     <View contentContainerStyle={styles.container}>
       <View style={styles.header}>
