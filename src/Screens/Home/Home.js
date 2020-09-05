@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
 import * as styles from './styles';
@@ -40,7 +40,9 @@ const Home = (props) => {
       <View style={styles.newArticle}>
         <View style={styles.titleHeader}>
           <Text style={styles.titleSection}>Artikel Terbaru</Text>
-          <Text style={styles.seeMore}>Lihat Semua</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Article')}>
+            <Text style={styles.seeMore}>Lihat Semua</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.articleContainer}>
           <ArticleCard
