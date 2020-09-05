@@ -8,7 +8,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SessionAction } from '../Redux/Actions';
 import MenuDrawer from './MenuDrawer';
-import { Login, ForgotPIN, Chat, Invite, ProfileMom } from '../Screens';
+import ProfileMomTabNav from './ProfileMomTabNav';
+import { Login, ForgotPIN, Chat, Invite } from '../Screens';
 import { HeaderOptions } from '../Theme';
 import { LoadingScreen } from '../Components';
 
@@ -36,7 +37,7 @@ const Routes = (props) => {
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName={
-              Object.keys(user).length !== 0 ? 'MenuDrawer' : 'Login'
+              Object.keys(user).length !== 0 ? 'ProfileMom' : 'Login'
             }
           >
             <Stack.Screen
@@ -74,7 +75,7 @@ const Routes = (props) => {
             />
             <Stack.Screen
               name="ProfileMom"
-              component={ProfileMom}
+              component={ProfileMomTabNav}
               options={({ navigation }) =>
                 HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')}
             />

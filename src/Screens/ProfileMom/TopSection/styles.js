@@ -1,5 +1,4 @@
-import Colors from '../../Theme/Colors';
-import { FontFamily } from '../../Theme';
+import { FontFamily, Colors } from '../../../Theme';
 
 export const container = {
   flex: 1,
