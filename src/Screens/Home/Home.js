@@ -58,8 +58,16 @@ const Home = (props) => {
           <Text style={styles.titleSection}>Menu</Text>
         </View>
         <View style={styles.menuItems}>
-          <Menu iconName="chatbubbles-outline" title="Konsultasi" />
-          <Menu iconName="newspaper-outline" title="Artikel" />
+          <Menu
+            iconName="chatbubbles-outline"
+            title="Konsultasi"
+            onPress={() => navigation.navigate('Consultation')}
+          />
+          <Menu
+            iconName="newspaper-outline"
+            title="Artikel"
+            onPress={() => navigation.navigate('Article')}
+          />
         </View>
       </View>
     </View>

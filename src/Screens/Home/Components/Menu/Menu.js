@@ -6,20 +6,18 @@ import * as styles from './styles';
 import { Colors } from '../../../../Theme';
 
 const propTypes = {
-  title: PropTypes.string,
-  iconName: PropTypes.string
+  title: PropTypes.string.isRequired,
+  iconName: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired
 };
 
-const defaultProps = {
-  title: '',
-  iconName: ''
-};
+const defaultProps = {};
 
 const Menu = (props) => {
-  const { iconName, title } = props;
+  const { iconName, title, onPress } = props;
 
   return (
-    <TouchableOpacity style={styles.root} onPress={() => {}}>
+    <TouchableOpacity style={styles.root} onPress={onPress}>
       <Icon name={iconName} size={64} color={Colors.java} />
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
