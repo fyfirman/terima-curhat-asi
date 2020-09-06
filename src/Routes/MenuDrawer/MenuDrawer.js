@@ -23,6 +23,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={(props) => <CustomDrawer {...props} />}
+      backBehavior="initialRoute"
     >
       <Drawer.Screen
         name="Home"

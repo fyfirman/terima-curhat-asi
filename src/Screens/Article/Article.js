@@ -21,7 +21,7 @@ const Article = () => {
       <FlatList
         data={mockData}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         initialNumToRender={10}
       />
     </View>
