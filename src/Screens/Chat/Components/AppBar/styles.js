@@ -8,9 +8,14 @@ export const headerStyle = {
 };
 
 export const headerTitleStyle = {
-  fontFamily: FontFamily.Muli.bold,
-  paddingLeft: 4,
+  fontFamily: FontFamily.OpenSans.semiBold,
+  fontSize: 18,
   color: 'white'
+};
+
+export const subtitleStyle = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 12
 };
 
 export const headerLeft = {

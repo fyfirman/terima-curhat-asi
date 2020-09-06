@@ -39,9 +39,12 @@ const ChatAppBar = (props) => {
         />
       </TouchableOpacity>
       <Appbar.Content
-        titleStyle={styles.headerTitleStyle}
         title="Dessy"
+        titleStyle={styles.headerTitleStyle}
+        subtitle="Tekan disini untuk melihat profil"
+        subtitleStyle={styles.subtitleStyle}
         color="white"
+        onPress={() => navigation.navigate('ProfileMom')}
       />
 
       <Menu
