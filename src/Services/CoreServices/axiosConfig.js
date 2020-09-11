@@ -8,7 +8,13 @@ const instance = axios.create({
 instance.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 instance.interceptors.request.use(
   (config) => {
-    console.log('Request was sent :', config.data);
+    console.log(
+      'REQUEST SENT',
+      `${config.method} ${config.url} withToken=${
+        config.headers.Authorization !== null
+      }`
+    );
+    if (config.data) console.log(config.data);
     return config;
   },
   (error) => {
