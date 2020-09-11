@@ -4,13 +4,23 @@ import { ScrollView } from 'react-native-gesture-handler';
 import * as styles from './styles';
 import { NewConsultCard } from './Components';
 
-const New = () => {
+const New = (props) => {
+  const { navigation } = props;
+
   const [isEmpty, setIsEmpty] = useState(false);
 
   const renderCard = () => {
     const cards = [];
     for (let i = 0; i < 10; i++) {
-      cards.push(<NewConsultCard key={i} name="Dessy" />);
+      cards.push(
+        <NewConsultCard
+          key={i}
+          name="Dessy"
+          onPress={() => {
+            navigation.navigate('ProfileMom');
+          }}
+        />
+      );
     }
     return cards;
   };

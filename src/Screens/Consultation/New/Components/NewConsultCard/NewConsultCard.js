@@ -6,7 +6,8 @@ import * as styles from './styles';
 import { Button } from './Components';
 
 const propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  onPress: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -14,11 +15,11 @@ const defaultProps = {
 };
 
 const NewConsultCard = (props) => {
-  const { name } = props;
+  const { name, onPress } = props;
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => {}} style={styles.avaContainer}>
+      <TouchableOpacity onPress={onPress} style={styles.avaContainer}>
         <Avatar.Image
           style={styles.ava}
           source={{
