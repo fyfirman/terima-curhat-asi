@@ -51,30 +51,50 @@ const Login = (props) => {
       password: formState.pin
     };
 
-    CoreServices.postGenerateToken(body).then(
-      (res) => {
-        navigation.navigate('MenuDrawer');
-        ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
-        // setSession(res.data);
-        setUser({ isLoggedIn: true });
-        console.log(res);
-      },
-      (error) => {
-        if (error.response === null) {
-          ToastAndroid.show(
-            'Tidak terkoneksi dengan server',
-            ToastAndroid.SHORT
-          );
-          console.error(error);
-        } else {
-          ToastAndroid.show(
-            'Nomor HP atau PIN tidak cocok',
-            ToastAndroid.SHORT
-          );
-          console.error(error.response.data.message);
+    CoreServices.postGenerateToken(body)
+      .then(
+        (res) => {
+          // navigation.navigate('MenuDrawer');
+          ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
+          setSession({
+            accessToken: res.access_token,
+            expiresIn: res.expires_in,
+            tokenType: res.token_type,
+            refreshToken: res.refresh_token
+          });
+          setUser({ isLoggedIn: true });
+          return CoreServices.getProfile();
+        },
+        (error) => {
+          if (error.response === null) {
+            ToastAndroid.show(
+              'Tidak terkoneksi dengan server',
+              ToastAndroid.SHORT
+            );
+            console.error(error);
+          } else {
+            ToastAndroid.show(
+              'Nomor HP atau PIN tidak cocok',
+              ToastAndroid.SHORT
+            );
+            console.error(error.response.data.message);
+          }
         }
-      }
-    );
+      )
+      .then(
+        ((res) => {
+          console.log('Response /profile', res);
+        },
+        (error) => {
+          if (error.response === null) {
+            ToastAndroid.show(
+              'Tidak terkoneksi dengan server',
+              ToastAndroid.SHORT
+            );
+            console.error(error);
+          }
+        })
+      );
   };
 
   return (

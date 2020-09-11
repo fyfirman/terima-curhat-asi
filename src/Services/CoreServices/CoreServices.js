@@ -1,7 +1,9 @@
+import get from './Get';
 import post from './Post';
 import Config from './Config';
 
 // Get
+const getProfile = () => get('api/profile', Config.withToken());
 
 // Post
 const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
@@ -11,6 +13,7 @@ const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
 // Delete
 
 const CoreServices = {
+  getProfile,
   postGenerateToken
 };
 

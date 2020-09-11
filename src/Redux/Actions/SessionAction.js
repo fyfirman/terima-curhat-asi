@@ -1,12 +1,12 @@
 import { SessionConstant } from '../Constant';
 
-const setSession = ({ AccessToken, RefreshToken, TokenType, ExpiresIn }) => ({
+const setSession = ({ accessToken, refreshToken, tokenType, expiresIn }) => ({
   type: SessionConstant.GRANTS,
   payload: {
-    AccessToken,
-    RefreshToken,
-    TokenType,
-    ExpiresIn
+    accessToken,
+    refreshToken,
+    tokenType,
+    expiresIn
   }
 });
 

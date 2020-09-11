@@ -1,13 +1,15 @@
 import { CLIENT_ID, CLIENT_SECRET } from 'react-native-dotenv';
+import store from '../../Redux/store';
 
-const withToken = async (config) => {
-  // const token = await LocalStorage.getToken();
-  // return {
-  //   ...config,
-  //   headers: {
-  //     Authorization: `Bearer ${token}`
-  //   }
-  // };
+const withToken = (config) => {
+  const { session } = store.getState();
+
+  return {
+    ...config,
+    headers: {
+      Authorization: `${session.tokenType} ${session.accessToken}`
+    }
+  };
 };
 
 const withOauth = (body) => ({
