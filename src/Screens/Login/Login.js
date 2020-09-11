@@ -60,7 +60,6 @@ const Login = (props) => {
     CoreServices.postGenerateToken(body)
       .then(
         (res) => {
-          // navigation.navigate('MenuDrawer');
           ToastAndroid.show('Login Berhasil', ToastAndroid.SHORT);
           setSession({
             accessToken: res.access_token,
@@ -69,7 +68,8 @@ const Login = (props) => {
             refreshToken: res.refresh_token
           });
           setUser({ isLoggedIn: true });
-          return CoreServices.getProfile();
+
+          navigation.navigate('MenuDrawer');
         },
         (error) => {
           if (error.response === null) {

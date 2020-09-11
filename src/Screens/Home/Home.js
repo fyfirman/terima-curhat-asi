@@ -1,12 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  BackHandler,
-  ToastAndroid
-} from 'react-native';
+import { View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
@@ -34,24 +27,6 @@ const defaultProps = {};
 
 const Home = (props) => {
   const { navigation, setUser } = props;
-
-  useEffect(() => {
-    CoreServices.getProfile()
-      .then(
-        (res) => {
-          setUser(res.payload);
-        },
-        (error) => {
-          if (error.response === null) {
-            throw error;
-          }
-        }
-      )
-      .catch((error) => {
-        ToastAndroid.show('Tidak terkoneksi dengan server', ToastAndroid.SHORT);
-        console.error(error);
-      });
-  }, []);
 
   useFocusEffect(
     useCallback(() => {
