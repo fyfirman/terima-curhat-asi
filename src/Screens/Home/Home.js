@@ -1,19 +1,57 @@
-import React, { useCallback } from 'react';
-import { View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import React, { useCallback, useEffect } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  BackHandler,
+  ToastAndroid
+} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
+
+// Redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { SessionAction, UserAction } from '../../Redux/Actions';
+
+// Services
+import { CoreServices } from '../../Services';
+
+// UI
 import * as styles from './styles';
 import ArticleCard from './Components/ArticleCard/ArticleCard';
 import { HeaderHome } from '../../assets/svg';
 import Menu from './Components/Menu/Menu';
 
-const propTypes = { navigation: PropTypes.objectOf(PropTypes.any).isRequired };
+const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  setUser: PropTypes.func.isRequired
+};
 
 const defaultProps = {};
 
 const Home = (props) => {
-  const { navigation } = props;
+  const { navigation, setUser } = props;
+
+  useEffect(() => {
+    CoreServices.getProfile()
+      .then(
+        (res) => {
+          setUser(res.payload);
+        },
+        (error) => {
+          if (error.response === null) {
+            throw error;
+          }
+        }
+      )
+      .catch((error) => {
+        ToastAndroid.show('Tidak terkoneksi dengan server', ToastAndroid.SHORT);
+        console.error(error);
+      });
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -92,4 +130,8 @@ const Home = (props) => {
 Home.propTypes = propTypes;
 Home.defaultProps = defaultProps;
 
-export default Home;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ ...SessionAction, ...UserAction }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Home);

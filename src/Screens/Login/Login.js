@@ -9,10 +9,16 @@ import {
 } from 'react-native';
 import { useKeyboard } from '@react-native-community/hooks';
 import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
+
+// Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SessionAction, UserAction } from '../../Redux/Actions';
+
+// Services
 import { CoreServices } from '../../Services';
+
+// UI
 import { HeaderLogin } from '../../assets/svg';
 import { TextInput, ComboInput, Button } from '../../Components';
 import * as styles from './styles';
@@ -67,11 +73,7 @@ const Login = (props) => {
         },
         (error) => {
           if (error.response === null) {
-            ToastAndroid.show(
-              'Tidak terkoneksi dengan server',
-              ToastAndroid.SHORT
-            );
-            console.error(error);
+            throw error;
           } else {
             ToastAndroid.show(
               'Nomor HP atau PIN tidak cocok',
@@ -81,20 +83,10 @@ const Login = (props) => {
           }
         }
       )
-      .then(
-        ((res) => {
-          console.log('Response /profile', res);
-        },
-        (error) => {
-          if (error.response === null) {
-            ToastAndroid.show(
-              'Tidak terkoneksi dengan server',
-              ToastAndroid.SHORT
-            );
-            console.error(error);
-          }
-        })
-      );
+      .catch((error) => {
+        ToastAndroid.show('Tidak terkoneksi dengan server', ToastAndroid.SHORT);
+        console.error(error);
+      });
   };
 
   return (
