@@ -20,6 +20,15 @@ export const infoSection = {
   justifyContent: 'center'
 };
 
+export const avatarText = {
+  backgroundColor: Colors.cranberry
+};
+
+export const avatarTextLabel = {
+  fontFamily: FontFamily.Muli.bold,
+  paddingBottom: 4
+};
+
 export const name = {
   fontFamily: FontFamily.Muli.bold,
   fontSize: 20,

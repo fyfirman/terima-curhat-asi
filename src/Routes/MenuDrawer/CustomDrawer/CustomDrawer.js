@@ -11,9 +11,10 @@ import { connect } from 'react-redux';
 import { Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SessionAction, UserAction } from '../../../Redux/Actions';
-import * as styles from './styles';
 import { Colors } from '../../../Theme';
 import { PromptDialog } from '../../../Components';
+import { getInitial } from '../../../Helper';
+import * as styles from './styles';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -37,13 +38,23 @@ const CustomDrawer = (props) => {
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.root}>
       <TouchableOpacity style={styles.userInfoSection} onPress={() => {}}>
-        <Avatar.Image
-          source={{
-            uri:
-              'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg'
-          }}
-          size={64}
-        />
+        {user.profile.picture === null ? (
+          <Avatar.Text
+            label={getInitial(user.profile.name)}
+            size={64}
+            labelStyle={styles.avatarTextLabel}
+            style={styles.avatarText}
+          />
+        ) : (
+          <Avatar.Image
+            source={{
+              uri:
+                'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg'
+              // TODO: fix uri avatar with data from api
+            }}
+            size={64}
+          />
+        )}
         <View style={styles.infoSection}>
           <Text style={styles.name}>Indah Pramestiwi</Text>
           <Text style={styles.profession}>Kader</Text>
