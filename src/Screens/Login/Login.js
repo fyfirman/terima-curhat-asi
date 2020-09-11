@@ -142,7 +142,7 @@ const Login = (props) => {
               { value: 'kdr', label: 'Kader' },
               { value: 'bdn', label: 'Bidan' },
               { value: 'du', label: 'Dokter Umum' },
-              { value: 'konselor', label: 'Konselor' },
+              { value: 'konselor', label: 'Konselor' }, // TODO: change value items
               { value: 'dsp', label: 'Dokter Spesialis' }
             ]}
           />
