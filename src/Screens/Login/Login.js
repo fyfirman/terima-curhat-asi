@@ -142,7 +142,8 @@ const Login = (props) => {
               { value: 'kdr', label: 'Kader' },
               { value: 'bdn', label: 'Bidan' },
               { value: 'du', label: 'Dokter Umum' },
-              { value: 'dsp', label: 'Spesialis/Konselor' }
+              { value: 'konselor', label: 'Konselor' },
+              { value: 'dsp', label: 'Dokter Spesialis' }
             ]}
           />
           <View style={styles.buttonLogin}>
