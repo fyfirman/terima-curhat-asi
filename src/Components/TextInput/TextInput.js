@@ -1,31 +1,29 @@
 import React from 'react';
-import { TextField } from '@ubaids/react-native-material-textfield';
-import { Colors } from '../../Theme';
+import { TextInput } from 'react-native-paper';
+import { Colors, FontFamily } from '../../Theme';
 import * as styles from './styles';
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const TextInput = (props) => {
+const StyledTextInput = (props) => {
   const { ...rest } = props;
 
   return (
-    <TextField
+    <TextInput
       {...rest}
-      baseColor={Colors.textSecondary}
-      tintColor={Colors.java}
+      mode="flat"
+      underlineColor={Colors.java}
       style={styles.root}
-      inputContainerStyle={styles.inputContainerStyle}
-      labelTextStyle={styles.labelTextStyle}
-      titleTextStyle={styles.titleTextStyle}
-      affixTextStyle={styles.affixTextStyle}
-      lineWidth={1}
+      theme={{
+        colors: { primary: Colors.java }
+      }}
     />
   );
 };
 
-TextInput.propTypes = propTypes;
-TextInput.defaultProps = defaultProps;
+StyledTextInput.propTypes = propTypes;
+StyledTextInput.defaultProps = defaultProps;
 
-export default TextInput;
+export default StyledTextInput;

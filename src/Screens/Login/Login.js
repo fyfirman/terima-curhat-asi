@@ -116,11 +116,11 @@ const Login = (props) => {
           <TextInput
             label="Nomor HP"
             keyboardType="phone-pad"
-            prefix="+62"
             placeholder="Masukkan nomor"
             onChangeText={(value) => {
               setFormState({ ...formState, phoneNumber: value });
             }}
+            numberOfLines={1}
           />
           <TextInput
             label="PIN"
@@ -130,6 +130,7 @@ const Login = (props) => {
             onChangeText={(value) => {
               setFormState({ ...formState, pin: value });
             }}
+            numberOfLines={1}
           />
           <ComboInput
             label="Sebagai"

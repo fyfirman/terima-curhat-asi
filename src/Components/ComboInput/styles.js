@@ -47,7 +47,7 @@ export const buttonText = {
 
 export const labelText = {
   fontFamily: FontFamily.OpenSans.regular,
-  fontSize: 12,
+  fontSize: 14,
   color: Colors.textSecondary,
   paddingBottom: 4
 };
