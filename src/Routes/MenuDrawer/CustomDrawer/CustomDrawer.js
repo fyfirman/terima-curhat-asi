@@ -56,8 +56,8 @@ const CustomDrawer = (props) => {
           />
         )}
         <View style={styles.infoSection}>
-          <Text style={styles.name}>Indah Pramestiwi</Text>
-          <Text style={styles.profession}>Kader</Text>
+          <Text style={styles.name}>{user.profile.name}</Text>
+          <Text style={styles.profession}>{user.user_group.name}</Text>
         </View>
       </TouchableOpacity>
       <DrawerItemList
