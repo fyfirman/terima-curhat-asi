@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { BASE_URL } from 'react-native-dotenv';
+import axios from './axiosConfig';
 
 const put = (path, data, config) => {
   const promise = new Promise((resolve, reject) => {
