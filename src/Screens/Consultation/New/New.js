@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as styles from './styles';
 import { NewConsultCard } from './Components';
+
+const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
+const defaultProps = {};
 
 const New = (props) => {
   const { navigation } = props;
@@ -39,5 +46,8 @@ const New = (props) => {
     </>
   );
 };
+
+New.propTypes = propTypes;
+New.defaultProps = defaultProps;
 
 export default New;
