@@ -18,9 +18,6 @@ const App = () => {
 
     const PusherClient = new Pusher('8ce4048a46a0c08c9cd8', {
       cluster: 'ap1',
-      wsHost: '192.168.1.11',
-      wsPort: '8000',
-      enabledTransports: ['ws'],
       forceTLS: false
     });
 
@@ -30,7 +27,7 @@ const App = () => {
     });
 
     echo.private(`consultations.${2}`).notification((data) => {
-      console.log(data);
+      console.log('Data pusher : ', data);
     });
 
     SplashScreen.hide();
