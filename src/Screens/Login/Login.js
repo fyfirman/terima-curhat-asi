@@ -35,10 +35,10 @@ const Login = (props) => {
   const { navigation, setUser, setSession } = props;
 
   const [formState, setFormState] = useState({
-    // TODO: delete initial state
-    phoneNumber: '08987654321',
+    // TODO: DEV - delete initial state
+    phoneNumber: '081234567890',
     pin: '112233',
-    role: 'bdn'
+    role: 'kdr'
   });
 
   const isValid = () =>
@@ -79,7 +79,7 @@ const Login = (props) => {
               'Nomor HP atau PIN tidak cocok',
               ToastAndroid.SHORT
             );
-            console.error(error.response.data.message);
+            console.error(error.response);
           }
         }
       )
