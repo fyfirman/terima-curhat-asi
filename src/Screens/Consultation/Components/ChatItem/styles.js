@@ -9,8 +9,7 @@ export const container = {
 export const ava = {
   width: AVA_SIZE,
   height: AVA_SIZE,
-  alignSelf: 'center',
-  paddingVertical: 8
+  alignSelf: 'center'
 };
 
 export const infoContainer = {

@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { Avatar } from 'react-native-paper';
 import { DateFormatter } from '../../../../Helper';
 import * as styles from './styles';
 
 const propTypes = {
   name: PropTypes.string,
   message: PropTypes.string,
+  photo: PropTypes.string,
   time: PropTypes.instanceOf(Date),
   onPress: PropTypes.func
 };
@@ -14,18 +16,25 @@ const propTypes = {
 const defaultProps = {
   name: 'User tidak mempunyai nama',
   message: '',
+  photo: null,
   time: new Date(2020, 7, 28, 11, 20),
   onPress: () => {}
 };
 
 const ChatItem = (props) => {
-  const { name, message, time, onPress } = props;
+  const { name, message, time, photo, onPress } = props;
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image
+      <Avatar.Image
         style={styles.ava}
-        source={require('../../../../assets/images/logo.png')}
+        source={{
+          uri:
+            photo === null
+              ? `https://api.adorable.io/avatars/${Math.random() * 5000}`
+              : photo
+        }}
+        size={55}
       />
       <View style={styles.infoContainer}>
         <View style={styles.topSection}>
