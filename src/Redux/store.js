@@ -11,8 +11,8 @@ const enhancer = compose(middleware, monitorReducer);
 
 const store = createStore(
   persistReducer(persistConfig, rootReducer),
-  undefined,
-  enhancer
+  undefined
+  // enhancer
 );
 
 export const persistor = persistStore(store);
