@@ -9,7 +9,13 @@ export const container = {
 export const ava = {
   width: AVA_SIZE,
   height: AVA_SIZE,
-  alignSelf: 'center'
+  alignSelf: 'center',
+  backgroundColor: Colors.java
+};
+
+export const labelStyle = {
+  color: 'white',
+  fontFamily: FontFamily.Muli.bold
 };
 
 export const infoContainer = {

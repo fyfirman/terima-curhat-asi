@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Avatar } from 'react-native-paper';
-import { DateFormatter } from '../../../../Helper';
+import { DateFormatter, getInitial } from '../../../../Helper';
 import * as styles from './styles';
 
 const propTypes = {
@@ -24,18 +24,25 @@ const defaultProps = {
 const ChatItem = (props) => {
   const { name, message, time, photo, onPress } = props;
 
+  const renderAvatar = () => {
+    if (photo === null) {
+      return (
+        <Avatar.Text
+          style={styles.ava}
+          labelStyle={styles.labelStyle}
+          label={getInitial(name)}
+          size={55}
+        />
+      );
+    }
+    return (
+      <Avatar.Image style={styles.ava} source={{ uri: photo }} size={55} />
+    );
+  };
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Avatar.Image
-        style={styles.ava}
-        source={{
-          uri:
-            photo === null
-              ? `https://api.adorable.io/avatars/${Math.random() * 5000}`
-              : photo
-        }}
-        size={55}
-      />
+      {renderAvatar()}
       <View style={styles.infoContainer}>
         <View style={styles.topSection}>
           <Text style={styles.name}>{name}</Text>
