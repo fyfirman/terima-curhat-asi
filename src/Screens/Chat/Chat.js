@@ -8,13 +8,19 @@ import { ChatBubble, AppBar } from './Components';
 import mockData from './mockData';
 
 const propTypes = {
-  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  route: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
 
 const Chat = (props) => {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  const { consultation } = route.params;
+
+  useEffect(() => {
+    console.log(consultation);
+  }, []);
 
   const renderItem = ({ item }) => (
     <ChatBubble

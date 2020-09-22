@@ -37,7 +37,7 @@ const InProgress = (props) => {
       name={item.user.profile.name}
       message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
       time={new Date(2020, 7, 28, 11, 23)}
-      onPress={() => navigation.navigate('Chat')}
+      onPress={() => navigation.navigate('Chat', { consultation: item })}
     />
   );
 
