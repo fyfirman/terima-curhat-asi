@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, TextInput, FlatList } from 'react-native';
-import { Menu, Divider, Button } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { ChatBubble, AppBar } from './Components';
