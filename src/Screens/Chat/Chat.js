@@ -33,7 +33,7 @@ const Chat = (props) => {
 
   return (
     <>
-      <AppBar navigation={navigation} />
+      <AppBar navigation={navigation} user={consultation.user} />
       <View style={styles.inner}>
         <View style={styles.inputContainer}>
           <TextInput style={styles.input} placeholder="Masukkan Pesan" />

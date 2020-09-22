@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Appbar, Avatar, Menu, Button, Divider } from 'react-native-paper';
+import { Appbar, Avatar, Menu, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
 import * as styles from './styles';
 
 const propTypes = {
-  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
 
 const ChatAppBar = (props) => {
-  const { navigation } = props;
+  const { navigation, user } = props;
 
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -39,12 +40,12 @@ const ChatAppBar = (props) => {
         />
       </TouchableOpacity>
       <Appbar.Content
-        title="Dessy"
+        title={user.profile.name}
         titleStyle={styles.headerTitleStyle}
         subtitle="Tekan disini untuk melihat profil"
         subtitleStyle={styles.subtitleStyle}
         color="white"
-        onPress={() => navigation.navigate('ProfileMom')}
+        onPress={() => navigation.navigate('ProfileMom', user)}
       />
 
       <Menu
