@@ -5,6 +5,8 @@ import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { bindActionCreators } from 'redux';
+import Pusher from 'pusher-js/react-native';
+import Echo from 'laravel-echo';
 import { connect } from 'react-redux';
 import { SessionAction } from '../Redux/Actions';
 import MenuDrawer from './MenuDrawer';
@@ -25,8 +27,36 @@ const Routes = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    if (isLoaded) {
+      Pusher.logToConsole = true;
+
+      console.log(`${session.tokenType} ${session.accessToken}`);
+
+      const PusherClient = new Pusher('412261949086f4ad815a', {
+        cluster: 'ap1',
+        forceTLS: true,
+        authEndpoint: 'http://192.168.1.11:4000/api/pusher/auth',
+        auth: {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `${session.tokenType} ${session.accessToken}`
+          }
+        }
+      });
+
+      const echo = new Echo({
+        broadcaster: 'pusher',
+        client: PusherClient
+      });
+
+      echo.private('chat').listen('ConsultationPostSent', (data) => {
+        console.log('Data pusher : ', data);
+      });
+    }
+
     setIsLoaded(true);
-  }, []);
+  }, [isLoaded]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
