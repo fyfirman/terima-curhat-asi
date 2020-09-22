@@ -64,7 +64,6 @@ const New = (props) => {
   };
 
   return isLoaded ? renderView() : <LoadingContent />;
-  // return isLoaded ? <Text>Test</Text> : <LoadingContent />;
 };
 
 New.propTypes = propTypes;
