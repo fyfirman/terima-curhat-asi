@@ -1,46 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, ScrollView } from 'react-native';
+import { FlatList, View, Text, ToastAndroid } from 'react-native';
 import * as styles from './styles';
 import { ChatItem } from '../Components';
+import { CoreServices } from '../../../Services';
+import { LoadingContent } from '../../../Components';
 
-const propTypes = {};
+const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 const defaultProps = {};
 
 const History = (props) => {
-  const {} = props;
+  const { navigation } = props;
 
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [consultations, setConsultations] = useState([]);
 
-  const renderCard = () => {
-    const cards = [];
-    for (let i = 0; i < 10; i++) {
-      cards.push(
-        <ChatItem
-          key={i}
-          name="Dessy"
-          message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
-          time={new Date(2020, 7, 11, 11, 23)}
-        />
+  useEffect(() => {
+    CoreServices.getConsultations({ params: { type: 'closed' } }).then(
+      (res) => {
+        setConsultations(res.payload.data);
+        setIsLoaded(true);
+      },
+      (error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+        console.error(error);
+      }
+    );
+  }, []);
+
+  const renderCard = ({ item }) => (
+    <ChatItem
+      key={item.id}
+      name={item.user.profile.name}
+      message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
+      time={new Date(2020, 7, 28, 11, 23)}
+      onPress={() => navigation.navigate('Chat')}
+    />
+  );
+
+  const renderView = () => {
+    if (consultations.length !== 0) {
+      return (
+        <View style={styles.container}>
+          <FlatList
+            data={consultations}
+            renderItem={renderCard}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
       );
     }
-    return cards;
+    return (
+      <View style={styles.infoContainer}>
+        <Text style={styles.emptyInfo}>
+          {`Tidak ada konsultasi\nyang selesai`}
+        </Text>
+      </View>
+    );
   };
 
-  return (
-    <>
-      {!isEmpty ? (
-        <ScrollView style={styles.container}>{renderCard()}</ScrollView>
-      ) : (
-        <View style={styles.infoContainer}>
-          <Text style={styles.emptyInfo}>
-            {`Tidak ada konsultasi\nyang sudah selesai`}
-          </Text>
-        </View>
-      )}
-    </>
-  );
+  return isLoaded ? renderView() : <LoadingContent />;
 };
 
 History.propTypes = propTypes;
