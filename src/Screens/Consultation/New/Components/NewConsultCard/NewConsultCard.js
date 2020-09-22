@@ -7,15 +7,17 @@ import { Button } from './Components';
 
 const propTypes = {
   name: PropTypes.string,
+  photo: PropTypes.string,
   onPress: PropTypes.func.isRequired
 };
 
 const defaultProps = {
-  name: 'User tidak mempunyai nama'
+  name: 'User tidak mempunyai nama',
+  photo: null
 };
 
 const NewConsultCard = (props) => {
-  const { name, onPress } = props;
+  const { name, photo, onPress } = props;
 
   return (
     <View style={styles.container}>
@@ -23,7 +25,10 @@ const NewConsultCard = (props) => {
         <Avatar.Image
           style={styles.ava}
           source={{
-            uri: `https://api.adorable.io/avatars/${Math.random() * 5000}`
+            uri:
+              photo === null
+                ? `https://api.adorable.io/avatars/${Math.random() * 5000}`
+                : photo
           }}
           size={60}
         />

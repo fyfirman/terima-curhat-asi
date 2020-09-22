@@ -4,6 +4,8 @@ import Config from './Config';
 
 // Get
 const getProfile = () => get('api/profile', Config.withToken());
+const getConsultations = (config) =>
+  get('api/consultations', Config.withToken(config));
 
 // Post
 const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
@@ -14,6 +16,7 @@ const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
 
 const CoreServices = {
   getProfile,
+  getConsultations,
   postGenerateToken
 };
 

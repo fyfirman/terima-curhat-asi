@@ -27,11 +27,11 @@ const Routes = (props) => {
 
   useEffect(() => {
     if (isLoaded) {
-      ChatServices.get(session)
-        .private('chat')
-        .listen('ConsultationPostSent', (data) => {
-          console.log('Data pusher : ', data);
-        });
+      // ChatServices.get(session)
+      //   .private('chat')
+      //   .listen('ConsultationPostSent', (data) => {
+      //     console.log('Data pusher : ', data);
+      //   });
     }
 
     setIsLoaded(true);
@@ -59,8 +59,7 @@ const Routes = (props) => {
               name="ForgotPIN"
               component={ForgotPIN}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Lupa PIN')
-              }
+                HeaderOptions.withBack(navigation, 'Lupa PIN')}
             />
             <Stack.Screen
               name="MenuDrawer"
@@ -80,15 +79,13 @@ const Routes = (props) => {
               name="Invite"
               component={Invite}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Tambahkan Bidan')
-              }
+                HeaderOptions.withBack(navigation, 'Tambahkan Bidan')}
             />
             <Stack.Screen
               name="ProfileMom"
               component={ProfileMom}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')
-              }
+                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')}
             />
           </Stack.Navigator>
         </NavigationContainer>
