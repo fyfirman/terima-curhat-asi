@@ -2,20 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { View, TextInput, FlatList } from 'react-native';
 import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
-import * as styles from './styles';
-import { ChatBubble, AppBar } from './Components';
+
+// Redux
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { UserAction } from '../../Redux/Actions';
+
+// Internal
 import { CoreServices } from '../../Services';
 import { LoadingContent } from '../../Components';
+import * as styles from './styles';
+import { ChatBubble, AppBar } from './Components';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
-  route: PropTypes.objectOf(PropTypes.any).isRequired
+  route: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
 
 const Chat = (props) => {
-  const { navigation, route } = props;
+  const { navigation, route, user } = props;
   const { consultation } = route.params;
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,6 +40,8 @@ const Chat = (props) => {
         console.log(error);
       }
     );
+
+    console.log(user.id);
   }, []);
 
   const renderItem = ({ item }) => (
@@ -39,7 +49,7 @@ const Chat = (props) => {
       senderName={item.user.profile.name}
       message={item.message}
       time={new Date(item.created_at)} // TODO: fix dates
-      self
+      self={item.user.id === user.id}
     />
   );
 
@@ -79,4 +89,8 @@ const Chat = (props) => {
 Chat.propTypes = propTypes;
 Chat.defaultProps = defaultProps;
 
-export default Chat;
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Chat);
