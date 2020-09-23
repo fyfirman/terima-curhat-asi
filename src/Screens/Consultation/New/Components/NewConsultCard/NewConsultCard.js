@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { Avatar } from 'react-native-paper';
 import * as styles from './styles';
 import { Button } from './Components';
-import { getInitial } from '../../../../../Helper';
+import { Avatar } from '../../../../../Components';
 
 const propTypes = {
   name: PropTypes.string,
@@ -20,26 +19,10 @@ const defaultProps = {
 const NewConsultCard = (props) => {
   const { name, photo, onPress } = props;
 
-  const renderAvatar = () => {
-    if (photo === null) {
-      return (
-        <Avatar.Text
-          style={styles.ava}
-          labelStyle={styles.labelStyle}
-          label={getInitial(name)}
-          size={60}
-        />
-      );
-    }
-    return (
-      <Avatar.Image style={styles.ava} source={{ uri: photo }} size={60} />
-    );
-  };
-
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress} style={styles.avaContainer}>
-        {renderAvatar()}
+        <Avatar size={60} name={name} photo={photo} />
       </TouchableOpacity>
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
