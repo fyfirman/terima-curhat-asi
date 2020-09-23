@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Appbar, Menu, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -22,10 +22,6 @@ const ChatAppBar = (props) => {
     setMenuVisible((value) => !value);
   };
 
-  useEffect(() => {
-    console.log(user.profile);
-  }, []);
-
   return (
     <Appbar style={styles.headerStyle}>
       <TouchableOpacity
@@ -38,7 +34,11 @@ const ChatAppBar = (props) => {
           size={30}
           color="white"
         />
-        <Avatar name={user.profile.name} photo={user.photo} size={36} />
+        <Avatar
+          name={user.profile.name}
+          photo={user.photo ? user.photo : null}
+          size={36}
+        />
       </TouchableOpacity>
       <Appbar.Content
         title={user.profile.name}

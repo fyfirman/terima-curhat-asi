@@ -7,22 +7,24 @@ import { getInitial } from '../../Helper';
 const propTypes = {
   photo: PropTypes.string,
   name: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired
+  size: PropTypes.number.isRequired,
+  style: PropTypes.objectOf(PropTypes.any)
 };
 
 const defaultProps = {
-  photo: null
+  photo: null,
+  style: {}
 };
 
 const StyledAvatar = (props) => {
-  const { photo, name, size, ...rest } = props;
+  const { photo, name, size, style, ...rest } = props;
 
   const renderAvatar = () => {
     if (photo === null) {
       return (
         <Avatar.Text
           {...rest}
-          style={styles.root}
+          style={{ ...styles.root, ...style }}
           labelStyle={styles.labelStyle}
           label={getInitial(name)}
           size={size}
