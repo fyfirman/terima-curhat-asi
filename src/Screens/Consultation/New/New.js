@@ -35,9 +35,9 @@ const New = (props) => {
     <NewConsultCard
       name={item.user.profile.name}
       onPress={() => {
-        navigation.navigate('ProfileMom');
+        navigation.navigate('ProfileMom', { user: item.user });
       }}
-      photo={null}
+      photo={item.user.profile.photo}
     />
   );
 

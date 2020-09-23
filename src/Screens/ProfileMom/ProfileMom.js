@@ -8,14 +8,19 @@ import * as styles from './styles';
 
 const Tab = createMaterialTopTabNavigator();
 
-const propTypes = {};
+const propTypes = {
+  route: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 const defaultProps = {};
 
-const ProfileMom = () => {
+const ProfileMom = (props) => {
+  const { route } = props;
+  const { user } = route.params;
+
   return (
     <>
-      <TopSection name="Mira Suryani" phoneNumber="+628337318282" />
+      <TopSection name={user.profile.name} phoneNumber={user.username} />
       <Tab.Navigator
         tabBarOptions={{
           activeTintColor: Colors.java,
