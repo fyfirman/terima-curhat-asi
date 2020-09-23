@@ -22,11 +22,6 @@ export const headerLeft = {
   flexDirection: 'row'
 };
 
-export const labelStyle = {
-  fontFamily: FontFamily.Muli.bold,
-  color: 'white'
-};
-
 export const backIcon = {};
 
 export const menuIcon = {

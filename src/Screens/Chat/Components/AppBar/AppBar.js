@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Appbar, Avatar, Menu, Divider } from 'react-native-paper';
+import { Appbar, Menu, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
+import { Avatar } from '../../../../Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -20,6 +21,11 @@ const ChatAppBar = (props) => {
   const toggleMenu = () => {
     setMenuVisible((value) => !value);
   };
+
+  useEffect(() => {
+    console.log(user.profile);
+  }, []);
+
   return (
     <Appbar style={styles.headerStyle}>
       <TouchableOpacity
@@ -32,12 +38,7 @@ const ChatAppBar = (props) => {
           size={30}
           color="white"
         />
-        <Avatar.Text
-          size={36}
-          label="D"
-          labelStyle={styles.labelStyle}
-          style={styles.avatar}
-        />
+        <Avatar name={user.profile.name} photo={user.photo} size={36} />
       </TouchableOpacity>
       <Appbar.Content
         title={user.profile.name}
