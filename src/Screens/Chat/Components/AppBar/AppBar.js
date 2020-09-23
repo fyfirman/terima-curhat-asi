@@ -46,7 +46,7 @@ const ChatAppBar = (props) => {
         subtitle="Tekan disini untuk melihat profil"
         subtitleStyle={styles.subtitleStyle}
         color="white"
-        onPress={() => navigation.navigate('ProfileMom', user)}
+        onPress={() => navigation.navigate('ProfileMom', { user })}
       />
 
       <Menu
