@@ -19,8 +19,20 @@ const getRelativeTime = (date) => {
     .join('/')}`;
 };
 
+const convertStringToDate = (dateString) => {
+  const year = dateString.substring(0, 4);
+  const month = dateString.substring(5, 7);
+  const day = dateString.substring(9, 10);
+  const hour = dateString.substring(11, 13);
+  const minute = dateString.substring(14, 16);
+  const second = dateString.substring(17, 19);
+
+  return new Date(year, month, day, hour, minute, second);
+};
+
 const DateFormatter = {
-  getRelativeTime
+  getRelativeTime,
+  convertStringToDate
 };
 
 export default DateFormatter;

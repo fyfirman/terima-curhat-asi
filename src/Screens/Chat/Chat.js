@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, FlatList } from 'react-native';
+import { View, TextInput, FlatList, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 // Redux
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { UserAction } from '../../Redux/Actions';
 
 // Internal
 import { CoreServices } from '../../Services';
 import { LoadingContent } from '../../Components';
 import * as styles from './styles';
 import { ChatBubble, AppBar } from './Components';
+import { DateFormatter } from '../../Helper';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -33,22 +32,20 @@ const Chat = (props) => {
     CoreServices.getConsultationPost(consultation.id).then(
       (res) => {
         setMessages(res);
-        console.log(res);
         setIsLoaded(true);
       },
       (error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
         console.log(error);
       }
     );
-
-    console.log(user.id);
   }, []);
 
   const renderItem = ({ item }) => (
     <ChatBubble
       senderName={item.user.profile.name}
       message={item.message}
-      time={new Date(item.created_at)} // TODO: fix dates
+      time={DateFormatter.convertStringToDate(item.created_at)}
       self={item.user.id === user.id}
     />
   );
