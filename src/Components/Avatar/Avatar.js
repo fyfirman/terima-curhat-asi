@@ -34,7 +34,7 @@ const StyledAvatar = (props) => {
     return (
       <Avatar.Image
         {...rest}
-        style={styles.root}
+        style={{ ...styles.root, ...style }}
         source={{ uri: photo }}
         size={size}
       />

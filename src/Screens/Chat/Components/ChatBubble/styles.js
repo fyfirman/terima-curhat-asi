@@ -22,8 +22,7 @@ export const container = (self) => ({
 });
 
 export const ava = {
-  width: 40,
-  height: 40,
+  alignSelf: 'flex-start',
   marginHorizontal: 4
 };
 
