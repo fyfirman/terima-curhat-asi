@@ -1,25 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import { InfoItem } from '../../Components';
 
-const propTypes = {};
+const propTypes = {
+  route: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 const defaultProps = {};
 
-const Moms = () => {
+const Moms = (props) => {
+  const { route } = props;
+  const { user } = route.params;
+
   return (
     <ScrollView>
-      <InfoItem label="Nama" info="Mira Suryani" />
-      <InfoItem label="Tanggal Lahir" info="24 Agustus 1989" />
-      <InfoItem label="Agama" info="Islam" />
-      <InfoItem label="Golongan Darah" info="O" />
-      <InfoItem label="Status Pernikahan" info="Menikah" />
-      <InfoItem label="Pendidikan" info="Perguruan Tinggi (S2)" />
-      <InfoItem label="Pekerjaan/Profesi" info="Dosen" />
+      <InfoItem label="Nama" info={user.profile.name} />
+      {/* TODO: format date of birth */}
+      <InfoItem label="Tanggal Lahir" info={user.profile.dob} />
+      <InfoItem label="Agama" info={user.profile.religion} />
+      <InfoItem label="Golongan Darah" info={user.profile.blood_type} />
       <InfoItem
-        label="Alamat"
-        info="Jl. Saluyu XV A no. 11, Kel. Srimahi, Kec. Ciparay, Kabupaten Bandung, Jawa Barat"
+        label="Status Pernikahan"
+        info={user.profile.marital_status_text}
       />
+      <InfoItem label="Pendidikan" info={user.profile.education_text} />
+      <InfoItem label="Pekerjaan/Profesi" info={user.profile.occupation.name} />
+      <InfoItem label="Alamat" info={user.profile.full_address} />
     </ScrollView>
   );
 };

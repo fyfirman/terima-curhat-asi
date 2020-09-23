@@ -20,7 +20,11 @@ const ProfileMom = (props) => {
 
   return (
     <>
-      <TopSection name={user.profile.name} phoneNumber={user.username} />
+      <TopSection
+        name={user.profile.name}
+        phoneNumber={user.username}
+        photo={user.profile.picture}
+      />
       <Tab.Navigator
         tabBarOptions={{
           activeTintColor: Colors.java,
@@ -36,6 +40,7 @@ const ProfileMom = (props) => {
           name="Moms"
           component={Moms}
           options={{ tabBarLabel: 'Ibu' }}
+          initialParams={{ user }}
         />
         <Tab.Screen
           name="Pregnancy"
