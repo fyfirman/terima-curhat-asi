@@ -6,18 +6,20 @@ import * as styles from './styles';
 import { Colors } from '../../Theme';
 
 const propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  containerStyles: PropTypes.objectOf(PropTypes.any)
 };
 
 const defaultProps = {
-  message: ''
+  message: '',
+  containerStyles: {}
 };
 
 const LoadingContent = (props) => {
-  const { message } = props;
+  const { message, containerStyles } = props;
 
   return (
-    <View style={styles.root}>
+    <View style={{ ...styles.root, ...containerStyles }}>
       <ActivityIndicator animating color={Colors.java} size="large" />
       <Text style={styles.message} color={Colors.java}>
         {message}

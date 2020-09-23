@@ -63,3 +63,7 @@ export const contentStyle = {
 export const menuIcon = {
   paddingRight: 8
 };
+
+export const loadingContentStyles = {
+  backgroundColor: '#EAEAEA'
+};

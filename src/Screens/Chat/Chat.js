@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, FlatList } from 'react-native';
 import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { ChatBubble, AppBar } from './Components';
 import { CoreServices } from '../../Services';
-import mockData from './mockData';
+import { LoadingContent } from '../../Components';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -18,10 +18,15 @@ const Chat = (props) => {
   const { navigation, route } = props;
   const { consultation } = route.params;
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     CoreServices.getConsultationPost(consultation.id).then(
       (res) => {
+        setMessages(res);
         console.log(res);
+        setIsLoaded(true);
       },
       (error) => {
         console.log(error);
@@ -31,10 +36,10 @@ const Chat = (props) => {
 
   const renderItem = ({ item }) => (
     <ChatBubble
-      senderName={item.senderName}
+      senderName={item.user.profile.name}
       message={item.message}
-      time={item.time}
-      self={item.self}
+      time={new Date(item.created_at)} // TODO: fix dates
+      self
     />
   );
 
@@ -54,14 +59,18 @@ const Chat = (props) => {
             compact
           />
         </View>
-        <FlatList
-          data={mockData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          initialNumToRender={10}
-          initialScrollIndex={mockData - 1}
-          inverted
-        />
+        {isLoaded ? (
+          <FlatList
+            data={messages}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            initialNumToRender={10}
+            initialScrollIndex={messages - 1}
+            inverted
+          />
+        ) : (
+          <LoadingContent containerStyles={styles.loadingContentStyles} />
+        )}
       </View>
     </>
   );
