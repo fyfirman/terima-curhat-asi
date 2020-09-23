@@ -4,6 +4,7 @@ import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { ChatBubble, AppBar } from './Components';
+import { CoreServices } from '../../Services';
 import mockData from './mockData';
 
 const propTypes = {
@@ -18,7 +19,14 @@ const Chat = (props) => {
   const { consultation } = route.params;
 
   useEffect(() => {
-    console.log(consultation);
+    CoreServices.getConsultationPost(consultation.id).then(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }, []);
 
   const renderItem = ({ item }) => (
