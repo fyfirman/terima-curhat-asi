@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { ChatServices } from '../Services';
 import { SessionAction } from '../Redux/Actions';
 import MenuDrawer from './MenuDrawer';
 import { Login, ForgotPIN, Chat, Invite, ProfileMom } from '../Screens';
@@ -16,24 +15,15 @@ import { LoadingScreen } from '../Components';
 const Stack = createStackNavigator();
 
 const propTypes = {
-  session: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const Routes = (props) => {
-  const { session, user } = props;
+  const { user } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (isLoaded) {
-      // ChatServices.get(session)
-      //   .private('chat')
-      //   .listen('ConsultationPostSent', (data) => {
-      //     console.log('Data pusher : ', data);
-      //   });
-    }
-
     setIsLoaded(true);
   }, [isLoaded]);
 

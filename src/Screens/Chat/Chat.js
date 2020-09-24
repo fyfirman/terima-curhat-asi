@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Internal
-import { CoreServices } from '../../Services';
+import { CoreServices, ChatServices } from '../../Services';
 import { LoadingContent } from '../../Components';
 import * as styles from './styles';
 import { ChatBubble, AppBar } from './Components';
@@ -15,6 +15,7 @@ import { DateFormatter } from '../../Helper';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  session: PropTypes.objectOf(PropTypes.any).isRequired,
   route: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired
 };
@@ -22,13 +23,20 @@ const propTypes = {
 const defaultProps = {};
 
 const Chat = (props) => {
-  const { navigation, route, user } = props;
+  const { navigation, route, user, session } = props;
   const { consultation } = route.params;
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    ChatServices.get(session)
+      .private('chat')
+      .listen('ConsultationPostSent', (data) => {
+        console.log('Data retrieved : ', data.consultationPost.message);
+        setMessages((prevMessages) => [data.consultationPost, ...prevMessages]);
+      });
+
     CoreServices.getConsultationPost(consultation.id).then(
       (res) => {
         setMessages(res);
@@ -87,7 +95,8 @@ Chat.propTypes = propTypes;
 Chat.defaultProps = defaultProps;
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  session: state.session
 });
 
 export default connect(mapStateToProps)(Chat);
