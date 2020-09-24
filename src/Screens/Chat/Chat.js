@@ -31,7 +31,7 @@ const Chat = (props) => {
 
   useEffect(() => {
     ChatServices.get(session)
-      .private('chat')
+      .private(`chat.${consultation.id}`)
       .listen('ConsultationPostSent', (data) => {
         setMessages((prevMessages) => [data.consultationPost, ...prevMessages]);
       });
