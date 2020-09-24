@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, LogBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -12,6 +12,7 @@ import { Colors } from './Theme';
 
 const App = () => {
   useEffect(() => {
+    LogBox.ignoreLogs(['Setting a timer']);
     SplashScreen.hide();
   });
 

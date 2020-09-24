@@ -33,7 +33,6 @@ const Chat = (props) => {
     ChatServices.get(session)
       .private('chat')
       .listen('ConsultationPostSent', (data) => {
-        console.log('Data retrieved : ', data.consultationPost.message);
         setMessages((prevMessages) => [data.consultationPost, ...prevMessages]);
       });
 
