@@ -5,10 +5,16 @@ import { getFormData } from '../../Helper';
 const post = (path, data, config) => {
   const promise = new Promise((resolve, reject) => {
     axios
-      .post(`${BASE_URL}/${path}`, getFormData(data), {
-        ...config,
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
+      .post(
+        `${BASE_URL}/${path}`,
+        data ? getFormData(data) : {},
+        data
+          ? {
+              ...config,
+              headers: { 'Content-Type': 'multipart/form-data' }
+            }
+          : config
+      )
       .then(
         (result) => {
           resolve(result.data);
