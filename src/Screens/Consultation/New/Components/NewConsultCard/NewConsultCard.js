@@ -1,14 +1,17 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { Button } from './Components';
 import { Avatar } from '../../../../../Components';
+import { CoreServices } from '../../../../../Services';
 
 const propTypes = {
   name: PropTypes.string,
   photo: PropTypes.string,
-  onPress: PropTypes.func.isRequired
+  consultation: PropTypes.objectOf(PropTypes.any).isRequired,
+  onPress: PropTypes.func.isRequired,
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {
@@ -17,7 +20,39 @@ const defaultProps = {
 };
 
 const NewConsultCard = (props) => {
-  const { name, photo, onPress } = props;
+  const { name, photo, consultation, onPress, navigation } = props;
+
+  const handleReject = () => {
+    CoreServices.postRejectConsultation(consultation.id).then(
+      (res) => {
+        console.log(res);
+        ToastAndroid.show(
+          'Permintaan konsultasi telah ditolak',
+          ToastAndroid.SHORT
+        );
+      },
+      (error) => {
+        console.error(error);
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      }
+    );
+  };
+
+  const handleAccept = () => {
+    CoreServices.postAcceptConsultation(consultation.id).then(
+      (res) => {
+        console.log(res);
+        ToastAndroid.show(
+          'Permintaan konsultasi telah diterima',
+          ToastAndroid.SHORT
+        );
+        navigation.navigate('Chat', { consultation });
+      },
+      (error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      }
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -30,8 +65,8 @@ const NewConsultCard = (props) => {
           Tekan pada foto profil untuk melihat profil
         </Text>
         <View style={styles.buttonContainer}>
-          <Button title="Tolak" onPress={() => {}} secondary />
-          <Button title="Terima" onPress={() => {}} />
+          <Button title="Tolak" onPress={handleReject} secondary />
+          <Button title="Terima" onPress={handleAccept} />
         </View>
       </View>
     </View>

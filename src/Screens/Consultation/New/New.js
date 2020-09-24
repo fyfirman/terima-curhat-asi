@@ -33,11 +33,13 @@ const New = (props) => {
 
   const renderCard = ({ item }) => (
     <NewConsultCard
+      consultation={item}
       name={item.user.profile.name}
       onPress={() => {
         navigation.navigate('ProfileMom', { user: item.user });
       }}
       photo={item.user.profile.photo}
+      navigation={navigation}
     />
   );
 
@@ -48,7 +50,7 @@ const New = (props) => {
           <FlatList
             data={consultations}
             renderItem={renderCard}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
           />
         </View>
       );

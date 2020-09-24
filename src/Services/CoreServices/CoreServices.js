@@ -14,6 +14,10 @@ const getConsultationPost = (id) =>
 
 // Post
 const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
+const postAcceptConsultation = (id) =>
+  post(`api/consultations/${id}/join`, null, Config.withToken());
+const postRejectConsultation = (id) =>
+  post(`api/consultations/${id}/leave`, null, Config.withToken());
 
 // Put
 
@@ -23,7 +27,9 @@ const CoreServices = {
   getProfile,
   getConsultations,
   getConsultationPost,
-  postGenerateToken
+  postGenerateToken,
+  postAcceptConsultation,
+  postRejectConsultation
 };
 
 export default CoreServices;
