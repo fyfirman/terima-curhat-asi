@@ -18,6 +18,8 @@ const postAcceptConsultation = (id) =>
   post(`api/consultations/${id}/join`, null, Config.withToken());
 const postRejectConsultation = (id) =>
   post(`api/consultations/${id}/leave`, null, Config.withToken());
+const postStoreConsultationPost = (id, data) =>
+  post(`api/consultations/${id}/consultation_posts`, data, Config.withToken());
 
 // Put
 
@@ -29,7 +31,8 @@ const CoreServices = {
   getConsultationPost,
   postGenerateToken,
   postAcceptConsultation,
-  postRejectConsultation
+  postRejectConsultation,
+  postStoreConsultationPost
 };
 
 export default CoreServices;

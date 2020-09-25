@@ -46,7 +46,27 @@ const Chat = (props) => {
         console.log(error);
       }
     );
+    handleSubmit();
   }, []);
+
+  const handleSubmit = () => {
+    const message = 'Pesan submit';
+
+    CoreServices.postStoreConsultationPost(consultation.id, { message }).then(
+      (res) => {
+        console.log(res);
+        ToastAndroid.show(res.message, ToastAndroid.LONG);
+      },
+      (error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      }
+    );
+  };
 
   const renderItem = ({ item }) => (
     <ChatBubble
