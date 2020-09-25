@@ -28,6 +28,7 @@ const Chat = (props) => {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
 
   useEffect(() => {
     ChatServices.get(session)
@@ -46,24 +47,24 @@ const Chat = (props) => {
         console.log(error);
       }
     );
-    handleSubmit();
   }, []);
 
   const handleSubmit = () => {
-    const message = 'Pesan submit';
+    setInput('');
 
-    CoreServices.postStoreConsultationPost(consultation.id, { message }).then(
+    CoreServices.postStoreConsultationPost(consultation.id, {
+      message: input
+    }).then(
       (res) => {
         console.log(res);
         ToastAndroid.show(res.message, ToastAndroid.LONG);
       },
       (error) => {
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          ToastAndroid.show(error.response.data, ToastAndroid.LONG);
+        } else {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
         }
-        ToastAndroid.show(error.message, ToastAndroid.LONG);
       }
     );
   };
@@ -82,8 +83,14 @@ const Chat = (props) => {
       <AppBar navigation={navigation} user={consultation.user} />
       <View style={styles.inner}>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.input} placeholder="Masukkan Pesan" />
+          <TextInput
+            style={styles.input}
+            placeholder="Masukkan Pesan"
+            onChangeText={setInput}
+            value={input}
+          />
           <Button
+            onPress={handleSubmit}
             style={styles.sendButton}
             labelStyle={styles.buttonIcon}
             contentStyle={styles.contentStyle}
