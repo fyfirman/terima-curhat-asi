@@ -31,22 +31,32 @@ const Chat = (props) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    ChatServices.get(session)
-      .private(`chat.${consultation.id}`)
-      .listen('ConsultationPostSent', (data) => {
-        setMessages((prevMessages) => [data.consultationPost, ...prevMessages]);
-      });
+    const listenChatServices = () => {
+      ChatServices.get(session)
+        .private(`chat.${consultation.id}`)
+        .listen('ConsultationPostSent', (data) => {
+          setMessages((prevMessages) => [
+            data.consultationPost,
+            ...prevMessages
+          ]);
+        });
+    };
 
-    CoreServices.getConsultationPost(consultation.id).then(
-      (res) => {
-        setMessages(res);
-        setIsLoaded(true);
-      },
-      (error) => {
-        ToastAndroid.show(error.message, ToastAndroid.LONG);
-        console.log(error);
-      }
-    );
+    const fetchConsultationPost = () => {
+      CoreServices.getConsultationPost(consultation.id).then(
+        (res) => {
+          setMessages(res);
+          setIsLoaded(true);
+        },
+        (error) => {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+          console.log(error);
+        }
+      );
+    };
+
+    listenChatServices();
+    fetchConsultationPost();
   }, []);
 
   const handleSubmit = () => {
