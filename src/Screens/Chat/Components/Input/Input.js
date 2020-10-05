@@ -21,29 +21,34 @@ const InputChat = (props) => {
     <View>
       <View style={styles.inputContainer}>
         <TextInput
+          multiline
           style={styles.input}
           placeholder="Masukkan Pesan"
           onChangeText={setInput}
           value={input}
         />
         <Button
-          onPress={() => {
-            setAttachmentShown(!attachmentShown);
-          }}
+          onPress={() => {}}
           style={styles.attachmentButton}
           labelStyle={styles.attachmentButtonIcon}
           contentStyle={styles.contentStyle}
-          icon="paperclip"
+          icon="message-image-outline"
           mode="contained"
           size={20}
           compact
         />
         <Button
-          onPress={handleSubmit}
+          onPress={
+            input !== ''
+              ? handleSubmit
+              : () => {
+                  setAttachmentShown(!attachmentShown);
+                }
+          }
           style={styles.sendButton}
           labelStyle={styles.buttonIcon}
           contentStyle={styles.contentStyle}
-          icon="send"
+          icon={input !== '' ? 'send' : 'microphone'}
           mode="contained"
           size={20}
           compact
@@ -52,7 +57,7 @@ const InputChat = (props) => {
 
       {attachmentShown && (
         <View style={styles.attachmentContainer}>
-          <Text>Test</Text>
+          <Text>VN</Text>
         </View>
       )}
     </View>
