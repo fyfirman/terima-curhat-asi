@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, FlatList, ToastAndroid } from 'react-native';
-import { Button } from 'react-native-paper';
-import Pusher from 'pusher-js/react-native';
+import { View, FlatList, ToastAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -11,7 +9,7 @@ import { connect } from 'react-redux';
 import { CoreServices, ChatServices } from '../../Services';
 import { LoadingContent } from '../../Components';
 import * as styles from './styles';
-import { ChatBubble, AppBar } from './Components';
+import { ChatBubble, AppBar, Input } from './Components';
 import { DateFormatter } from '../../Helper';
 
 const propTypes = {
@@ -46,9 +44,9 @@ const Chat = (props) => {
     };
 
     const listenWebSocket = () => {
-      const publicChannel = ChatServices.subscribe(`users.100`);
-      publicChannel.bind('pusher:subscription_succeeded', () => {
-        publicChannel.bind('join', (data) => {
+      const webSocket = ChatServices.subscribe(`users.${user.id}`);
+      webSocket.bind('pusher:subscription_succeeded', () => {
+        webSocket.bind('join', (data) => {
           console.log('Public channel : ', data);
         });
       });
@@ -91,24 +89,7 @@ const Chat = (props) => {
     <>
       <AppBar navigation={navigation} user={consultation.user} />
       <View style={styles.inner}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Masukkan Pesan"
-            onChangeText={setInput}
-            value={input}
-          />
-          <Button
-            onPress={handleSubmit}
-            style={styles.sendButton}
-            labelStyle={styles.buttonIcon}
-            contentStyle={styles.contentStyle}
-            icon="send"
-            mode="contained"
-            size={20}
-            compact
-          />
-        </View>
+        <Input handleSubmit={handleSubmit} input={input} setInput={setInput} />
         {isLoaded ? (
           <FlatList
             data={messages}
