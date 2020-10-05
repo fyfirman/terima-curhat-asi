@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, FlatList, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-paper';
+import Pusher from 'pusher-js/react-native';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -31,17 +32,6 @@ const Chat = (props) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    const listenChatServices = () => {
-      ChatServices.get(session)
-        .private(`chat.${consultation.id}`)
-        .listen('ConsultationPostSent', (data) => {
-          setMessages((prevMessages) => [
-            data.consultationPost,
-            ...prevMessages
-          ]);
-        });
-    };
-
     const fetchConsultationPost = () => {
       CoreServices.getConsultationPost(consultation.id).then(
         (res) => {
@@ -55,7 +45,16 @@ const Chat = (props) => {
       );
     };
 
-    listenChatServices();
+    const listenWebSocket = () => {
+      const publicChannel = ChatServices.subscribe(`users.100`);
+      publicChannel.bind('pusher:subscription_succeeded', () => {
+        publicChannel.bind('join', (data) => {
+          console.log('Public channel : ', data);
+        });
+      });
+    };
+
+    listenWebSocket();
     fetchConsultationPost();
   }, []);
 
