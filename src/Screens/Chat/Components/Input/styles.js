@@ -35,9 +35,29 @@ export const buttonIcon = {
   marginLeft: 0
 };
 
+export const attachmentButton = {
+  height: INPUT_HEIGHT,
+  width: INPUT_HEIGHT,
+  minWidth: INPUT_HEIGHT,
+  borderRadius: 100,
+  backgroundColor: 'white',
+  elevation: 1,
+  marginRight: 8
+};
+
+export const attachmentButtonIcon = {
+  color: Colors.java,
+  fontSize: 28,
+  marginLeft: 0
+};
+
 export const contentStyle = {
   heigth: INPUT_HEIGHT,
   width: INPUT_HEIGHT,
   marginLeft: -2,
   paddingBottom: 0
+};
+
+export const attachmentContainer = {
+  backgroundColor: 'white'
 };
