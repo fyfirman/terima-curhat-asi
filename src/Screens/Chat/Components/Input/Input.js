@@ -7,13 +7,14 @@ import * as styles from './styles';
 const propTypes = {
   input: PropTypes.string.isRequired,
   setInput: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  handlePicker: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
 const InputChat = (props) => {
-  const { input, setInput, handleSubmit } = props;
+  const { input, setInput, handleSubmit, handlePicker } = props;
 
   const [attachmentShown, setAttachmentShown] = useState(false);
 
@@ -28,7 +29,7 @@ const InputChat = (props) => {
           value={input}
         />
         <Button
-          onPress={() => {}}
+          onPress={handlePicker}
           style={styles.attachmentButton}
           labelStyle={styles.attachmentButtonIcon}
           contentStyle={styles.contentStyle}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ToastAndroid } from 'react-native';
+import { View, FlatList, ToastAndroid, PermissionsAndroid } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -28,6 +29,7 @@ const Chat = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [imageResource, setImageResource] = useState(null);
 
   useEffect(() => {
     const listenChatServices = () => {
@@ -54,9 +56,76 @@ const Chat = (props) => {
       );
     };
 
-    listenChatServices();
+    // listenChatServices();
     fetchConsultationPost();
   }, []);
+
+  const requestPickerPermission = async () => {
+    try {
+      const cameraPermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'Terima Curhat ASI ',
+          message: 'Terima Curhat ASI meminta akses kamera '
+        }
+      );
+      const externalStoragePermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'Terima Curhat ASI ',
+          message: 'Terima Curhat ASI meminta akses penyimpanan eksternal'
+        }
+      );
+      if (
+        cameraPermission !== PermissionsAndroid.RESULTS.GRANTED &&
+        externalStoragePermission !== PermissionsAndroid.RESULTS.GRANTED
+      ) {
+        console.log('location permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const handlePicker = async () => {
+    const cameraPermission = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.CAMERA
+    );
+    const externalStoragePermission = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+    );
+
+    if (!cameraPermission && !externalStoragePermission) {
+      requestPickerPermission();
+    }
+
+    const options = {
+      title: 'Select Images',
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        setImageResource(source);
+      }
+    });
+  };
 
   const handleSubmit = () => {
     setInput('');
@@ -91,7 +160,12 @@ const Chat = (props) => {
     <>
       <AppBar navigation={navigation} user={consultation.user} />
       <View style={styles.inner}>
-        <Input handleSubmit={handleSubmit} input={input} setInput={setInput} />
+        <Input
+          handleSubmit={handleSubmit}
+          handlePicker={handlePicker}
+          input={input}
+          setInput={setInput}
+        />
         {isLoaded ? (
           <FlatList
             data={messages}
