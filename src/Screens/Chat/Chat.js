@@ -30,6 +30,17 @@ const Chat = (props) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
+    const listenChatServices = () => {
+      ChatServices.get(session)
+        .private(`chat.${consultation.id}`)
+        .listen('ConsultationPostSent', (data) => {
+          setMessages((prevMessages) => [
+            data.consultationPost,
+            ...prevMessages
+          ]);
+        });
+    };
+
     const fetchConsultationPost = () => {
       CoreServices.getConsultationPost(consultation.id).then(
         (res) => {
@@ -43,16 +54,7 @@ const Chat = (props) => {
       );
     };
 
-    const listenWebSocket = () => {
-      const webSocket = ChatServices.subscribe(`users.${user.id}`);
-      webSocket.bind('pusher:subscription_succeeded', () => {
-        webSocket.bind('join', (data) => {
-          console.log('Public channel : ', data);
-        });
-      });
-    };
-
-    listenWebSocket();
+    listenChatServices();
     fetchConsultationPost();
   }, []);
 
