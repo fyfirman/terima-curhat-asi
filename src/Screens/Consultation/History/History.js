@@ -48,7 +48,7 @@ const History = (props) => {
           <FlatList
             data={consultations}
             renderItem={renderCard}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
           />
         </View>
       );
