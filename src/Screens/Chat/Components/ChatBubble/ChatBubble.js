@@ -1,14 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  View,
-  Text,
-  Image,
-  Modal,
-  TouchableOpacity,
-  BackHandler
-} from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Avatar } from '../../../../Components';
 import * as styles from './styles';
