@@ -122,7 +122,7 @@ const Chat = (props) => {
             user,
             message: '',
             created_at: new Date().toISOString(),
-            imageResource
+            imageResource: source
           },
           ...oldMessage
         ]);
