@@ -69,7 +69,13 @@ const ChatBubble = (props) => {
           {!self && <Text style={styles.name}>{senderName}</Text>}
           {message !== '' && <Text style={styles.message}>{message}</Text>}
           <Text style={styles.time}>
-            {`${time.getHours()}:${time.getMinutes()}`}
+            {`${
+              time.getHours() < 9 ? `0${time.getHours()}` : time.getHours()
+            }:${
+              time.getMinutes() < 9
+                ? `0${time.getMinutes()}`
+                : time.getMinutes()
+            }`}
           </Text>
         </View>
       </View>
