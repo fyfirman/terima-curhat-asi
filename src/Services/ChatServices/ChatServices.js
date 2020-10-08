@@ -1,4 +1,3 @@
-import Echo from 'laravel-echo';
 import Pusher from 'pusher-js/react-native';
 import {
   PUSHER_APP_CLUSTER,
@@ -6,7 +5,7 @@ import {
   PUSHER_AUTH_ENDPOINT
 } from 'react-native-dotenv';
 
-const get = (session) => {
+const create = (session) => {
   const options = {
     cluster: PUSHER_APP_CLUSTER,
     forceTLS: true,
@@ -23,12 +22,7 @@ const get = (session) => {
   Pusher.logToConsole = true;
   const PusherClient = new Pusher(PUSHER_APP_KEY, options);
 
-  const echo = new Echo({
-    broadcaster: 'pusher',
-    client: PusherClient
-  });
-
-  return echo;
+  return PusherClient;
 };
 
-export default { get };
+export default { create };
