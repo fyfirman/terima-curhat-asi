@@ -41,3 +41,5 @@ export const time = {
   fontSize: 11,
   textAlign: 'right'
 };
+
+export const imageStyle = { width: 200, aspectRatio: 1 };

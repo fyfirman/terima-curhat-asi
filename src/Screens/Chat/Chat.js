@@ -33,14 +33,12 @@ const Chat = (props) => {
 
   useEffect(() => {
     const listenChatServices = () => {
-      ChatServices.get(session)
-        .private(`chat.${consultation.id}`)
-        .listen('ConsultationPostSent', (data) => {
-          setMessages((prevMessages) => [
-            data.consultationPost,
-            ...prevMessages
-          ]);
-        });
+      const socket = ChatServices.create(session);
+
+      const presence = socket.subscribe(`presence-global.${user.id}`);
+      presence.bind('pusher:subscription_succeeded', () =>
+        presence.bind('join', (data) => console.log(data))
+      );
     };
 
     const fetchConsultationPost = () => {
@@ -100,8 +98,9 @@ const Chat = (props) => {
     }
 
     const options = {
-      title: 'Select Images',
-      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      title: 'Pilih foto',
+      takePhotoButtonTitle: 'Buka kamera',
+      chooseFromLibraryButtonTitle: 'Pilih dari galeri',
       storageOptions: {
         skipBackup: true,
         path: 'images'
@@ -109,8 +108,6 @@ const Chat = (props) => {
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -118,11 +115,17 @@ const Chat = (props) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        const source = { uri: `data:image/jpeg;base64,${response.data}` };
         setImageResource(source);
+        setMessages((oldMessage) => [
+          {
+            user,
+            message: '',
+            created_at: new Date().toISOString(),
+            imageResource
+          },
+          ...oldMessage
+        ]);
       }
     });
   };
@@ -153,6 +156,7 @@ const Chat = (props) => {
       message={item.message}
       time={DateFormatter.convertStringToDate(item.created_at)}
       self={item.user.id === user.id}
+      imageResource={item.imageResource}
     />
   );
 
