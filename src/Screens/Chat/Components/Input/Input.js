@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import { Button } from 'react-native-paper';
-import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import RNFS from 'react-native-fs';
+import AudioRecorderPlayer, {
+  AudioEncoderAndroidType,
+  AVEncoderAudioQualityIOSType,
+  AVEncodingOption,
+  AudioSourceAndroidType
+} from 'react-native-audio-recorder-player';
 import { PermissionHelper } from '../../../../Helper';
 import * as styles from './styles';
 
@@ -41,7 +47,24 @@ const InputChat = (props) => {
 
   const onStartRecord = async () => {
     setIsRecording(true);
-    const result = await audioRecorderPlayer.startRecorder();
+
+    RNFS.mkdir(`${RNFS.DocumentDirectoryPath}/recorder`);
+    const path = `${RNFS.DocumentDirectoryPath}/recorder/recording.aac`;
+
+    const audioSet = {
+      AudioEncoderAndroid: AudioEncoderAndroidType.AAC,
+      AudioSourceAndroid: AudioSourceAndroidType.MIC,
+      AVEncoderAudioQualityKeyIOS: AVEncoderAudioQualityIOSType.high,
+      AVNumberOfChannelsKeyIOS: 2,
+      AVFormatIDKeyIOS: AVEncodingOption.aac
+    };
+    const meteringEnabled = false;
+    const result = await audioRecorderPlayer.startRecorder(
+      path,
+      meteringEnabled,
+      audioSet
+    );
+
     audioRecorderPlayer.addRecordBackListener((e) => {
       setRecordData({
         recordSecs: e.current_position,
@@ -50,7 +73,7 @@ const InputChat = (props) => {
     });
 
     setRecordResult(result);
-    console.log('Recording started');
+    console.log('Recording started', result);
   };
 
   const onStopRecord = async () => {

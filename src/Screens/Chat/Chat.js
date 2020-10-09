@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, ToastAndroid, PermissionsAndroid } from 'react-native';
+import { Button } from 'react-native-paper';
 import ImagePicker from 'react-native-image-picker';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -30,6 +32,9 @@ const Chat = (props) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [imageResource, setImageResource] = useState(null);
+  const [playData, setPlayData] = useState({});
+
+  const audioRecorderPlayer = new AudioRecorderPlayer();
 
   useEffect(() => {
     const listenChatServices = () => {
@@ -57,6 +62,36 @@ const Chat = (props) => {
     // listenChatServices();
     fetchConsultationPost();
   }, []);
+
+  const onStartPlay = async () => {
+    console.log('onStartPlay');
+
+    const uri = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+    const message = await audioRecorderPlayer.startPlayer(uri);
+
+    audioRecorderPlayer.addPlayBackListener((e) => {
+      if (e.current_position === e.duration) {
+        console.log('finished');
+        audioRecorderPlayer.stopPlayer();
+      }
+      setPlayData({
+        currentPositionSec: e.current_position,
+        currentDurationSec: e.duration,
+        playTime: audioRecorderPlayer.mmssss(Math.floor(e.current_position)),
+        duration: audioRecorderPlayer.mmssss(Math.floor(e.duration))
+      });
+    });
+  };
+
+  const onPausePlay = async () => {
+    await audioRecorderPlayer.pausePlayer();
+  };
+
+  const onStopPlay = async () => {
+    console.log('onStopPlay');
+    audioRecorderPlayer.stopPlayer();
+    audioRecorderPlayer.removePlayBackListener();
+  };
 
   const requestPickerPermission = async () => {
     try {
@@ -171,14 +206,21 @@ const Chat = (props) => {
           setInput={setInput}
         />
         {isLoaded ? (
-          <FlatList
-            data={messages}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            initialNumToRender={10}
-            initialScrollIndex={messages - 1}
-            inverted
-          />
+          <>
+            <View>
+              <Button icon="play" onPress={onStartPlay} />
+              <Button icon="pause" onPress={onPausePlay} />
+              <Button icon="stop" onPress={onStopPlay} />
+            </View>
+            <FlatList
+              data={messages}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              initialNumToRender={10}
+              initialScrollIndex={messages - 1}
+              inverted
+            />
+          </>
         ) : (
           <LoadingContent containerStyles={styles.loadingContentStyles} />
         )}
