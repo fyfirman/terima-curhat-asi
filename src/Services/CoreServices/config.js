@@ -15,7 +15,8 @@ const withToken = (config) => {
 const withOauth = (body) => ({
   ...body,
   client_id: CLIENT_ID,
-  client_secret: CLIENT_SECRET
+  client_secret: CLIENT_SECRET,
+  headers: {}
 });
 
 const Config = {
