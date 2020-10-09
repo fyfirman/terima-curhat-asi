@@ -63,14 +63,14 @@ const Chat = (props) => {
       const cameraPermission = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.CAMERA,
         {
-          title: 'Terima Curhat ASI ',
-          message: 'Terima Curhat ASI meminta akses kamera '
+          title: 'Permintaan Izin',
+          message: 'Terima Curhat ASI meminta akses kamera'
         }
       );
       const externalStoragePermission = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
         {
-          title: 'Terima Curhat ASI ',
+          title: 'Permintaan Izin',
           message: 'Terima Curhat ASI meminta akses penyimpanan eksternal'
         }
       );

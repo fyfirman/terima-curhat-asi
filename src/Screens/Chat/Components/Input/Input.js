@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import { Button } from 'react-native-paper';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import { PermissionHelper } from '../../../../Helper';
 import * as styles from './styles';
 
 const propTypes = {
@@ -16,7 +18,50 @@ const defaultProps = {};
 const InputChat = (props) => {
   const { input, setInput, handleSubmit, handlePicker } = props;
 
+  const audioRecorderPlayer = new AudioRecorderPlayer();
   const [attachmentShown, setAttachmentShown] = useState(false);
+  const [recordData, setRecordData] = useState({
+    recordSecs: 0,
+    recordTime: 0
+  });
+  const [recordResult, setRecordResult] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+
+  useEffect(() => {
+    const checkPermission = async () => {
+      const granted = await PermissionHelper.checkRecorder();
+
+      if (!granted) {
+        PermissionHelper.requestRecorder();
+      }
+    };
+
+    checkPermission();
+  }, []);
+
+  const onStartRecord = async () => {
+    setIsRecording(true);
+    const result = await audioRecorderPlayer.startRecorder();
+    audioRecorderPlayer.addRecordBackListener((e) => {
+      setRecordData({
+        recordSecs: e.current_position,
+        recordTime: audioRecorderPlayer.mmssss(Math.floor(e.current_position))
+      });
+    });
+
+    setRecordResult(result);
+    console.log('Recording started');
+  };
+
+  const onStopRecord = async () => {
+    setIsRecording(false);
+    setRecordData({});
+
+    const result = await audioRecorderPlayer.stopRecorder();
+    audioRecorderPlayer.removeRecordBackListener();
+
+    console.log('Recording stopped, result');
+  };
 
   return (
     <View>
@@ -58,7 +103,17 @@ const InputChat = (props) => {
 
       {attachmentShown && (
         <View style={styles.attachmentContainer}>
-          <Text>VN</Text>
+          <Text style={styles.recordingHelper}>
+            {isRecording
+              ? recordData.recordTime
+              : 'Tekan tombol untuk memulai merekam suara'}
+          </Text>
+          <Button
+            icon={!isRecording ? 'microphone' : 'stop'}
+            onPress={!isRecording ? onStartRecord : onStopRecord}
+            style={styles.buttonRecord}
+            labelStyle={styles.buttonRecordIcon}
+          />
         </View>
       )}
     </View>
