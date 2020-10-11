@@ -3,6 +3,7 @@ import { View, FlatList, ToastAndroid, PermissionsAndroid } from 'react-native';
 import { Button } from 'react-native-paper';
 import ImagePicker from 'react-native-image-picker';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import RNFS from 'react-native-fs';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -66,8 +67,11 @@ const Chat = (props) => {
   const onStartPlay = async () => {
     console.log('onStartPlay');
 
+    const path = `${
+      RNFS.DocumentDirectoryPath
+    }/recorder/recording${new Date().getTime()}.m4a`;
     const uri = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-    const message = await audioRecorderPlayer.startPlayer(uri);
+    const message = await audioRecorderPlayer.startPlayer(path);
 
     audioRecorderPlayer.addPlayBackListener((e) => {
       if (e.current_position === e.duration) {

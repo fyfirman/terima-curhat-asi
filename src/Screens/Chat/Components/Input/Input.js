@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/sort-comp */
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import { Button } from 'react-native-paper';
-import RNFS from 'react-native-fs';
-import AudioRecorderPlayer, {
-  AudioEncoderAndroidType,
-  AVEncoderAudioQualityIOSType,
-  AVEncodingOption,
-  AudioSourceAndroidType
-} from 'react-native-audio-recorder-player';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { PermissionHelper } from '../../../../Helper';
 import * as styles from './styles';
 
@@ -21,127 +17,139 @@ const propTypes = {
 
 const defaultProps = {};
 
-const InputChat = (props) => {
-  const { input, setInput, handleSubmit, handlePicker } = props;
-
-  const audioRecorderPlayer = new AudioRecorderPlayer();
-  const [attachmentShown, setAttachmentShown] = useState(false);
-  const [recordData, setRecordData] = useState({
-    recordSecs: 0,
-    recordTime: 0
-  });
-  const [recordResult, setRecordResult] = useState(null);
-  const [isRecording, setIsRecording] = useState(false);
-
-  useEffect(() => {
-    const checkPermission = async () => {
-      const granted = await PermissionHelper.checkRecorder();
-
-      if (!granted) {
-        PermissionHelper.requestRecorder();
+class InputChat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      attachmentShown: false,
+      isRecording: false,
+      recordData: {
+        isLoggingIn: false,
+        recordSecs: 0,
+        recordTime: '00:00:00',
+        currentPositionSec: 0,
+        currentDurationSec: 0,
+        playTime: '00:00:00',
+        duration: '00:00:00'
       }
     };
+    this.audioRecorderPlayer = new AudioRecorderPlayer();
+    this.audioRecorderPlayer.setSubscriptionDuration(0.09);
 
-    checkPermission();
-  }, []);
+    this.onStartRecord = this.onStartRecord.bind(this);
+    this.onStopRecord = this.onStopRecord.bind(this);
+  }
 
-  const onStartRecord = async () => {
-    setIsRecording(true);
+  componentDidMount() {
+    this.checkPermission();
+  }
 
-    RNFS.mkdir(`${RNFS.DocumentDirectoryPath}/recorder`);
-    const path = `${RNFS.DocumentDirectoryPath}/recorder/recording.aac`;
+  async checkPermission() {
+    const granted = await PermissionHelper.checkRecorder();
 
-    const audioSet = {
-      AudioEncoderAndroid: AudioEncoderAndroidType.AAC,
-      AudioSourceAndroid: AudioSourceAndroidType.MIC,
-      AVEncoderAudioQualityKeyIOS: AVEncoderAudioQualityIOSType.high,
-      AVNumberOfChannelsKeyIOS: 2,
-      AVFormatIDKeyIOS: AVEncodingOption.aac
-    };
-    const meteringEnabled = false;
-    const result = await audioRecorderPlayer.startRecorder(
-      path,
-      meteringEnabled,
-      audioSet
-    );
+    if (!granted) {
+      PermissionHelper.requestRecorder();
+    }
+  }
 
-    audioRecorderPlayer.addRecordBackListener((e) => {
-      setRecordData({
-        recordSecs: e.current_position,
-        recordTime: audioRecorderPlayer.mmssss(Math.floor(e.current_position))
-      });
+  async onStartRecord() {
+    this.setState((prevState) => ({ ...prevState, isRecording: true }));
+
+    // TODO : Change with dynamic URL from API
+    const path = 'sdcard/hello.m4a';
+    const uri = await this.audioRecorderPlayer.startRecorder(path);
+
+    this.audioRecorderPlayer.addRecordBackListener((e) => {
+      this.setState((prevState) => ({
+        ...prevState,
+        recordData: {
+          ...prevState.recordData,
+          recordSecs: e.current_position,
+          recordTime: this.audioRecorderPlayer.mmssss(
+            Math.floor(e.current_position)
+          )
+        }
+      }));
     });
+  }
 
-    setRecordResult(result);
-    console.log('Recording started', result);
-  };
+  async onStopRecord() {
+    this.setState((prevState) => ({ ...prevState, isRecording: false }));
+    await this.audioRecorderPlayer.stopRecorder();
+    this.audioRecorderPlayer.removeRecordBackListener();
+    this.setState((prevState) => ({
+      ...prevState,
+      recordData: {
+        ...prevState.recordData,
+        recordSecs: 0,
+        recordTime: this.audioRecorderPlayer.mmssss(Math.floor(0))
+      }
+    }));
+  }
 
-  const onStopRecord = async () => {
-    setIsRecording(false);
-    setRecordData({});
-
-    const result = await audioRecorderPlayer.stopRecorder();
-    audioRecorderPlayer.removeRecordBackListener();
-
-    console.log('Recording stopped, result');
-  };
-
-  return (
-    <View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          multiline
-          style={styles.input}
-          placeholder="Masukkan Pesan"
-          onChangeText={setInput}
-          value={input}
-        />
-        <Button
-          onPress={handlePicker}
-          style={styles.attachmentButton}
-          labelStyle={styles.attachmentButtonIcon}
-          contentStyle={styles.contentStyle}
-          icon="message-image-outline"
-          mode="contained"
-          size={20}
-          compact
-        />
-        <Button
-          onPress={
-            input !== ''
-              ? handleSubmit
-              : () => {
-                  setAttachmentShown(!attachmentShown);
-                }
-          }
-          style={styles.sendButton}
-          labelStyle={styles.buttonIcon}
-          contentStyle={styles.contentStyle}
-          icon={input !== '' ? 'send' : 'microphone'}
-          mode="contained"
-          size={20}
-          compact
-        />
-      </View>
-
-      {attachmentShown && (
-        <View style={styles.attachmentContainer}>
-          <Text style={styles.recordingHelper}>
-            {isRecording
-              ? recordData.recordTime
-              : 'Tekan tombol untuk memulai merekam suara'}
-          </Text>
+  render() {
+    const { input, setInput, handleSubmit, handlePicker } = this.props;
+    const { attachmentShown, isRecording, recordData } = this.state;
+    return (
+      <View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            multiline
+            style={styles.input}
+            placeholder="Masukkan Pesan"
+            onChangeText={setInput}
+            value={input}
+          />
           <Button
-            icon={!isRecording ? 'microphone' : 'stop'}
-            onPress={!isRecording ? onStartRecord : onStopRecord}
-            style={styles.buttonRecord}
-            labelStyle={styles.buttonRecordIcon}
+            onPress={handlePicker}
+            style={styles.attachmentButton}
+            labelStyle={styles.attachmentButtonIcon}
+            contentStyle={styles.contentStyle}
+            icon="message-image-outline"
+            mode="contained"
+            size={20}
+            compact
+          />
+          <Button
+            onPress={
+              input !== ''
+                ? handleSubmit
+                : () => {
+                    this.setState((prevState) => ({
+                      ...prevState,
+                      attachmentShown: !attachmentShown
+                    }));
+                  }
+            }
+            style={styles.sendButton}
+            labelStyle={styles.buttonIcon}
+            contentStyle={styles.contentStyle}
+            icon={input !== '' ? 'send' : 'microphone'}
+            mode="contained"
+            size={20}
+            compact
           />
         </View>
-      )}
-    </View>
-  );
-};
+
+        {attachmentShown && (
+          <View style={styles.attachmentContainer}>
+            <Text style={styles.recordingHelper}>
+              {isRecording
+                ? recordData.recordTime
+                : 'Tekan tombol untuk memulai merekam suara'}
+            </Text>
+            <Button
+              icon={!isRecording ? 'microphone' : 'stop'}
+              onPress={!isRecording ? this.onStartRecord : this.onStopRecord}
+              style={styles.buttonRecord}
+              labelStyle={styles.buttonRecordIcon}
+            />
+          </View>
+        )}
+      </View>
+    );
+  }
+}
 
 InputChat.propTypes = propTypes;
 InputChat.defaultProps = defaultProps;
