@@ -97,6 +97,7 @@ const Chat = (props) => {
     audioRecorderPlayer.removePlayBackListener();
   };
 
+  // TODO: Refactor this
   const requestPickerPermission = async () => {
     try {
       const cameraPermission = await PermissionsAndroid.request(
@@ -151,11 +152,10 @@ const Chat = (props) => {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = { uri: `data:image/jpeg;base64,${response.data}` };
-        setImageResource(source);
+        setImageResource(response);
+        handleSubmitWithImage(response);
         setMessages((oldMessage) => [
           {
             user,
@@ -167,6 +167,38 @@ const Chat = (props) => {
         ]);
       }
     });
+  };
+
+  const handleSubmitWithImage = async (imageData) => {
+    const body = {
+      message: 'tes',
+      picture: {
+        uri: imageData.uri,
+        type: imageData.type,
+        name: imageData.fileName
+      }
+      // voice_note: {
+      //   uri: 'file:///sdcard/hello.m4a',
+      //   type: 'audio/m4a',
+      //   name: 'hello.m4a'
+      // }
+    };
+
+    CoreServices.postStoreConsultationPost(consultation.id, body).then(
+      (res) => {
+        console.log(res.payload.picture.original);
+        console.log('Image has been uploaded');
+        ToastAndroid.show(res.message, ToastAndroid.LONG);
+      },
+      (error) => {
+        console.error(error);
+        if (error.response) {
+          ToastAndroid.show(error.response.data, ToastAndroid.LONG);
+        } else {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+        }
+      }
+    );
   };
 
   const handleSubmit = () => {
