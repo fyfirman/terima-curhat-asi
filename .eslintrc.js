@@ -15,6 +15,7 @@ module.exports = {
   plugins: ['react', 'react-native', 'prettier'],
   rules: {
     'global-require': 0,
+    'no-use-before-define': ['error', { variables: false }],
     'react-native/no-unused-styles': 2,
     'react-native/split-platform-components': 0,
     'react-native/no-inline-styles': 2,
