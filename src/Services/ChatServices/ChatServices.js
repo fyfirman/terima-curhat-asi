@@ -19,7 +19,7 @@ const create = (session) => {
     }
   };
 
-  Pusher.logToConsole = true;
+  Pusher.logToConsole = false;
   const PusherClient = new Pusher(PUSHER_APP_KEY, options);
 
   return PusherClient;

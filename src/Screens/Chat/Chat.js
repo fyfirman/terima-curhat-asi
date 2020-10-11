@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, ToastAndroid } from 'react-native';
-import { Button } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -33,10 +32,14 @@ const Chat = (props) => {
     const listenChatServices = () => {
       const socket = ChatServices.create(session);
 
-      const presence = socket.subscribe(`presence-global.${user.id}`);
-      presence.bind('pusher:subscription_succeeded', () =>
-        presence.bind('join', (data) => console.log(data))
-      );
+      const privates = socket.subscribe(`private-chat.${consultation.id}`);
+
+      privates.bind('App\\Events\\ConsultationPostSent', (newMessage) => {
+        setMessages((prevMessage) => [
+          newMessage.consultationPost,
+          ...prevMessage
+        ]);
+      });
     };
 
     const fetchConsultationPost = () => {
@@ -52,7 +55,7 @@ const Chat = (props) => {
       );
     };
 
-    // listenChatServices();
+    listenChatServices();
     fetchConsultationPost();
   }, []);
 
