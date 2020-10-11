@@ -3,15 +3,17 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-paper';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFS from 'react-native-fs';
 import { PermissionHelper } from '../../../../Helper';
 import * as styles from './styles';
+import { CoreServices } from '../../../../Services';
 
 const propTypes = {
-  user: PropTypes.objectOf(PropTypes.any).isRequired
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  consultation: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
@@ -32,6 +34,7 @@ class RecordContainer extends Component {
 
     this.onStartRecord = this.onStartRecord.bind(this);
     this.onStopRecord = this.onStopRecord.bind(this);
+    this.storeVoiceNotes = this.storeVoiceNotes.bind(this);
   }
 
   componentDidMount() {
@@ -49,19 +52,19 @@ class RecordContainer extends Component {
   async onStartRecord() {
     const { user } = this.props;
 
-    const type = 'm4a';
+    const type = 'audio/m4a';
     const filename = `voice-notes-${user.id}-${new Date()
       .toISOString()
       .replace(/-/g, '')
       .replace(/:/g, '')
       .replace('.', '')}`;
-    const path = `${RNFS.DocumentDirectoryPath}/${filename}.${type}`;
+    const path = `${RNFS.DocumentDirectoryPath}/${filename}.m4a`;
 
     const uri = await this.audioRecorderPlayer.startRecorder(path);
 
     const voiceNote = {
       type,
-      name: filename,
+      name: `${filename}.${type}`,
       uri
     };
 
@@ -86,21 +89,43 @@ class RecordContainer extends Component {
   }
 
   async onStopRecord() {
-    this.setState((prevState) => ({ ...prevState, isRecording: false }));
     await this.audioRecorderPlayer.stopRecorder();
     this.audioRecorderPlayer.removeRecordBackListener();
+
     this.setState((prevState) => ({
       ...prevState,
+      isRecording: false,
       recordData: {
         ...prevState.recordData,
         recordSecs: 0,
         recordTime: this.audioRecorderPlayer.mmssss(Math.floor(0))
       }
     }));
+
+    this.storeVoiceNotes();
   }
 
   storeVoiceNotes() {
-    // CoreServices.postConsult;
+    const { consultation } = this.props;
+    const { voiceNote } = this.state;
+
+    const body = {
+      message: '#voiceNote',
+      voice_note: voiceNote
+    };
+
+    CoreServices.postStoreConsultationPost(consultation.id, body).then(
+      (res) => {
+        ToastAndroid.show(res.message, ToastAndroid.LONG);
+      },
+      (error) => {
+        if (error.response) {
+          ToastAndroid.show(error.response.data, ToastAndroid.LONG);
+        } else {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+        }
+      }
+    );
   }
 
   render() {

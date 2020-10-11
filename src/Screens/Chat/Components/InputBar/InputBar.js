@@ -141,7 +141,7 @@ class InputBar extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, consultation } = this.props;
     const { attachmentShown, input } = this.state;
 
     return (
@@ -186,7 +186,9 @@ class InputBar extends Component {
           />
         </View>
 
-        {attachmentShown && <RecordContainer user={user} />}
+        {attachmentShown && (
+          <RecordContainer user={user} consultation={consultation} />
+        )}
       </View>
     );
   }
