@@ -14,7 +14,7 @@ import { CoreServices, ChatServices } from '../../Services';
 import { LoadingContent } from '../../Components';
 import * as styles from './styles';
 import { ChatBubble, AppBar, Input } from './Components';
-import { DateFormatter } from '../../Helper';
+import { DateFormatter, UriHelper } from '../../Helper';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -32,7 +32,6 @@ const Chat = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [imageResource, setImageResource] = useState(null);
   const [playData, setPlayData] = useState({});
 
   const audioRecorderPlayer = new AudioRecorderPlayer();
@@ -153,18 +152,7 @@ const Chat = (props) => {
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        const source = { uri: `data:image/jpeg;base64,${response.data}` };
-        setImageResource(response);
         handleSubmitWithImage(response);
-        setMessages((oldMessage) => [
-          {
-            user,
-            message: '',
-            created_at: new Date().toISOString(),
-            imageResource: source
-          },
-          ...oldMessage
-        ]);
       }
     });
   };
@@ -186,12 +174,18 @@ const Chat = (props) => {
 
     CoreServices.postStoreConsultationPost(consultation.id, body).then(
       (res) => {
-        console.log(res.payload.picture.original);
-        console.log('Image has been uploaded');
+        setMessages((oldMessage) => [
+          {
+            user,
+            message: '',
+            created_at: new Date().toISOString(),
+            imageResource: UriHelper.getImages(res.payload.picture.original)
+          },
+          ...oldMessage
+        ]);
         ToastAndroid.show(res.message, ToastAndroid.LONG);
       },
       (error) => {
-        console.error(error);
         if (error.response) {
           ToastAndroid.show(error.response.data, ToastAndroid.LONG);
         } else {
@@ -208,7 +202,6 @@ const Chat = (props) => {
       message: input
     }).then(
       (res) => {
-        console.log(res);
         ToastAndroid.show(res.message, ToastAndroid.LONG);
       },
       (error) => {

@@ -35,12 +35,8 @@ const ChatBubble = (props) => {
         transparent
       >
         <ImageViewer
-          imageUrls={[
-            {
-              url: 'https://dummyimage.com/400x400/000/000',
-              props: { source: imageResource }
-            }
-          ]}
+          imageUrls={[{ url: imageResource }]}
+          loadingRender={() => <Text>Mohon tunggu</Text>}
         />
       </Modal>
       <View style={styles.root(self)}>
@@ -55,7 +51,10 @@ const ChatBubble = (props) => {
         <View style={styles.container(self)}>
           {!!imageResource && (
             <TouchableOpacity onPress={() => setImageViewer(true)}>
-              <Image style={styles.imageStyle} source={imageResource} />
+              <Image
+                style={styles.imageStyle}
+                source={{ uri: imageResource }}
+              />
             </TouchableOpacity>
           )}
           {!self && <Text style={styles.name}>{senderName}</Text>}
