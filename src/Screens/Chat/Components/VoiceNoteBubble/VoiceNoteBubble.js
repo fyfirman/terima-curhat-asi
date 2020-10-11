@@ -1,29 +1,73 @@
-const onStartPlay = async () => {
-  console.log('onStartPlay');
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
+import ImageViewer from 'react-native-image-zoom-viewer';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import { Button } from 'react-native-paper';
+import { Avatar } from '../../../../Components';
+import * as styles from './styles';
 
-  const uri = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-  await audioRecorderPlayer.startPlayer(uri);
+const propTypes = {
+  senderName: PropTypes.string,
+  time: PropTypes.instanceOf(Date),
+  self: PropTypes.bool.isRequired,
+  avatar: PropTypes.string,
+  voiceNote: PropTypes.string.isRequired
+};
 
-  audioRecorderPlayer.addPlayBackListener((e) => {
-    if (e.current_position === e.duration) {
-      console.log('finished');
-      audioRecorderPlayer.stopPlayer();
-    }
-    setPlayData({
-      currentPositionSec: e.current_position,
-      currentDurationSec: e.duration,
-      playTime: audioRecorderPlayer.mmssss(Math.floor(e.current_position)),
-      duration: audioRecorderPlayer.mmssss(Math.floor(e.duration))
+const defaultProps = {
+  senderName: '',
+  time: new Date(),
+  avatar: null
+};
+
+const ChatBubble = (props) => {
+  const { senderName, time, self, avatar, voiceNote } = props;
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const audioRecorderPlayer = new AudioRecorderPlayer();
+
+  const onStartPlay = async () => {
+    setIsPlaying(true);
+    await audioRecorderPlayer.startPlayer(voiceNote);
+
+    audioRecorderPlayer.addPlayBackListener((e) => {
+      if (e.current_position === e.duration) {
+        setIsPlaying(false);
+        audioRecorderPlayer.stopPlayer();
+      }
     });
-  });
+  };
+
+  const onStopPlay = async () => {
+    setIsPlaying(false);
+    audioRecorderPlayer.stopPlayer();
+    audioRecorderPlayer.removePlayBackListener();
+  };
+
+  return (
+    <View style={styles.root(self)}>
+      {!self && (
+        <Avatar style={styles.ava} size={40} name={senderName} photo={avatar} />
+      )}
+      <View style={styles.container(self)}>
+        {!self && <Text style={styles.name}>{senderName}</Text>}
+        <Button
+          icon={isPlaying ? 'stop' : 'play'}
+          onPress={isPlaying ? onStopPlay : onStartPlay}
+        />
+        <Text style={styles.time}>
+          {`${time.getHours() < 9 ? `0${time.getHours()}` : time.getHours()}:${
+            time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes()
+          }`}
+        </Text>
+      </View>
+    </View>
+  );
 };
 
-const onPausePlay = async () => {
-  await audioRecorderPlayer.pausePlayer();
-};
+ChatBubble.propTypes = propTypes;
+ChatBubble.defaultProps = defaultProps;
 
-const onStopPlay = async () => {
-  console.log('onStopPlay');
-  audioRecorderPlayer.stopPlayer();
-  audioRecorderPlayer.removePlayBackListener();
-};
+export default ChatBubble;

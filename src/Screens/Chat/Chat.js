@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { CoreServices, ChatServices } from '../../Services';
 import { LoadingContent } from '../../Components';
 import * as styles from './styles';
-import { ChatBubble, AppBar, InputBar } from './Components';
+import { ChatBubble, AppBar, InputBar, VoiceNoteBubble } from './Components';
 import { DateFormatter, UriHelper } from '../../Helper';
 
 const propTypes = {
@@ -59,17 +59,30 @@ const Chat = (props) => {
     fetchConsultationPost();
   }, []);
 
-  const renderItem = ({ item }) => (
-    <ChatBubble
-      senderName={item.user.profile.name}
-      message={item.message}
-      time={DateFormatter.convertStringToDate(item.created_at)}
-      self={item.user.id === user.id}
-      imageResource={
-        item.picture_id ? UriHelper.getImages(item.picture.original) : null
-      }
-    />
-  );
+  const renderItem = ({ item }) => {
+    if (item.voice_note_id !== null) {
+      console.log('item', item);
+      return (
+        <VoiceNoteBubble
+          senderName={item.user.profile.name}
+          time={DateFormatter.convertStringToDate(item.created_at)}
+          self={item.user.id === user.id}
+          voiceNote={UriHelper.getStorage(item.voice_note.original)}
+        />
+      );
+    }
+    return (
+      <ChatBubble
+        senderName={item.user.profile.name}
+        message={item.message}
+        time={DateFormatter.convertStringToDate(item.created_at)}
+        self={item.user.id === user.id}
+        imageResource={
+          item.picture_id ? UriHelper.getStorage(item.picture.original) : null
+        }
+      />
+    );
+  };
 
   return (
     <>

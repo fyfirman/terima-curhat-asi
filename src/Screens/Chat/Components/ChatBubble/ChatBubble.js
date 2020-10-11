@@ -49,6 +49,7 @@ const ChatBubble = (props) => {
           />
         )}
         <View style={styles.container(self)}>
+          {!self && <Text style={styles.name}>{senderName}</Text>}
           {!!imageResource && (
             <TouchableOpacity onPress={() => setImageViewer(true)}>
               <Image
@@ -57,7 +58,6 @@ const ChatBubble = (props) => {
               />
             </TouchableOpacity>
           )}
-          {!self && <Text style={styles.name}>{senderName}</Text>}
           {!imageResource && <Text style={styles.message}>{message}</Text>}
           <Text style={styles.time}>
             {`${
