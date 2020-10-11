@@ -24,7 +24,8 @@ class RecordContainer extends Component {
       recordData: {
         recordSecs: 0,
         recordTime: '00:00:00'
-      }
+      },
+      voiceNote: null
     };
     this.audioRecorderPlayer = new AudioRecorderPlayer();
     this.audioRecorderPlayer.setSubscriptionDuration(0.09);
@@ -48,12 +49,27 @@ class RecordContainer extends Component {
   async onStartRecord() {
     const { user } = this.props;
 
-    this.setState((prevState) => ({ ...prevState, isRecording: true }));
+    const type = 'm4a';
+    const filename = `voice-notes-${user.id}-${new Date()
+      .toISOString()
+      .replace(/-/g, '')
+      .replace(/:/g, '')
+      .replace('.', '')}`;
+    const path = `${RNFS.DocumentDirectoryPath}/${filename}.${type}`;
 
-    const path = `${RNFS.DocumentDirectoryPath}/voice-notes-${
-      user.id
-    }-${new Date().toISOString()}`;
-    await this.audioRecorderPlayer.startRecorder(path);
+    const uri = await this.audioRecorderPlayer.startRecorder(path);
+
+    const voiceNote = {
+      type,
+      name: filename,
+      uri
+    };
+
+    this.setState((prevState) => ({
+      ...prevState,
+      isRecording: true,
+      voiceNote
+    }));
 
     this.audioRecorderPlayer.addRecordBackListener((e) => {
       this.setState((prevState) => ({
@@ -81,6 +97,10 @@ class RecordContainer extends Component {
         recordTime: this.audioRecorderPlayer.mmssss(Math.floor(0))
       }
     }));
+  }
+
+  storeVoiceNotes() {
+    // CoreServices.postConsult;
   }
 
   render() {
