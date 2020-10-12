@@ -1,18 +1,68 @@
-import React from 'react';
-import { View, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, ToastAndroid } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { UserItem } from './Components';
 import * as styles from './styles';
-import mockData from './mockData';
+import { CoreServices } from '../../Services';
 
-const Invite = () => {
+const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
+const defaultProps = {};
+
+const Invite = (props) => {
+  const { navigation, user } = props;
+
+  const [medic, setMedic] = useState([]);
+
+  useEffect(() => {
+    getList()
+      .then(
+        (res) => {
+          setMedic(res.payload);
+        },
+        (error) => {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+        }
+      )
+      .catch((error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      });
+  }, []);
+
+  const getList = () => {
+    switch (user.user_group.id) {
+      case 'kdr':
+        return CoreServices.getMidwifes();
+      case 'bdn':
+        return CoreServices.getDoctorGeneral();
+      case 'du':
+        return CoreServices.getDoctorSpecialist();
+      default:
+        return null;
+    }
+  };
+
+  const handleInvite = (medicId) => {
+    navigation.goBack();
+    console.log(medicId);
+  };
+
   const renderItem = ({ item }) => (
-    <UserItem name={item.name} status={item.status} />
+    <UserItem
+      name={item.profile.name}
+      domicile={item.profile.domicile}
+      onPress={() => handleInvite(item.id)}
+    />
   );
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={mockData}
+        data={medic}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         initialNumToRender={10}
@@ -21,4 +71,11 @@ const Invite = () => {
   );
 };
 
-export default Invite;
+Invite.propTypes = propTypes;
+Invite.defaultProps = defaultProps;
+
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Invite);

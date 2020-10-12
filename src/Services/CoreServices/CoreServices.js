@@ -12,6 +12,10 @@ const getConsultationPost = (id) =>
     `api/consultations/${id}/consultation_posts?sortBy=desc`,
     Config.withToken()
   );
+const getMidwifes = () => get('api/midwifes', Config.withToken());
+const getDoctorGeneral = () => get('api/doctor-general', Config.withToken());
+const getDoctorSpecialist = () =>
+  get('api/doctor-specialist', Config.withToken());
 
 // Post
 const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
@@ -32,6 +36,9 @@ const CoreServices = {
   getProfile,
   getConsultations,
   getConsultationPost,
+  getMidwifes,
+  getDoctorGeneral,
+  getDoctorSpecialist,
   postGenerateToken,
   postAcceptConsultation,
   postRejectConsultation,

@@ -2,30 +2,29 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import * as styles from './styles';
+import { StringHelper } from '../../../../Helper';
+import { Avatar } from '../../../../Components';
 
 const propTypes = {
-  name: PropTypes.string,
-  status: PropTypes.bool.isRequired,
-  onPress: PropTypes.func
+  name: PropTypes.string.isRequired,
+  domicile: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  photo: PropTypes.string
 };
 
 const defaultProps = {
-  name: 'User tidak mempunyai nama',
-  onPress: () => {}
+  photo: null
 };
 
 const ChatItem = (props) => {
-  const { name, status, onPress } = props;
+  const { name, photo, domicile, onPress } = props;
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image
-        style={styles.ava}
-        source={require('../../../../assets/images/logo.png')}
-      />
+      <Avatar name={name} style={styles.ava} photo={photo || null} size={55} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.status}>{status ? 'Online' : 'Offline'}</Text>
+        <Text style={styles.status}>{StringHelper.toTitleCase(domicile)}</Text>
       </View>
     </TouchableOpacity>
   );

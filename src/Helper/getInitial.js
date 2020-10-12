@@ -1,5 +1,3 @@
-import { array } from 'prop-types';
-
 const getInitial = (name) => {
   const arrayOfNames = name
     .split(' ')
