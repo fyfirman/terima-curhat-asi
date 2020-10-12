@@ -8,13 +8,15 @@ import { CoreServices } from '../../Services';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  route: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
 
 const Invite = (props) => {
-  const { navigation, user } = props;
+  const { navigation, user, route } = props;
+  const { consultation } = route.params;
 
   const [medic, setMedic] = useState([]);
 
@@ -47,8 +49,24 @@ const Invite = (props) => {
   };
 
   const handleInvite = (medicId) => {
-    navigation.goBack();
-    console.log(medicId);
+    CoreServices.postInviteUserToConsultation(consultation.id, medicId)
+      .then(
+        () => {
+          navigation.goBack();
+          ToastAndroid.show('Undangan berhasil dikirim', ToastAndroid.LONG);
+        },
+        (error) => {
+          console.error(error);
+          navigation.goBack();
+          ToastAndroid.show(
+            'Gagal mengirimi undangan, undangan telah dikirim.',
+            ToastAndroid.LONG
+          );
+        }
+      )
+      .catch((error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      });
   };
 
   const renderItem = ({ item }) => (

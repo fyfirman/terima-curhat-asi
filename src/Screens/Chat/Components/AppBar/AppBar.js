@@ -81,7 +81,7 @@ const ChatAppBar = (props) => {
       >
         <Menu.Item
           onPress={() => {
-            navigation.navigate('Invite');
+            navigation.navigate('Invite', { consultation });
             toggleMenu();
           }}
           title="Tambahkan konselor"

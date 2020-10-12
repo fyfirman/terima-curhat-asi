@@ -25,6 +25,8 @@ const postRejectConsultation = (id) =>
   post(`api/consultations/${id}/leave`, null, Config.withToken());
 const postStoreConsultationPost = (id, data) =>
   post(`api/consultations/${id}/consultation_posts`, data, Config.withToken());
+const postInviteUserToConsultation = (id, userId) =>
+  post(`api/consultations/${id}/invite/${userId}`, null, Config.withToken());
 
 // Put
 const putCloseConsulation = (id) =>
@@ -43,6 +45,7 @@ const CoreServices = {
   postAcceptConsultation,
   postRejectConsultation,
   postStoreConsultationPost,
+  postInviteUserToConsultation,
   putCloseConsulation
 };
 
