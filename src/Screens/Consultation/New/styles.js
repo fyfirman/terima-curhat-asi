@@ -9,6 +9,7 @@ export const container = {
 
 export const infoContainer = {
   flex: 1,
+  flexGrow: 1,
   justifyContent: 'center',
   backgroundColor: 'white'
 };
