@@ -1,5 +1,6 @@
 import get from './Get';
 import post from './Post';
+import put from './Put';
 import Config from './Config';
 
 // Get
@@ -22,6 +23,8 @@ const postStoreConsultationPost = (id, data) =>
   post(`api/consultations/${id}/consultation_posts`, data, Config.withToken());
 
 // Put
+const putCloseConsulation = (id) =>
+  put(`api/consultations/${id}/close`, null, Config.withToken());
 
 // Delete
 
@@ -32,7 +35,8 @@ const CoreServices = {
   postGenerateToken,
   postAcceptConsultation,
   postRejectConsultation,
-  postStoreConsultationPost
+  postStoreConsultationPost,
+  putCloseConsulation
 };
 
 export default CoreServices;

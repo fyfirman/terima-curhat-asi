@@ -86,7 +86,11 @@ const Chat = (props) => {
 
   return (
     <>
-      <AppBar navigation={navigation} user={consultation.user} />
+      <AppBar
+        navigation={navigation}
+        user={consultation.user}
+        consultation={consultation}
+      />
       <View style={styles.inner}>
         <InputBar user={user} consultation={consultation} />
         {isLoaded ? (

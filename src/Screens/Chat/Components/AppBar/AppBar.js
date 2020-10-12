@@ -1,25 +1,43 @@
 import React, { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { ToastAndroid, TouchableOpacity } from 'react-native';
 import { Appbar, Menu, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
+import { CoreServices } from '../../../../Services';
 import { Avatar } from '../../../../Components';
 import * as styles from './styles';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
-  user: PropTypes.objectOf(PropTypes.any).isRequired
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  consultation: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
 
 const ChatAppBar = (props) => {
-  const { navigation, user } = props;
+  const { navigation, user, consultation } = props;
 
   const [menuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
     setMenuVisible((value) => !value);
+  };
+
+  const handleEndChat = () => {
+    CoreServices.putCloseConsulation(consultation.id)
+      .then(
+        (res) => {
+          navigation.goBack();
+          ToastAndroid.show(res.message, ToastAndroid.SHORT);
+        },
+        (error) => {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+        }
+      )
+      .catch((error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+      });
   };
 
   return (
@@ -69,7 +87,7 @@ const ChatAppBar = (props) => {
           title="Tambahkan konselor"
         />
         <Divider />
-        <Menu.Item onPress={() => {}} title="Akhiri" />
+        <Menu.Item onPress={handleEndChat} title="Akhiri" />
       </Menu>
     </Appbar>
   );

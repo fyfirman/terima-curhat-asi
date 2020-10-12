@@ -19,16 +19,24 @@ const New = (props) => {
   const [consultations, setConsultations] = useState([]);
 
   useEffect(() => {
-    CoreServices.getConsultations({ params: { type: 'waiting' } }).then(
-      (res) => {
-        setConsultations(res.payload.data);
-        setIsLoaded(true);
-      },
-      (error) => {
-        ToastAndroid.show(error.message, ToastAndroid.LONG);
-        console.error(error);
-      }
-    );
+    const fetchConsultation = () => {
+      CoreServices.getConsultations({ params: { type: 'waiting' } }).then(
+        (res) => {
+          setConsultations(res.payload.data);
+          setIsLoaded(true);
+        },
+        (error) => {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+          console.error(error);
+        }
+      );
+    };
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchConsultation();
+    });
+
+    return unsubscribe;
   }, []);
 
   const renderCard = ({ item }) => (
