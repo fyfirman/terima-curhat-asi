@@ -15,9 +15,17 @@ const setConsultationPost = (consultationId, consultationPost) => ({
   }
 });
 
+const updateConsultation = (consultations) => ({
+  type: ConsultationConstant.UPDATED,
+  payload: {
+    consultations
+  }
+});
+
 const ConsultationAction = {
   setConsultation,
-  setConsultationPost
+  setConsultationPost,
+  updateConsultation
 };
 
 export default ConsultationAction;

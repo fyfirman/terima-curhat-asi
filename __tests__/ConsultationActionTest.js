@@ -29,4 +29,18 @@ describe('consultation actions', () => {
       ConsultationAction.setConsultationPost(consultationId, consultationPost)
     ).toEqual(expectedAction);
   });
+
+  it('should create an action to update consultation', () => {
+    const consultations = [
+      { id: '1', description: 'Deskripsi satu' },
+      { id: '2', description: 'Deskripsi dua' }
+    ];
+
+    expect(ConsultationAction.updateConsultation(consultations)).toEqual({
+      type: ConsultationConstant.UPDATED,
+      payload: {
+        consultations
+      }
+    });
+  });
 });
