@@ -26,16 +26,14 @@ export default (state = defaultState, action) => {
     case ConsultationConstant.POST_FETCHED: {
       const { consultationId, consultationPost } = payload;
 
-      const oldConsulation = state.find(
-        (consultation) => consultation.id === consultationId
+      return state.map((consultation) =>
+        consultation.id === consultationId
+          ? {
+              ...consultation,
+              consultationPost
+            }
+          : consultation
       );
-
-      const newConsulation = {
-        ...oldConsulation,
-        consultationPost
-      };
-
-      return [...state, ...newConsulation];
     }
     default:
       return state;

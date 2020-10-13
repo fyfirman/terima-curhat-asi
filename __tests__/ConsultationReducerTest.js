@@ -38,4 +38,36 @@ describe('consultation reducer', () => {
       { id: '3', name: 'tiga' }
     ]);
   });
+
+  it(`should handle ${ConsultationConstant.POST_FETCHED}`, () => {
+    const initialState = [
+      { id: '1', name: 'satu' },
+      { id: '2', name: 'dua' }
+    ];
+
+    const payload = {
+      consultationId: '2',
+      consultationPost: [
+        { id: 1, message: 'Pesan satu' },
+        { id: 2, message: 'Pesan dua' }
+      ]
+    };
+
+    const action = {
+      type: ConsultationConstant.POST_FETCHED,
+      payload
+    };
+
+    expect(ConsultationReducer(initialState, action)).toEqual([
+      { id: '1', name: 'satu' },
+      {
+        id: '2',
+        name: 'dua',
+        consultationPost: [
+          { id: 1, message: 'Pesan satu' },
+          { id: 2, message: 'Pesan dua' }
+        ]
+      }
+    ]);
+  });
 });
