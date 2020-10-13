@@ -7,9 +7,22 @@ export default (state = defaultState, action) => {
   switch (type) {
     case ConsultationConstant.FETCHED:
       return payload;
-    // TODO: test updaded reducer
-    case ConsultationConstant.UPDATED:
-      return [...state, ...payload];
+
+    case ConsultationConstant.UPDATED: {
+      const newConsulation = state.concat(payload);
+      const filteredConsultation = newConsulation
+        .slice()
+        .reverse()
+        .filter(
+          (value, index, array) =>
+            array.findIndex((consultation) => consultation.id === value.id) ===
+            index
+        )
+        .reverse();
+
+      return filteredConsultation;
+    }
+
     case ConsultationConstant.POST_FETCHED: {
       const { consultationId, consultationPost } = payload;
 
