@@ -26,14 +26,14 @@ export default (state = defaultState, action) => {
     case ConsultationConstant.POST_FETCHED: {
       const { consultationId, consultationPost } = payload;
 
-      return state.map((consultation) =>
-        consultation.id === consultationId
-          ? {
-              ...consultation,
-              consultationPost
-            }
-          : consultation
-      );
+      return state.map((consultation) => {
+        if (consultation.id === consultationId)
+          return {
+            ...consultation,
+            consultationPost
+          };
+        return consultation;
+      });
     }
     default:
       return state;
