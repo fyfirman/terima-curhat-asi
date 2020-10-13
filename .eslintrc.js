@@ -4,7 +4,12 @@ module.exports = {
     browser: true,
     es2020: true
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:jest/recommended',
+    'airbnb',
+    'prettier'
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -12,7 +17,7 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module'
   },
-  plugins: ['react', 'react-native', 'prettier'],
+  plugins: ['react', 'react-native', 'prettier', 'jest'],
   rules: {
     'global-require': 0,
     'no-use-before-define': ['error', { variables: false }],
