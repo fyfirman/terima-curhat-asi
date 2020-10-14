@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, View, Text, ToastAndroid } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import * as styles from './styles';
 import { ChatItem } from '../Components';
 import { CoreServices } from '../../../Services';
 import { LoadingContent } from '../../../Components';
 
+// Redux
+import { ConsultationAction } from '../../../Redux/Actions';
+
 const propTypes = {
-  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired,
+  consultations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setConsultations: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
 const InProgress = (props) => {
-  const { navigation } = props;
+  const { navigation, consultations, setConsultations } = props;
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [consultations, setConsultations] = useState([]);
 
   useEffect(() => {
     const fetchConsultation = () => {
@@ -77,4 +83,11 @@ const InProgress = (props) => {
 InProgress.propTypes = propTypes;
 InProgress.defaultProps = defaultProps;
 
-export default InProgress;
+const mapStateToProps = (state) => ({
+  consultations: state.consultations
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(ConsultationAction, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(InProgress);

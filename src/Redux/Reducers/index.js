@@ -6,7 +6,7 @@ import ConsultationReducer from './ConsultationReducer';
 const rootReducer = combineReducers({
   session: SessionReducer,
   user: UserReducer,
-  consultation: ConsultationReducer
+  consultations: ConsultationReducer
 });
 
 export default rootReducer;

@@ -2,7 +2,7 @@ import { ConsultationConstant } from '../src/Redux/Constant';
 import { ConsultationAction } from '../src/Redux/Actions';
 
 describe('consultation actions', () => {
-  it('should create an action to set consultion', () => {
+  it('should create an action to set consultations', () => {
     const consultation = { id: 1, description: 'Description' };
     const expectedAction = {
       type: ConsultationConstant.FETCHED,
@@ -11,7 +11,7 @@ describe('consultation actions', () => {
       }
     };
 
-    expect(ConsultationAction.setConsultation(consultation)).toEqual(
+    expect(ConsultationAction.setConsultations(consultation)).toEqual(
       expectedAction
     );
   });
@@ -30,17 +30,15 @@ describe('consultation actions', () => {
     ).toEqual(expectedAction);
   });
 
-  it('should create an action to update consultation', () => {
+  it('should create an action to update consultations', () => {
     const consultations = [
       { id: '1', description: 'Deskripsi satu' },
       { id: '2', description: 'Deskripsi dua' }
     ];
 
-    expect(ConsultationAction.updateConsultation(consultations)).toEqual({
+    expect(ConsultationAction.updateConsultations(consultations)).toEqual({
       type: ConsultationConstant.UPDATED,
-      payload: {
-        consultations
-      }
+      payload: consultations
     });
   });
 });

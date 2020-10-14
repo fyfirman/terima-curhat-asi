@@ -1,10 +1,8 @@
 import { ConsultationConstant } from '../Constant';
 
-const setConsultation = (consultation) => ({
+const setConsultations = (consultation) => ({
   type: ConsultationConstant.FETCHED,
-  payload: {
-    consultation
-  }
+  payload: consultation
 });
 
 const setConsultationPost = (consultationId, consultationPost) => ({
@@ -15,7 +13,7 @@ const setConsultationPost = (consultationId, consultationPost) => ({
   }
 });
 
-const updateConsultation = (consultations) => ({
+const updateConsultations = (consultations) => ({
   type: ConsultationConstant.UPDATED,
   payload: {
     consultations
@@ -23,9 +21,9 @@ const updateConsultation = (consultations) => ({
 });
 
 const ConsultationAction = {
-  setConsultation,
+  setConsultations,
   setConsultationPost,
-  updateConsultation
+  updateConsultations
 };
 
 export default ConsultationAction;
