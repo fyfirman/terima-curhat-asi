@@ -1,13 +1,14 @@
-import { Colors, FontFamily } from '../../Theme';
+import { FontFamily } from '../../Theme';
 
-export const root = {
+export const root = (color) => ({
+  backgroundColor: color,
   borderRadius: 10,
-  padding: 32
-};
+  padding: 12
+});
 
-export const titleStyle = {
+export const labelStyle = {
   textTransform: 'none',
   fontSize: 18,
-  fontFamily: FontFamily.Muli.bold,
-  color: Colors.textPrimary
+  color: 'white',
+  fontFamily: FontFamily.Muli.bold
 };

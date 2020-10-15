@@ -1,28 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextButton } from 'react-native-material-buttons';
+import { Button } from 'react-native-paper';
 import { Colors } from '../../../../../../../Theme';
 import * as styles from './styles';
 
 const propTypes = {
+  title: PropTypes.string,
   secondary: PropTypes.bool
 };
 
 const defaultProps = {
+  title: '',
   secondary: false
 };
 
 const StyledButton = (props) => {
-  const { secondary, ...rest } = props;
+  const { secondary, title, ...rest } = props;
 
   return (
-    <TextButton
+    <Button
       {...rest}
-      color={secondary ? 'white' : Colors.java}
-      titleStyle={styles.titleStyle}
-      titleColor={secondary ? Colors.java : 'white'}
-      style={styles.root}
-    />
+      mode="text"
+      style={styles.root(secondary ? 'white' : Colors.java)}
+      labelStyle={styles.labelStyle(secondary ? Colors.java : 'white')}
+    >
+      {title}
+    </Button>
   );
 };
 

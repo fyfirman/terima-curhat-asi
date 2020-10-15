@@ -9,7 +9,6 @@
     "test": "jest",
     "lint": "eslint ./src && prettier --write ./src",
     "release": "react-native run-android --variant=release"
-
   },
   "dependencies": {
     "@codler/react-native-keyboard-aware-scroll-view": "git+https://github.com/codler/react-native-keyboard-aware-scroll-view.git",
@@ -35,7 +34,6 @@
     "react-native-image-picker": "^2.3.4",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-ionicons": "^4.6.5",
-    "react-native-material-buttons": "^0.6.0",
     "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.9.0",
     "react-native-safe-area-context": "^3.1.1",
