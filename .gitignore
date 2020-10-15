@@ -61,3 +61,5 @@ buck-out/
 .env
 .env.development
 *.log
+.env.prod
+.env.prod.staging
