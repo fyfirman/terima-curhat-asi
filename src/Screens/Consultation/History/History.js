@@ -42,9 +42,8 @@ const History = (props) => {
   const renderCard = ({ item }) => (
     <ChatItem
       key={item.id}
+      posts={item.posts}
       name={item.user.profile.name}
-      message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
-      time={new Date(2020, 7, 28, 11, 23)}
       onPress={() => navigation.navigate('Chat', { consultation: item })}
     />
   );
