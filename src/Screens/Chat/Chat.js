@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 // Internal
 import { CoreServices, ChatServices } from '../../Services';
-import { LoadingContent } from '../../Components';
+import { LoadingContent, EmptyInfo } from '../../Components';
 import * as styles from './styles';
 import { ChatBubble, AppBar, InputBar, VoiceNoteBubble } from './Components';
 import { DateFormatter, UriHelper } from '../../Helper';
@@ -55,7 +55,6 @@ const Chat = (props) => {
       );
     };
 
-    console.log(consultation);
     listenChatServices();
     fetchConsultationPost();
   }, []);
@@ -97,14 +96,21 @@ const Chat = (props) => {
           <InputBar user={user} consultation={consultation} />
         )}
         {isLoaded ? (
-          <FlatList
-            data={messages}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            initialNumToRender={10}
-            initialScrollIndex={messages - 1}
-            inverted
-          />
+          messages.length !== 0 ? (
+            <FlatList
+              data={messages}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+              initialNumToRender={10}
+              initialScrollIndex={messages - 1}
+              inverted
+            />
+          ) : (
+            <EmptyInfo
+              info="Tidak ada pesan"
+              style={{ backgroundColor: 'rgba(0,0,0,0)' }}
+            />
+          )
         ) : (
           <LoadingContent containerStyles={styles.loadingContentStyles} />
         )}
