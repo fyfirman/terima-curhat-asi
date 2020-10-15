@@ -55,6 +55,7 @@ const Chat = (props) => {
       );
     };
 
+    console.log(consultation);
     listenChatServices();
     fetchConsultationPost();
   }, []);
@@ -92,7 +93,9 @@ const Chat = (props) => {
         consultation={consultation}
       />
       <View style={styles.inner}>
-        <InputBar user={user} consultation={consultation} />
+        {!consultation.closed_by && (
+          <InputBar user={user} consultation={consultation} />
+        )}
         {isLoaded ? (
           <FlatList
             data={messages}
