@@ -82,7 +82,7 @@ const Invite = (props) => {
       <FlatList
         data={medic}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         initialNumToRender={10}
       />
     </View>
