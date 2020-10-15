@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { DateFormatter } from '../../../../Helper';
-import { CoreServices } from '../../../../Services';
 import { Avatar } from '../../../../Components';
 import * as styles from './styles';
 
@@ -10,23 +9,22 @@ const propTypes = {
   name: PropTypes.string,
   photo: PropTypes.string,
   onPress: PropTypes.func,
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired
+  lastPost: PropTypes.objectOf(PropTypes.object)
 };
 
 const defaultProps = {
   name: 'User tidak mempunyai nama',
   photo: null,
-  onPress: () => {}
+  onPress: () => {},
+  lastPost: null
 };
 
 const ChatItem = (props) => {
-  const { name, photo, onPress, posts } = props;
-
-  const getLastPost = () => posts[0];
+  const { name, photo, onPress, lastPost } = props;
 
   const renderTime = () => {
-    if (getLastPost() !== undefined) {
-      const date = DateFormatter.convertStringToDate(getLastPost().created_at);
+    if (lastPost !== null) {
+      const date = DateFormatter.convertStringToDate(lastPost.created_at);
       return DateFormatter.getRelativeTime(date);
     }
     return '';
@@ -41,7 +39,7 @@ const ChatItem = (props) => {
           <Text style={styles.time}>{renderTime()}</Text>
         </View>
         <Text style={styles.message} numberOfLines={1}>
-          {getLastPost() ? getLastPost().message : 'Belum ada pesan'}
+          {lastPost ? lastPost.message : 'Tidak ada pesan'}
         </Text>
       </View>
     </TouchableOpacity>

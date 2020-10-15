@@ -42,7 +42,7 @@ const History = (props) => {
   const renderCard = ({ item }) => (
     <ChatItem
       key={item.id}
-      posts={item.posts}
+      lastPost={item.lastPost}
       name={item.user.profile.name}
       onPress={() => navigation.navigate('Chat', { consultation: item })}
     />
