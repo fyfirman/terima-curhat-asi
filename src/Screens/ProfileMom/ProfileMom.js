@@ -46,16 +46,19 @@ const ProfileMom = (props) => {
           name="Pregnancy"
           component={Pregnancy}
           options={{ tabBarLabel: 'Kehamilan' }}
+          initialParams={{ pregnancy: user.profile.pregnancy }}
         />
         <Tab.Screen
           name="Baby"
           component={Baby}
           options={{ tabBarLabel: 'Bayi' }}
+          initialParams={{ baby: user.profile.baby }}
         />
         <Tab.Screen
           name="Husband"
           component={Husband}
-          options={{ tabBarLabel: 'Suami' }}
+          options={{ tabBarLabel: 'Anggota Keluarga Lain' }}
+          initialParams={{ husband: user.profile.husband }}
         />
       </Tab.Navigator>
     </>
