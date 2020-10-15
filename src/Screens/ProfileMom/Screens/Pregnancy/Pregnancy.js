@@ -1,13 +1,20 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
+import { Text, View, ScrollView } from 'react-native';
 import { InfoItem } from '../../Components';
+import * as styles from './styles';
 
-const propTypes = {};
+const propTypes = {
+  route: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 const defaultProps = {};
 
-const Pregnancy = () => {
-  return (
+const Pregnancy = (props) => {
+  const { route } = props;
+  const { pregnancy } = route.params;
+
+  return pregnancy ? (
     <ScrollView>
       <InfoItem label="Tinggi Badan Sebelum Hamil" info="150 cm" />
       <InfoItem label="Tinggi Badan Setelah Hamil" info="148 cm" />
@@ -19,6 +26,10 @@ const Pregnancy = () => {
         info={'Tidak keluar ASI\nNyeri ketika BAB'}
       />
     </ScrollView>
+  ) : (
+    <View style={styles.infoContainer}>
+      <Text style={styles.emptyInfo}>Belum mengisi profil kehamilan</Text>
+    </View>
   );
 };
 
