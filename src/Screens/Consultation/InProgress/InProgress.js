@@ -28,7 +28,7 @@ const InProgress = (props) => {
     const fetchConsultation = () => {
       CoreServices.getConsultations({ params: { type: 'ongoing' } }).then(
         (res) => {
-          console.log(res.payload.data);
+          console.log(res.payload.data[1].posts);
           setConsultations(res.payload.data);
           setIsLoaded(true);
         },
@@ -49,8 +49,8 @@ const InProgress = (props) => {
   const renderCard = ({ item }) => (
     <ChatItem
       key={item.id}
+      posts={item.posts}
       name={item.user.profile.name}
-      message="Halo ibu, selamat siang allsalsaldlasdl dsa dlas dasj"
       time={new Date(2020, 7, 28, 11, 23)}
       onPress={() => navigation.navigate('Chat', { consultation: item })}
     />

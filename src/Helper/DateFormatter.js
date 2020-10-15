@@ -22,12 +22,12 @@ const getRelativeTime = (date) => {
 const convertStringToDate = (dateString) => {
   const year = dateString.substring(0, 4);
   const month = dateString.substring(5, 7);
-  const day = dateString.substring(9, 10);
+  const day = dateString.substring(8, 10);
   const hour = dateString.substring(11, 13);
   const minute = dateString.substring(14, 16);
   const second = dateString.substring(17, 19);
 
-  return new Date(year, month, day, hour, minute, second);
+  return new Date(year, month - 1, day, parseInt(hour, 10) + 7, minute, second);
 };
 
 const DateFormatter = {
