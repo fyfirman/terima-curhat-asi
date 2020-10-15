@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ./src && prettier --write ./src"
+    "lint": "eslint ./src && prettier --write ./src",
+    "release": "react-native run-android --variant=release"
+
   },
   "dependencies": {
     "@codler/react-native-keyboard-aware-scroll-view": "git+https://github.com/codler/react-native-keyboard-aware-scroll-view.git",
@@ -20,7 +22,6 @@
     "@react-navigation/material-top-tabs": "^5.2.16",
     "@react-navigation/native": "^5.7.1",
     "@react-navigation/stack": "^5.7.1",
-    "@ubaids/react-native-material-textfield": "^0.16.3",
     "axios": "^0.19.2",
     "laravel-echo": "^1.8.1",
     "lodash": "^4.17.19",
