@@ -5,10 +5,13 @@ export const root = (backgroundColor) => ({
   borderRadius: 4,
   borderWidth: 1,
   borderColor: Colors.java,
-  height: 40,
   minWidth: 80,
   marginRight: 8
 });
+
+export const contentStyle = {
+  height: 32
+};
 
 export const labelStyle = (textColor) => ({
   color: textColor,

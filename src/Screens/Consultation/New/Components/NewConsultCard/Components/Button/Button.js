@@ -22,6 +22,7 @@ const StyledButton = (props) => {
       {...rest}
       mode="text"
       style={styles.root(secondary ? 'white' : Colors.java)}
+      contentStyle={styles.contentStyle}
       labelStyle={styles.labelStyle(secondary ? Colors.java : 'white')}
     >
       {title}
