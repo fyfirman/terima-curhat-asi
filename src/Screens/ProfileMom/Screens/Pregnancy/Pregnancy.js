@@ -32,6 +32,10 @@ const Pregnancy = (props) => {
         label="Berat Badan Setelah Hamil"
         info={`${pregnancy.weight_during} kg`}
       />
+      <InfoItem
+        label="Pernah Keguguran"
+        info={pregnancy.abortus_experienced ? 'Ya' : 'Tidak'}
+      />
       <InfoItem label="Kehamilan ke-" info={pregnancy.pregnancy_num} />
       <InfoItem
         label="Penyakit/Keluhan Saat Hamil"
