@@ -5,7 +5,7 @@ import * as styles from './styles';
 
 const propTypes = {
   label: PropTypes.string.isRequired,
-  info: PropTypes.string.isRequired
+  info: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
 };
 
 const defaultProps = {};

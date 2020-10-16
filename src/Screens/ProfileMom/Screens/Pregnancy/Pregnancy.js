@@ -16,14 +16,26 @@ const Pregnancy = (props) => {
 
   return pregnancy ? (
     <ScrollView>
-      <InfoItem label="Tinggi Badan Sebelum Hamil" info="150 cm" />
-      <InfoItem label="Tinggi Badan Setelah Hamil" info="148 cm" />
-      <InfoItem label="Berat Badan Sebelum Hamil" info="54 kg" />
-      <InfoItem label="Berat Badan Setelah Hamil" info="60 kg" />
-      <InfoItem label="Kehamilan ke-" info="1" />
+      <InfoItem
+        label="Tinggi Badan Sebelum Hamil"
+        info={`${pregnancy.height_before} cm`}
+      />
+      <InfoItem
+        label="Tinggi Badan Setelah Hamil"
+        info={`${pregnancy.height_during} cm`}
+      />
+      <InfoItem
+        label="Berat Badan Sebelum Hamil"
+        info={`${pregnancy.weight_before} kg`}
+      />
+      <InfoItem
+        label="Berat Badan Setelah Hamil"
+        info={`${pregnancy.weight_during} kg`}
+      />
+      <InfoItem label="Kehamilan ke-" info={pregnancy.pregnancy_num} />
       <InfoItem
         label="Penyakit/Keluhan Saat Hamil"
-        info={'Tidak keluar ASI\nNyeri ketika BAB'}
+        info={pregnancy.pregnancy_complaints}
       />
     </ScrollView>
   ) : (
