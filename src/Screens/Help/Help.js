@@ -5,8 +5,8 @@ import * as styles from './styles';
 const Help = () => {
   return (
     <View style={styles.inner}>
-      <Text style={styles.primaryInfo}>Help Page</Text>
-      <Text style={styles.secondaryInfo}>Ini help page</Text>
+      <Text style={styles.primaryInfo}>Halaman bantuan belum tersedia</Text>
+      <Text style={styles.secondaryInfo}>Tunggu update dari aplikasi</Text>
     </View>
   );
 };

@@ -61,7 +61,6 @@ const Chat = (props) => {
 
   const renderItem = ({ item }) => {
     if (item.voice_note_id !== null) {
-      console.log('item', item);
       return (
         <VoiceNoteBubble
           senderName={item.user.profile.name}
