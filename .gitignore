@@ -59,7 +59,5 @@ buck-out/
 /ios/Pods/
 
 .env
-.env.development
+.env.*
 *.log
-.env.prod
-.env.prod.staging
