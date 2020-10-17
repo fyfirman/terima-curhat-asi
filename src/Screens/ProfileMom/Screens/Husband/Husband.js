@@ -16,12 +16,12 @@ const Husband = (props) => {
 
   return husband ? (
     <ScrollView>
-      <InfoItem label="Nama" info="Ayi Muhammad Iqbal Nasuha" />
-      <InfoItem label="Tempat Lahir" info="Majalengka" />
-      <InfoItem label="Tanggal Lahir" info="10 Desember 1989" />
-      <InfoItem label="Agama" info="Islam" />
-      <InfoItem label="Pendidikan" info="SMA/SMK/MA" />
-      <InfoItem label="Pekerjaan/Profesi" info="Karyawan Swasta" />
+      <InfoItem label="Nama" info={husband.name} />
+      <InfoItem label="Tempat Lahir" info={husband.pob} />
+      <InfoItem label="Tanggal Lahir" info={husband.dob} />
+      <InfoItem label="Agama" info={husband.religion} />
+      <InfoItem label="Pendidikan" info={husband.education_text} />
+      <InfoItem label="Pekerjaan/Profesi" info={husband.occupation_name} />
     </ScrollView>
   ) : (
     <View style={styles.infoContainer}>
