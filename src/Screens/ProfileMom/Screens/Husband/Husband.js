@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Text, View, ScrollView } from 'react-native';
 import { InfoItem } from '../../Components';
 import * as styles from './styles';
+import { StringHelper } from '../../../../Helper';
 
 const propTypes = {
   route: PropTypes.objectOf(PropTypes.any).isRequired
@@ -19,7 +20,10 @@ const Husband = (props) => {
       <InfoItem label="Nama" info={husband.name} />
       <InfoItem label="Tempat Lahir" info={husband.pob} />
       <InfoItem label="Tanggal Lahir" info={husband.dob} />
-      <InfoItem label="Agama" info={husband.religion} />
+      <InfoItem
+        label="Agama"
+        info={StringHelper.toTitleCase(husband.religion)}
+      />
       <InfoItem label="Pendidikan" info={husband.education_text} />
       <InfoItem label="Pekerjaan/Profesi" info={husband.occupation_name} />
     </ScrollView>
