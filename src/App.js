@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { View, StatusBar, LogBox } from 'react-native';
 import { Provider } from 'react-redux';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { PersistGate } from 'redux-persist/integration/react';
 import SplashScreen from 'react-native-splash-screen';
 import { LoadingScreen } from './Components';
@@ -11,6 +11,11 @@ import Routes from './Routes';
 import { Colors } from './Theme';
 
 const App = () => {
+  const theme = {
+    ...DefaultTheme,
+    mode: 'exact'
+  };
+
   useEffect(() => {
     LogBox.ignoreLogs(['Setting a timer']);
     SplashScreen.hide();
@@ -22,7 +27,7 @@ const App = () => {
         loading={<LoadingScreen message="Mohon tunggu" />}
         persistor={persistor}
       >
-        <PaperProvider>
+        <PaperProvider theme={theme}>
           <View style={{ flex: 1 }}>
             <StatusBar
               barStyle="light-content"
