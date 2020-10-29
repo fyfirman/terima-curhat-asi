@@ -36,7 +36,7 @@ const Chat = (props) => {
         `private-consultations.${consultation.id}`
       );
 
-      privates.bind('App\\Events\\ConsultationPostSent', (newMessage) => {
+      privates.bind(`consultation_posts.${consultation.id}`, (newMessage) => {
         setMessages((prevMessage) => [
           newMessage.consultationPost,
           ...prevMessage
