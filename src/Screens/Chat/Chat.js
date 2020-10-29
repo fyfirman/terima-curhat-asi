@@ -32,7 +32,9 @@ const Chat = (props) => {
     const listenChatServices = () => {
       const socket = ChatServices.create(session);
 
-      const privates = socket.subscribe(`private-chat.${consultation.id}`);
+      const privates = socket.subscribe(
+        `private-consultations.${consultation.id}`
+      );
 
       privates.bind('App\\Events\\ConsultationPostSent', (newMessage) => {
         setMessages((prevMessage) => [
