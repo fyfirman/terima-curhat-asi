@@ -16,6 +16,8 @@ const getMidwifes = () => get('api/midwifes', Config.withToken());
 const getDoctorGeneral = () => get('api/doctor-general', Config.withToken());
 const getDoctorSpecialist = () =>
   get('api/doctor-specialist', Config.withToken());
+const getMomsProfile = (userId) =>
+  get(`api/mommies/${userId}`, Config.withToken());
 
 // Post
 const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
@@ -41,6 +43,7 @@ const CoreServices = {
   getMidwifes,
   getDoctorGeneral,
   getDoctorSpecialist,
+  getMomsProfile,
   postGenerateToken,
   postAcceptConsultation,
   postRejectConsultation,

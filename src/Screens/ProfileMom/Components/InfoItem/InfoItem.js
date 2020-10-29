@@ -16,7 +16,7 @@ const InfoItem = (props) => {
   return (
     <View style={styles.root}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={styles.info}>{info}</Text>
+      <Text style={styles.info}>{info !== null ? info : '-'}</Text>
     </View>
   );
 };
