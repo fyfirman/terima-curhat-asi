@@ -9,7 +9,7 @@ const propTypes = {
   name: PropTypes.string,
   photo: PropTypes.string,
   onPress: PropTypes.func,
-  lastPost: PropTypes.objectOf(PropTypes.object)
+  lastPost: PropTypes.objectOf(PropTypes.any)
 };
 
 const defaultProps = {
