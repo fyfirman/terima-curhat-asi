@@ -17,6 +17,7 @@ const Husband = (props) => {
 
   return husband ? (
     <ScrollView>
+      <InfoItem label="Relasi" info={husband.relation_type_text} />
       <InfoItem label="Nama" info={husband.name} />
       <InfoItem label="Tempat Lahir" info={husband.pob} />
       <InfoItem label="Tanggal Lahir" info={husband.dob} />
