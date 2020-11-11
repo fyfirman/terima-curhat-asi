@@ -6,19 +6,21 @@ import * as styles from './styles';
 const propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
-  ava: PropTypes.string
+  ava: PropTypes.string,
+  isEmpty: PropTypes.bool
 };
 
 const defaultProps = {
   title: '',
   content: '',
-  ava: ''
+  ava: '',
+  isEmpty: false
 };
 
 const ArticleCard = (props) => {
-  const { title, content, ava } = props;
+  const { title, content, ava, isEmpty } = props;
 
-  return (
+  return !isEmpty ? (
     <TouchableOpacity style={styles.root} onPress={() => {}}>
       <Image
         style={styles.ava}
@@ -32,6 +34,10 @@ const ArticleCard = (props) => {
           {content}
         </Text>
       </View>
+    </TouchableOpacity>
+  ) : (
+    <TouchableOpacity style={styles.emptyContainer} onPress={() => {}}>
+      <Text>Artikel kosong</Text>
     </TouchableOpacity>
   );
 };

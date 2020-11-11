@@ -1,5 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, BackHandler } from 'react-native';
+import React, { useState, useCallback, useEffect } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  BackHandler,
+  ToastAndroid
+} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-paper';
@@ -40,6 +47,25 @@ const Home = (props) => {
     }, [])
   );
 
+  useEffect(() => {
+    const fetchArticleList = () => {
+      CoreServices.getArticleList().then(
+        (res) => {
+          console.log(res);
+          setArticleList(res);
+        },
+        (error) => {
+          ToastAndroid.show(error.message, ToastAndroid.LONG);
+          console.error(error);
+        }
+      );
+    };
+
+    fetchArticleList();
+  }, []);
+
+  const [articleList, setArticleList] = useState([]);
+
   return (
     <View contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -71,14 +97,23 @@ const Home = (props) => {
           </TouchableOpacity>
         </View>
         <View style={styles.articleContainer}>
-          <ArticleCard
-            title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
-            content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
-          />
-          <ArticleCard
-            title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
-            content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
-          />
+          {articleList.length === 0 ? (
+            <>
+              <ArticleCard isEmpty />
+              <ArticleCard isEmpty />
+            </>
+          ) : (
+            <>
+              <ArticleCard
+                title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
+                content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
+              />
+              <ArticleCard
+                title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
+                content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
+              />
+            </>
+          )}
         </View>
       </View>
       <View style={styles.menu}>
