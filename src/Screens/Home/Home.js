@@ -51,7 +51,6 @@ const Home = (props) => {
     const fetchArticleList = () => {
       CoreServices.getArticleList().then(
         (res) => {
-          console.log(res);
           setArticleList(res);
         },
         (error) => {
@@ -104,14 +103,35 @@ const Home = (props) => {
             </>
           ) : (
             <>
-              <ArticleCard
-                title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
-                content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
-              />
-              <ArticleCard
-                title="Studi: Antibodi Virus Corona Ditemukan pada ASI"
-                content="Para peneliti di Rumah Sakit Emma UMC Amsterdam, Belanda, menemukan antibodi terhadap virus corona dalam"
-              />
+              {articleList.length === 1 ? (
+                <>
+                  <ArticleCard
+                    title={articleList[0].title}
+                    category={articleList[0].category.name}
+                    tags={articleList[0].tags}
+                    writer={articleList[0].creator.full_name}
+                    url={articleList[0].show_api_url}
+                  />
+                  <ArticleCard isEmpty />
+                </>
+              ) : (
+                <>
+                  <ArticleCard
+                    title={articleList[0].title}
+                    category={articleList[0].category.name}
+                    tags={articleList[0].tags}
+                    writer={articleList[0].creator.full_name}
+                    url={articleList[0].show_api_url}
+                  />
+                  <ArticleCard
+                    title={articleList[1].title}
+                    category={articleList[1].category.name}
+                    tags={articleList[1].tags}
+                    writer={articleList[1].creator.full_name}
+                    url={articleList[1].show_api_url}
+                  />
+                </>
+              )}
             </>
           )}
         </View>
