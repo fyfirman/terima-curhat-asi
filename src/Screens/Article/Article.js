@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, ToastAndroid } from 'react-native';
+import PropTypes from 'prop-types';
 import mockData from './mockData';
 import * as styles from './styles';
 
@@ -7,7 +8,15 @@ import * as styles from './styles';
 import { EmptyInfo, ArticleCard } from '../../Components';
 import { CoreServices } from '../../Services';
 
-const Article = () => {
+const propTypes = {
+  navigation: PropTypes.objectOf(PropTypes.any).isRequired
+};
+
+const defaultProps = {};
+
+const Article = (props) => {
+  const { navigation } = props;
+
   const [articleList, setArticleList] = useState([]);
 
   useEffect(() => {
@@ -37,6 +46,7 @@ const Article = () => {
         first={index === 0}
         last={index === mockData.length - 1}
         style={styles.articleCard}
+        onPress={() => navigation.navigate('ArticleViewer')}
       />
     );
   };
@@ -56,5 +66,8 @@ const Article = () => {
     </View>
   );
 };
+
+Article.propTypes = propTypes;
+Article.defaultProps = defaultProps;
 
 export default Article;

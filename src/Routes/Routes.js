@@ -8,7 +8,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SessionAction } from '../Redux/Actions';
 import MenuDrawer from './MenuDrawer';
-import { Login, ForgotPIN, Chat, Invite, ProfileMom } from '../Screens';
+import {
+  Login,
+  ForgotPIN,
+  Chat,
+  Invite,
+  ProfileMom,
+  ArticleViewer
+} from '../Screens';
 import { HeaderOptions } from '../Theme';
 import { LoadingScreen } from '../Components';
 
@@ -49,7 +56,8 @@ const Routes = (props) => {
               name="ForgotPIN"
               component={ForgotPIN}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Lupa PIN')}
+                HeaderOptions.withBack(navigation, 'Lupa PIN')
+              }
             />
             <Stack.Screen
               name="MenuDrawer"
@@ -66,16 +74,25 @@ const Routes = (props) => {
               }}
             />
             <Stack.Screen
+              name="ArticleViewer"
+              component={ArticleViewer}
+              options={({ navigation }) =>
+                HeaderOptions.withBack(navigation, 'Lihat artikel')
+              }
+            />
+            <Stack.Screen
               name="Invite"
               component={Invite}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Tambahkan Bidan')}
+                HeaderOptions.withBack(navigation, 'Tambahkan Bidan')
+              }
             />
             <Stack.Screen
               name="ProfileMom"
               component={ProfileMom}
               options={({ navigation }) =>
-                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')}
+                HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')
+              }
             />
           </Stack.Navigator>
         </NavigationContainer>

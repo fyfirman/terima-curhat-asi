@@ -6,3 +6,4 @@ export { default as Invite } from './Invite';
 export { default as Article } from './Article';
 export { default as Help } from './Help';
 export { default as ProfileMom } from './ProfileMom';
+export { default as ArticleViewer } from './ArticleViewer';

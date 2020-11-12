@@ -8,9 +8,9 @@ const propTypes = {
   writer: PropTypes.string,
   category: PropTypes.string,
   isEmpty: PropTypes.bool,
-  url: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.object),
-  style: PropTypes.objectOf(PropTypes.any)
+  style: PropTypes.objectOf(PropTypes.any),
+  onPress: PropTypes.func
 };
 
 const defaultProps = {
@@ -18,18 +18,18 @@ const defaultProps = {
   writer: '',
   category: '',
   isEmpty: false,
-  url: '',
   tags: [],
-  style: {}
+  style: {},
+  onPress: () => {}
 };
 
 const ArticleCard = (props) => {
-  const { title, category, writer, isEmpty, url, tags, style } = props;
+  const { title, category, writer, isEmpty, onPress, tags, style } = props;
 
   const getTagsName = () => tags.map((tag) => tag.name).join(', ');
 
   return !isEmpty ? (
-    <TouchableOpacity style={{ ...styles.root, ...style }} onPress={() => {}}>
+    <TouchableOpacity style={{ ...styles.root, ...style }} onPress={onPress}>
       <View style={styles.infoContainer}>
         <Text numberOfLines={2} style={styles.title}>
           {title}
