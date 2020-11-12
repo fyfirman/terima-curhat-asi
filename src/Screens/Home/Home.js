@@ -21,7 +21,7 @@ import { CoreServices } from '../../Services';
 
 // UI
 import * as styles from './styles';
-import ArticleCard from './Components/ArticleCard/ArticleCard';
+import { ArticleCard } from '../../Components';
 import { HeaderHome } from '../../assets/svg';
 import Menu from './Components/Menu/Menu';
 

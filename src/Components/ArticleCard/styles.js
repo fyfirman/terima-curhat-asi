@@ -1,16 +1,13 @@
-import { FontFamily, Colors } from '../../../../Theme';
+import { FontFamily, Colors } from '../../Theme';
 
-export const root = ({ first, last }) => ({
+export const root = {
   flexDirection: 'row',
   elevation: 3,
   padding: 16,
-  marginHorizontal: 16,
   marginVertical: 8,
   backgroundColor: 'white',
-  borderRadius: 10,
-  marginTop: first ? 16 : 8,
-  marginBottom: last ? 16 : 8
-});
+  borderRadius: 10
+};
 
 export const ava = {
   flex: 1,
@@ -20,6 +17,18 @@ export const ava = {
 
 export const infoContainer = {
   flex: 3
+};
+
+export const emptyContainer = {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  elevation: 3,
+  padding: 16,
+  marginVertical: 8,
+  backgroundColor: 'white',
+  borderRadius: 10,
+  minHeight: 100
 };
 
 export const content = {

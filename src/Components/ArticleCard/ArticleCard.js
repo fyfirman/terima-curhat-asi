@@ -9,7 +9,8 @@ const propTypes = {
   category: PropTypes.string,
   isEmpty: PropTypes.bool,
   url: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.object)
+  tags: PropTypes.arrayOf(PropTypes.object),
+  style: PropTypes.objectOf(PropTypes.any)
 };
 
 const defaultProps = {
@@ -18,16 +19,17 @@ const defaultProps = {
   category: '',
   isEmpty: false,
   url: '',
-  tags: []
+  tags: [],
+  style: {}
 };
 
 const ArticleCard = (props) => {
-  const { title, category, writer, isEmpty, url, tags } = props;
+  const { title, category, writer, isEmpty, url, tags, style } = props;
 
   const getTagsName = () => tags.map((tag) => tag.name).join(', ');
 
   return !isEmpty ? (
-    <TouchableOpacity style={styles.root} onPress={() => {}}>
+    <TouchableOpacity style={{ ...styles.root, ...style }} onPress={() => {}}>
       <View style={styles.infoContainer}>
         <Text numberOfLines={2} style={styles.title}>
           {title}
