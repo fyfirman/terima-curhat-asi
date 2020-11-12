@@ -46,7 +46,9 @@ const Article = (props) => {
         first={index === 0}
         last={index === mockData.length - 1}
         style={styles.articleCard}
-        onPress={() => navigation.navigate('ArticleViewer')}
+        onPress={() =>
+          navigation.navigate('ArticleViewer', { url: item.show_api_url })
+        }
       />
     );
   };

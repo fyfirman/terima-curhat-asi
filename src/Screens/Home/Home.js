@@ -110,7 +110,11 @@ const Home = (props) => {
                     category={articleList[0].category.name}
                     tags={articleList[0].tags}
                     writer={articleList[0].creator.full_name}
-                    url={articleList[0].show_api_url}
+                    onPress={() =>
+                      navigation.navigate('ArticleViewer', {
+                        url: articleList[0].show_api_url
+                      })
+                    }
                   />
                   <ArticleCard isEmpty />
                 </>
@@ -121,14 +125,22 @@ const Home = (props) => {
                     category={articleList[0].category.name}
                     tags={articleList[0].tags}
                     writer={articleList[0].creator.full_name}
-                    url={articleList[0].show_api_url}
+                    onPress={() =>
+                      navigation.navigate('ArticleViewer', {
+                        url: articleList[0].show_api_url
+                      })
+                    }
                   />
                   <ArticleCard
                     title={articleList[1].title}
                     category={articleList[1].category.name}
                     tags={articleList[1].tags}
                     writer={articleList[1].creator.full_name}
-                    url={articleList[1].show_api_url}
+                    onPress={() =>
+                      navigation.navigate('ArticleViewer', {
+                        url: articleList[1].show_api_url
+                      })
+                    }
                   />
                 </>
               )}
