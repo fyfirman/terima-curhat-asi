@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "846890904257",
+    "firebase_url": "https://curhat-asi-demo.firebaseio.com",
+    "project_id": "curhat-asi-demo",
+    "storage_bucket": "curhat-asi-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846890904257:android:7879e1d38dc6c7c9f04240",
+        "android_client_info": {
+          "package_name": "com.terimacurhatasi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846890904257-48gl9d56cmb2a4fprmkdt2d55m30dmo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvVA0GRsUVmfsQ2TSw0nb0oykK1A64gm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846890904257-48gl9d56cmb2a4fprmkdt2d55m30dmo3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
