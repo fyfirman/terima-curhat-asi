@@ -3,29 +3,34 @@
 import RNPusherPushNotifications from 'react-native-pusher-push-notifications';
 import { PUSHER_BEAMS_INSTANCE_ID } from 'react-native-dotenv';
 
-// Get your interest
-const donutsInterest = 'debug-donuts';
+const init = (interest = 'debug-donuts') => {
+  // Set your app key and register for push
+  RNPusherPushNotifications.setInstanceId(PUSHER_BEAMS_INSTANCE_ID);
+  console.log(
+    `Set RNPusherPushNotifications instance id : ${PUSHER_BEAMS_INSTANCE_ID}`
+  );
 
-// Initialize notifications
-export default {
-  init: () => {
-    // Set your app key and register for push
-    RNPusherPushNotifications.setInstanceId(PUSHER_BEAMS_INSTANCE_ID);
-    console.log(
-      `Set RNPusherPushNotifications instance id : ${PUSHER_BEAMS_INSTANCE_ID}`
-    );
+  // Init interests after registration
+  RNPusherPushNotifications.on('registered', () => {
+    console.log(`Pusher registered. Trying to subscribe ${interest}...`);
+    subscribe(interest);
+  });
 
-    // Init interests after registration
-    RNPusherPushNotifications.on('registered', () => {
-      console.log(
-        `Pusher registered. Trying to subscribe ${donutsInterest}...`
-      );
-      subscribe(donutsInterest);
-    });
+  // Setup notification listeners
+  RNPusherPushNotifications.on('notification', handleNotification);
+};
 
-    // Setup notification listeners
-    RNPusherPushNotifications.on('notification', handleNotification);
-  }
+// Unsubscribe from an interest
+const unsubscribe = (interest) => {
+  RNPusherPushNotifications.unsubscribe(
+    interest,
+    (statusCode, response) => {
+      console.error(statusCode, response);
+    },
+    () => {
+      console.log(`Successfully unsubscribe to ${interest}`);
+    }
+  );
 };
 
 // Handle notifications received
@@ -42,20 +47,14 @@ const subscribe = (interest) => {
       console.error(statusCode, response);
     },
     () => {
-      console.log('Success');
+      console.log(`Successfully subscribe to ${interest}`);
     }
   );
 };
 
-// Unsubscribe from an interest
-const unsubscribe = (interest) => {
-  RNPusherPushNotifications.unsubscribe(
-    interest,
-    (statusCode, response) => {
-      console.tron.logImportant(statusCode, response);
-    },
-    () => {
-      console.tron.logImportant('Success');
-    }
-  );
+// Initialize notifications
+export default {
+  init,
+  subscribe,
+  unsubscribe
 };
