@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { SessionAction, UserAction } from '../../Redux/Actions';
 
 // Services
-import { CoreServices } from '../../Services';
+import { CoreServices, PusherBeamsServices } from '../../Services';
 
 // UI
 import * as styles from './styles';
@@ -60,6 +60,7 @@ const Home = (props) => {
       );
     };
 
+    PusherBeamsServices.init();
     fetchArticleList();
   }, []);
 
@@ -113,8 +114,7 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[0].show_api_url
-                      })
-                    }
+                      })}
                   />
                   <ArticleCard isEmpty />
                 </>
@@ -128,8 +128,7 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[0].show_api_url
-                      })
-                    }
+                      })}
                   />
                   <ArticleCard
                     title={articleList[1].title}
@@ -139,8 +138,7 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[1].show_api_url
-                      })
-                    }
+                      })}
                   />
                 </>
               )}
