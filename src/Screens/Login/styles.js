@@ -82,5 +82,5 @@ export const forgotPinText = {
 export const touchHereText = {
   fontFamily: FontFamily.OpenSans.regular,
   fontSize: 15,
-  color: Colors.java
+  color: Colors.persianPink
 };

@@ -1,7 +1,7 @@
 import { Colors, FontFamily } from '../../../../Theme';
 
 export const headerStyle = {
-  backgroundColor: Colors.persianPink,
+  backgroundColor: Colors.java,
   elevation: 0,
   shadowOpacity: 0,
   borderBottomWidth: 0

@@ -20,8 +20,8 @@ const LoadingContent = (props) => {
 
   return (
     <View style={{ ...styles.root, ...containerStyles }}>
-      <ActivityIndicator animating color={Colors.java} size="large" />
-      <Text style={styles.message} color={Colors.java}>
+      <ActivityIndicator animating color={Colors.cerulean} size="large" />
+      <Text style={styles.message} color={Colors.cerulean}>
         {message}
       </Text>
     </View>

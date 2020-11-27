@@ -12,7 +12,7 @@ export const optionItem = (index, chosen) => {
 export const optionText = (chosen) => {
   return {
     textAlign: 'center',
-    color: chosen ? Colors.java : Colors.textPrimary,
+    color: chosen ? Colors.cerulean : Colors.textPrimary,
     fontFamily: FontFamily.OpenSans.regular
   };
 };
@@ -41,7 +41,7 @@ export const button = {
 export const buttonText = {
   fontFamily: FontFamily.OpenSans.regular,
   textAlign: 'center',
-  color: Colors.java,
+  color: Colors.cerulean,
   fontSize: 16
 };
 

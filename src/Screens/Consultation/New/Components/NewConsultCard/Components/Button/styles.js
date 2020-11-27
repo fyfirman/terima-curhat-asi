@@ -4,7 +4,7 @@ export const root = (backgroundColor) => ({
   backgroundColor,
   borderRadius: 4,
   borderWidth: 1,
-  borderColor: Colors.java,
+  borderColor: Colors.cerulean,
   minWidth: 80,
   marginRight: 8
 });

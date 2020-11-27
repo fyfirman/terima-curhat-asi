@@ -11,7 +11,7 @@ export const root = {
 };
 
 export const title = {
-  color: Colors.java,
+  color: Colors.cerulean,
   fontFamily: FontFamily.Muli.bold,
   fontSize: 18
 };

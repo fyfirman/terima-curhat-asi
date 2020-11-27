@@ -12,7 +12,7 @@ export const buttonRecord = {
   height: 180,
   elevation: 2,
   borderRadius: 180,
-  backgroundColor: Colors.java
+  backgroundColor: Colors.cerulean
 };
 
 export const buttonRecordIcon = {

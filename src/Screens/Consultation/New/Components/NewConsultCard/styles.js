@@ -16,7 +16,7 @@ export const avaContainer = {
 export const ava = {
   width: AVA_SIZE,
   height: AVA_SIZE,
-  backgroundColor: Colors.java
+  backgroundColor: Colors.cerulean
 };
 
 export const labelStyle = {

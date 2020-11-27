@@ -2,7 +2,7 @@ import { Colors, FontFamily } from '../../Theme';
 
 export const root = {
   alignSelf: 'center',
-  backgroundColor: Colors.java
+  backgroundColor: Colors.cerulean
 };
 
 export const labelStyle = {

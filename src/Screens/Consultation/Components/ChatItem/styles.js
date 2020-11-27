@@ -10,7 +10,7 @@ export const ava = {
   width: AVA_SIZE,
   height: AVA_SIZE,
   alignSelf: 'center',
-  backgroundColor: Colors.java
+  backgroundColor: Colors.cerulean
 };
 
 export const labelStyle = {

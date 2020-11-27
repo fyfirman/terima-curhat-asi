@@ -55,7 +55,7 @@ const ConsultationTab = () => {
   return (
     <Tab.Navigator
       initialRouteName="New"
-      activeColor={Colors.java}
+      activeColor={Colors.cerulean}
       inactiveColor={Colors.textSecondary}
       backBehavior="initialRoute"
       barStyle={{

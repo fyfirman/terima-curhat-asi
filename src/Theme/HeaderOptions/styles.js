@@ -4,7 +4,7 @@ import FontFamily from '../FontFamily';
 const ICON_SIZE = 30;
 
 export const headerStyle = {
-  backgroundColor: Colors.persianPink,
+  backgroundColor: Colors.java,
   elevation: 0,
   shadowOpacity: 0,
   borderBottomWidth: 0

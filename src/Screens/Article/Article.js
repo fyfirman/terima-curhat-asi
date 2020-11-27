@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, ToastAndroid } from 'react-native';
 import PropTypes from 'prop-types';
-import mockData from './mockData';
 import * as styles from './styles';
 
 // Services
@@ -44,11 +43,10 @@ const Article = (props) => {
         writer={item.creator.full_name}
         url={item.show_api_url}
         first={index === 0}
-        last={index === mockData.length - 1}
+        last={index === articleList.length - 1}
         style={styles.articleCard}
         onPress={() =>
-          navigation.navigate('ArticleViewer', { url: item.show_api_url })
-        }
+          navigation.navigate('ArticleViewer', { url: item.show_api_url })}
       />
     );
   };

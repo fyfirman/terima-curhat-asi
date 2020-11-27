@@ -25,7 +25,7 @@ export const sendButton = {
   width: INPUT_HEIGHT,
   minWidth: INPUT_HEIGHT,
   borderRadius: 100,
-  backgroundColor: Colors.java,
+  backgroundColor: Colors.cerulean,
   elevation: 1
 };
 
@@ -46,7 +46,7 @@ export const attachmentButton = {
 };
 
 export const attachmentButtonIcon = {
-  color: Colors.java,
+  color: Colors.cerulean,
   fontSize: 28,
   marginLeft: 0
 };

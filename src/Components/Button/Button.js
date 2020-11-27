@@ -11,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {
   title: '',
-  color: Colors.persianPink
+  color: Colors.cerulean
 };
 
 const StyledButton = (props) => {

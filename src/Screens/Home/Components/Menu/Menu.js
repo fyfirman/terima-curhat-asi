@@ -18,7 +18,7 @@ const Menu = (props) => {
 
   return (
     <TouchableOpacity style={styles.root} onPress={onPress}>
-      <Icon name={iconName} size={64} color={Colors.java} />
+      <Icon name={iconName} size={64} color={Colors.cerulean} />
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );

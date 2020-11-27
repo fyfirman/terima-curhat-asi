@@ -35,7 +35,7 @@ const ForgotPIN = () => {
           />
         </View>
         <View style={styles.buttonLogin}>
-          <Button color={Colors.java} title="Kirim" onPress={() => {}} />
+          <Button color={Colors.cerulean} title="Kirim" onPress={() => {}} />
         </View>
       </View>
     </KeyboardAwareScrollView>

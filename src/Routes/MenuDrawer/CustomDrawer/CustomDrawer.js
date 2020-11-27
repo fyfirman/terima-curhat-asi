@@ -113,7 +113,7 @@ const CustomDrawer = (props) => {
         {...props}
         style={styles.menuItems}
         labelStyle={styles.labelStyle}
-        activeTintColor={Colors.java}
+        activeTintColor={Colors.cerulean}
         inactiveTintColor={Colors.textPrimary}
       />
       <View style={styles.footer}>

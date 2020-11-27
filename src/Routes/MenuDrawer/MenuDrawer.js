@@ -13,7 +13,7 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   const getDrawerIcon = (name, focused, size) => (
     <Icon
-      color={focused ? Colors.java : Colors.textPrimary}
+      color={focused ? Colors.cerulean : Colors.textPrimary}
       size={size}
       name={name}
     />

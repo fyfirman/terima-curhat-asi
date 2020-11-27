@@ -14,10 +14,10 @@ const StyledTextInput = (props) => {
     <TextInput
       {...rest}
       mode="flat"
-      underlineColor={Colors.java}
+      underlineColor={Colors.cerulean}
       style={styles.root}
       theme={{
-        colors: { primary: Colors.java }
+        colors: { primary: Colors.cerulean }
       }}
     />
   );
