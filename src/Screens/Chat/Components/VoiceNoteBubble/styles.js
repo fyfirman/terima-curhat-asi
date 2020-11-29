@@ -31,9 +31,11 @@ export const name = {
   fontSize: 15
 };
 
-export const message = {
+export const label = {
   fontFamily: FontFamily.OpenSans.regular,
-  fontSize: 15
+  fontSize: 14,
+  fontStyle: 'italic',
+  textAlign: 'center'
 };
 
 export const time = {
@@ -42,4 +44,7 @@ export const time = {
   textAlign: 'right'
 };
 
-export const imageStyle = { width: 200, height: 200, aspectRatio: 1 };
+export const button = {
+  fontSize: 36,
+  color: Colors.mulberry
+};

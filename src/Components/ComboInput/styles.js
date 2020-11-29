@@ -2,10 +2,10 @@ import { Colors, FontFamily } from '../../Theme';
 
 export const optionItem = (index, chosen) => {
   return {
-    backgroundColor: chosen ? Colors.cherub : 'transparent',
+    backgroundColor: chosen ? Colors.polar : 'transparent',
     paddingVertical: 16,
     paddingHorizontal: 32,
-    borderTopColor: index === 0 ? 'transparent' : Colors.cherub
+    borderTopColor: index === 0 ? 'transparent' : Colors.polar
   };
 };
 
@@ -34,7 +34,7 @@ export const optionContainer = { backgroundColor: '#ffffff' };
 
 export const button = {
   paddingVertical: 16,
-  backgroundColor: Colors.cherub,
+  backgroundColor: Colors.polar,
   borderRadius: 10
 };
 

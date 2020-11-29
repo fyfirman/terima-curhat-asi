@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
-import ImageViewer from 'react-native-image-zoom-viewer';
+import { View, Text } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { Button } from 'react-native-paper';
 import { Avatar } from '../../../../Components';
+import { Colors } from '../../../../Theme';
 import * as styles from './styles';
 
 const propTypes = {
@@ -54,9 +54,13 @@ const ChatBubble = (props) => {
       <View style={styles.container(self)}>
         {!self && <Text style={styles.name}>{senderName}</Text>}
         <Button
+          labelStyle={styles.button}
+          color={Colors.textPrimary}
           icon={isPlaying ? 'stop' : 'play'}
           onPress={isPlaying ? onStopPlay : onStartPlay}
         />
+        <Text style={styles.label}>Pesan Suara.</Text>
+        <Text style={styles.label}>Tekan tombol untuk mendengarkan</Text>
         <Text style={styles.time}>
           {`${time.getHours() < 9 ? `0${time.getHours()}` : time.getHours()}:${
             time.getMinutes() < 9 ? `0${time.getMinutes()}` : time.getMinutes()
