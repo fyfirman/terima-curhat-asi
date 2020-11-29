@@ -15,9 +15,10 @@ import { SessionAction, UserAction } from '../../../Redux/Actions';
 
 import { Colors } from '../../../Theme';
 import { PromptDialog } from '../../../Components';
-import { CoreServices } from '../../../Services';
+import { CoreServices, PusherBeamsServices } from '../../../Services';
 import { getInitial } from '../../../Helper';
 import * as styles from './styles';
+import BeamsInterest from '../../../Constant/BeamsInterest';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -42,6 +43,8 @@ const CustomDrawer = (props) => {
         (res) => {
           setUser(res.payload);
           setProfileIsLoaded(true);
+
+          PusherBeamsServices.subscribe(BeamsInterest.USER + res.payload.id);
         },
         (error) => {
           if (error.response === null) {

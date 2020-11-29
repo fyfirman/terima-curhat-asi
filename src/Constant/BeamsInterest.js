@@ -1,5 +1,6 @@
 const BeamsInterest = {
-  CONSULTATION: 'App.Consultation.'
+  CONSULTATION: 'App.Consultation.',
+  USER: 'App.User.'
 };
 
 export default BeamsInterest;
