@@ -13,7 +13,7 @@ export const tabContainer = {
 };
 
 export const tabIndicatorStyle = {
-  backgroundColor: Colors.cerulean,
+  backgroundColor: Colors.persianPink,
   height: 3
 };
 

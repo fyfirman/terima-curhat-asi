@@ -52,7 +52,7 @@ const ProfileMom = (props) => {
       {isLoaded ? (
         <Tab.Navigator
           tabBarOptions={{
-            activeTintColor: Colors.cerulean,
+            activeTintColor: Colors.persianPink,
             labelStyle: styles.tabLabelStyle,
             inactiveTintColor: Colors.textSecondary,
             indicatorStyle: styles.tabIndicatorStyle,
