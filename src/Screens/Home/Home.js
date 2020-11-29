@@ -114,7 +114,8 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[0].show_api_url
-                      })}
+                      })
+                    }
                   />
                   <ArticleCard isEmpty />
                 </>
@@ -128,7 +129,8 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[0].show_api_url
-                      })}
+                      })
+                    }
                   />
                   <ArticleCard
                     title={articleList[1].title}
@@ -138,7 +140,8 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[1].show_api_url
-                      })}
+                      })
+                    }
                   />
                 </>
               )}

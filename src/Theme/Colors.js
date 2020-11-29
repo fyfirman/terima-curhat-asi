@@ -4,6 +4,7 @@ const Colors = {
   cherub: '#D6EFF7', // Secondary
   cerulean: '#10A4D6', // Secondary
   cranberry: '#258990',
+  strikemaster: '#7C507C',
   textPrimary: '#333333',
   textSecondary: '#999999',
   bottomTabs: '#FAFAFA',

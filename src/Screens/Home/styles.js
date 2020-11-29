@@ -60,7 +60,7 @@ export const menuButton = {
   paddingLeft: 13,
   paddingTop: -4,
   borderRadius: 100,
-  backgroundColor: Colors.cerulean,
+  backgroundColor: Colors.persianPink,
   elevation: 1
 };
 

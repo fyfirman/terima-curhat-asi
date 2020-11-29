@@ -21,7 +21,7 @@ export const infoSection = {
 };
 
 export const avatarText = {
-  backgroundColor: Colors.cranberry
+  backgroundColor: Colors.strikemaster
 };
 
 export const avatarTextLabel = {
