@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import * as styles from './styles';
 import { Button } from './Components';
 import { Avatar } from '../../../../../Components';
-import { CoreServices } from '../../../../../Services';
+import { CoreServices, PusherBeamsServices } from '../../../../../Services';
+import BeamsInterest from '../../../../../Constant/BeamsInterest';
 
 const propTypes = {
   name: PropTypes.string,
@@ -41,7 +42,9 @@ const NewConsultCard = (props) => {
   const handleAccept = () => {
     CoreServices.postAcceptConsultation(consultation.id).then(
       (res) => {
-        console.log(res);
+        PusherBeamsServices.subscribe(
+          BeamsInterest.CONSULTATION + consultation.id
+        );
         ToastAndroid.show(
           'Permintaan konsultasi telah diterima',
           ToastAndroid.SHORT
