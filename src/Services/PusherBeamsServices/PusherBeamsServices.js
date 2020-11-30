@@ -12,8 +12,10 @@ const init = (interest = 'debug-donuts') => {
 
   // Init interests after registration
   RNPusherPushNotifications.on('registered', () => {
-    console.log(`Pusher registered. Trying to subscribe ${interest}...`);
-    subscribe(interest);
+    console.log('Successfully registered');
+    // Debugging
+    // console.log(`Pusher registered. Trying to subscribe ${interest}...`);
+    // subscribe(interest);
   });
 
   // Setup notification listeners
@@ -52,9 +54,23 @@ const subscribe = (interest) => {
   );
 };
 
+// Unsubscribe from an interest
+const unsubscribeAll = () => {
+  console.log('Trying to unsubscribe all');
+  RNPusherPushNotifications.getSubscriptions(
+    (subs) => {
+      subs.forEach(unsubscribe);
+    },
+    () => {
+      console.log('Error');
+    }
+  );
+};
+
 // Initialize notifications
 export default {
   init,
   subscribe,
-  unsubscribe
+  unsubscribe,
+  unsubscribeAll
 };

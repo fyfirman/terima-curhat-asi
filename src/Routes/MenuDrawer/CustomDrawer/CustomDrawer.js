@@ -59,6 +59,7 @@ const CustomDrawer = (props) => {
   }, []);
 
   const logout = () => {
+    PusherBeamsServices.unsubscribeAll();
     setPromptVisibility(false);
     setProfileIsLoaded(false);
     flushSession();
