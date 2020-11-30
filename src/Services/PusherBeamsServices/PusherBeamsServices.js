@@ -2,6 +2,8 @@
 // Import module
 import RNPusherPushNotifications from 'react-native-pusher-push-notifications';
 import { PUSHER_BEAMS_INSTANCE_ID } from 'react-native-dotenv';
+import BeamsInterest from '../../Constant/BeamsInterest';
+import CoreServices from '../CoreServices';
 
 const init = (interest = 'debug-donuts') => {
   // Set your app key and register for push
@@ -54,6 +56,20 @@ const subscribe = (interest) => {
   );
 };
 
+// Subscribe all chat interest
+const subscribeAllChat = () => {
+  CoreServices.getConsultations({ params: { type: 'ongoing' } }).then(
+    (res) => {
+      res.payload.data.forEach((consultation) => {
+        subscribe(BeamsInterest.CONSULTATION + consultation.id);
+      });
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+};
+
 // Unsubscribe from an interest
 const unsubscribeAll = () => {
   console.log('Trying to unsubscribe all');
@@ -71,6 +87,7 @@ const unsubscribeAll = () => {
 export default {
   init,
   subscribe,
+  subscribeAllChat,
   unsubscribe,
   unsubscribeAll
 };

@@ -45,6 +45,7 @@ const CustomDrawer = (props) => {
           setProfileIsLoaded(true);
 
           PusherBeamsServices.subscribe(BeamsInterest.USER + res.payload.id);
+          PusherBeamsServices.subscribeAllChat();
         },
         (error) => {
           if (error.response === null) {
