@@ -12,8 +12,7 @@ const HelpStack = () => {
         name="Help"
         component={Help}
         options={({ navigation }) =>
-          HeaderOptions.withMenu(navigation, 'Artikel')
-        }
+          HeaderOptions.withMenu(navigation, 'Bantuan')}
       />
     </Stack.Navigator>
   );

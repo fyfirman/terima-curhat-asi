@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import * as styles from './styles';
+import { BASE_URL } from 'react-native-dotenv';
+import { CustomHeaderWebView } from '../../Components';
 
 const Help = () => {
   return (
-    <View style={styles.inner}>
-      <Text style={styles.primaryInfo}>Halaman bantuan belum tersedia</Text>
-      <Text style={styles.secondaryInfo}>Tunggu update dari aplikasi</Text>
-    </View>
+    <CustomHeaderWebView
+      source={{
+        uri: `${BASE_URL}/help`
+      }}
+      style={{ flex: 1 }}
+    />
   );
 };
 
