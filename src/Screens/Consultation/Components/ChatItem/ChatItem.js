@@ -9,22 +9,25 @@ const propTypes = {
   name: PropTypes.string,
   photo: PropTypes.string,
   onPress: PropTypes.func,
-  lastPost: PropTypes.objectOf(PropTypes.any)
+  lastPost: PropTypes.objectOf(PropTypes.any),
+  description: PropTypes.string,
+  createdAt: PropTypes.string.isRequired
 };
 
 const defaultProps = {
   name: 'User tidak mempunyai nama',
   photo: null,
   onPress: () => {},
-  lastPost: null
+  lastPost: null,
+  description: ''
 };
 
 const ChatItem = (props) => {
-  const { name, photo, onPress, lastPost } = props;
+  const { name, photo, onPress, lastPost, description, createdAt } = props;
 
   const renderTime = () => {
     if (lastPost !== null) {
-      const date = DateFormatter.convertStringToDate(lastPost.created_at);
+      const date = DateFormatter.convertStringToDate(createdAt);
       return DateFormatter.getRelativeTime(date);
     }
     return '';
@@ -36,10 +39,12 @@ const ChatItem = (props) => {
       <View style={styles.infoContainer}>
         <View style={styles.topSection}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.time}>{renderTime()}</Text>
+          <Text style={styles.time}>{`Tanggal dibuat : ${renderTime()}`}</Text>
+          {/* <Text style={styles.time}>{renderTime()}</Text> */}
         </View>
         <Text style={styles.message} numberOfLines={1}>
-          {lastPost ? lastPost.message : 'Tidak ada pesan'}
+          {`Keluhan : ${description}`}
+          {/* {lastPost ? lastPost.message : 'Tidak ada pesan'} */}
         </Text>
       </View>
     </TouchableOpacity>
