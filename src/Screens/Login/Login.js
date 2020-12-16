@@ -35,10 +35,9 @@ const Login = (props) => {
   const { navigation, setUser, setSession } = props;
 
   const [formState, setFormState] = useState({
-    // TODO: DEV - delete initial state
-    phoneNumber: '081234567890',
-    pin: '112233',
-    role: 'kdr'
+    phoneNumber: '',
+    pin: '',
+    role: ''
   });
 
   const isValid = () =>
