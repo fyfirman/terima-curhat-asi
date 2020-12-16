@@ -85,7 +85,7 @@ const Home = (props) => {
           <Text style={styles.headings}>{`Terima\nCurhat ASI`}</Text>
           <Image
             style={styles.vector}
-            source={require('../../assets/images/vector.png')}
+            source={require('../../assets/images/baru1.png')}
           />
         </View>
       </View>
@@ -114,8 +114,7 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[0].show_api_url
-                      })
-                    }
+                      })}
                   />
                   <ArticleCard isEmpty />
                 </>
@@ -129,8 +128,7 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[0].show_api_url
-                      })
-                    }
+                      })}
                   />
                   <ArticleCard
                     title={articleList[1].title}
@@ -140,8 +138,7 @@ const Home = (props) => {
                     onPress={() =>
                       navigation.navigate('ArticleViewer', {
                         url: articleList[1].show_api_url
-                      })
-                    }
+                      })}
                   />
                 </>
               )}
