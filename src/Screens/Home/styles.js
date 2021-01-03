@@ -47,7 +47,8 @@ export const headerBackground = {
 
 export const newArticle = {
   flex: 1,
-  backgroundColor: 'white'
+  backgroundColor: 'white',
+  marginBottom: 64
 };
 
 export const menu = {
