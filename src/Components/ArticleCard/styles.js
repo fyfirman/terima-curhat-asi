@@ -3,7 +3,7 @@ import { FontFamily, Colors } from '../../Theme';
 export const root = {
   flexDirection: 'row',
   elevation: 3,
-  padding: 16,
+  padding: 8,
   marginVertical: 8,
   backgroundColor: 'white',
   borderRadius: 10

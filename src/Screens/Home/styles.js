@@ -8,11 +8,13 @@ export const container = {
 };
 
 export const header = {
+  flex: 1,
   backgroundColor: '',
   marginTop: -2
 };
 
 export const headerBottom = {
+  flex: 1,
   flexDirection: 'row',
   justifyContent: 'space-between',
   paddingHorizontal: 16,
@@ -22,7 +24,7 @@ export const headerBottom = {
 
 export const headings = {
   fontFamily: FontFamily.Muli.extraBold,
-  fontSize: 24,
+  fontSize: 28,
   color: 'white',
   alignSelf: 'center'
 };
@@ -35,7 +37,7 @@ export const primaryInfo = {
 
 export const vector = {
   width: 200,
-  height: 150
+  height: 100
 };
 
 export const headerBackground = {
@@ -44,10 +46,12 @@ export const headerBackground = {
 };
 
 export const newArticle = {
+  flex: 1,
   backgroundColor: 'white'
 };
 
 export const menu = {
+  flex: 1,
   height: '100%',
   backgroundColor: 'white'
 };
