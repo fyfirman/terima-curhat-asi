@@ -22,7 +22,7 @@ const New = (props) => {
     const fetchConsultation = () => {
       CoreServices.getConsultations({ params: { type: 'waiting' } }).then(
         (res) => {
-          setConsultations(res.payload.data);
+          setConsultations(res.payload.data.reverse());
           setIsLoaded(true);
         },
         (error) => {

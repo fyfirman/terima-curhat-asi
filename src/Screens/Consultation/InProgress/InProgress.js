@@ -28,7 +28,7 @@ const InProgress = (props) => {
     const fetchConsultation = () => {
       CoreServices.getConsultations({ params: { type: 'ongoing' } }).then(
         (res) => {
-          setConsultations(res.payload.data);
+          setConsultations(res.payload.data.reverse());
           setIsLoaded(true);
         },
         (error) => {
