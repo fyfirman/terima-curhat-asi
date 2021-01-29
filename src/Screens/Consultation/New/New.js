@@ -42,11 +42,11 @@ const New = (props) => {
   const renderCard = ({ item }) => (
     <NewConsultCard
       consultation={item}
-      name={item.user.profile.name}
+      name={item.user.profile?.name}
       onPress={() => {
         navigation.navigate('ProfileMom', { user: item.user });
       }}
-      photo={item.user.profile.photo}
+      photo={item.user.profile?.photo}
       navigation={navigation}
     />
   );

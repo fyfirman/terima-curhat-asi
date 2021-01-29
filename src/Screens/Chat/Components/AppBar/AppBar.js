@@ -53,13 +53,13 @@ const ChatAppBar = (props) => {
           color="white"
         />
         <Avatar
-          name={user.profile.name}
+          name={user.profile?.name}
           photo={user.photo ? user.photo : null}
           size={36}
         />
       </TouchableOpacity>
       <Appbar.Content
-        title={user.profile.name}
+        title={user.profile?.name || 'User'}
         titleStyle={styles.headerTitleStyle}
         subtitle="Tekan disini untuk melihat profil"
         subtitleStyle={styles.subtitleStyle}

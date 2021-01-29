@@ -23,7 +23,7 @@ const Husband = (props) => {
       <InfoItem label="Tanggal Lahir" info={husband.dob} />
       <InfoItem
         label="Agama"
-        info={StringHelper.toTitleCase(husband.religion)}
+        info={StringHelper.toTitleCase(husband.religion || '')}
       />
       <InfoItem label="Pendidikan" info={husband.education_text} />
       <InfoItem label="Pekerjaan/Profesi" info={husband.occupation_name} />

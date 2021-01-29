@@ -65,7 +65,7 @@ const Chat = (props) => {
     if (item.voice_note_id !== null) {
       return (
         <VoiceNoteBubble
-          senderName={item.user.profile.name}
+          senderName={item.user.profile?.name}
           time={DateFormatter.convertStringToDate(item.created_at)}
           self={item.user.id === user.id}
           voiceNote={UriHelper.getStorage(item.voice_note.original)}
@@ -74,7 +74,7 @@ const Chat = (props) => {
     }
     return (
       <ChatBubble
-        senderName={item.user.profile.name}
+        senderName={item.user.profile?.name}
         message={item.message}
         time={DateFormatter.convertStringToDate(item.created_at)}
         self={item.user.id === user.id}

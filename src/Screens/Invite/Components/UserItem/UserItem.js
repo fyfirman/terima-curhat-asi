@@ -24,7 +24,9 @@ const ChatItem = (props) => {
       <Avatar name={name} style={styles.ava} photo={photo || null} size={55} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.status}>{StringHelper.toTitleCase(domicile)}</Text>
+        <Text style={styles.status}>
+          {StringHelper.toTitleCase(domicile || '')}
+        </Text>
       </View>
     </TouchableOpacity>
   );

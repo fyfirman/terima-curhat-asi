@@ -16,7 +16,7 @@ const propTypes = {
 
 const defaultProps = {
   message: '',
-  senderName: '',
+  senderName: 'User',
   time: new Date(),
   self: false,
   avatar: null,
@@ -44,12 +44,12 @@ const ChatBubble = (props) => {
           <Avatar
             style={styles.ava}
             size={40}
-            name={senderName}
+            name={senderName || 'User'}
             photo={avatar}
           />
         )}
         <View style={styles.container(self)}>
-          {!self && <Text style={styles.name}>{senderName}</Text>}
+          {!self && <Text style={styles.name}>{senderName || 'User'}</Text>}
           {!!imageResource && (
             <TouchableOpacity onPress={() => setImageViewer(true)}>
               <Image

@@ -1,4 +1,9 @@
 const getInitial = (name) => {
+  console.log(name);
+  if (name === undefined) {
+    return 'U';
+  }
+
   const arrayOfNames = name
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase());

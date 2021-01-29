@@ -70,10 +70,10 @@ const CustomDrawer = (props) => {
 
   const renderAvatar = () => {
     if (profileIsLoaded) {
-      if (user.profile.picture === null) {
+      if (user.profile?.picture === null) {
         return (
           <Avatar.Text
-            label={getInitial(user.profile.name)}
+            label={getInitial(user.profile?.name)}
             size={64}
             labelStyle={styles.avatarTextLabel}
             style={styles.avatarText}
@@ -107,7 +107,7 @@ const CustomDrawer = (props) => {
         {renderAvatar()}
         <View style={styles.infoSection}>
           <Text style={styles.name}>
-            {profileIsLoaded ? user.profile.name : ''}
+            {profileIsLoaded ? user.profile?.name : ''}
           </Text>
           <Text style={styles.profession}>
             {profileIsLoaded ? user.user_group.name : ''}

@@ -45,7 +45,7 @@ const History = (props) => {
       lastPost={item.lastPost}
       description={item.description}
       createdAt={item.created_at}
-      name={item.user.profile.name}
+      name={item.user.profile?.name}
       onPress={() => navigation.navigate('Chat', { consultation: item })}
     />
   );

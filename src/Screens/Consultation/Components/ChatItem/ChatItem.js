@@ -15,7 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  name: 'User tidak mempunyai nama',
+  name: 'User',
   photo: null,
   onPress: () => {},
   lastPost: null,

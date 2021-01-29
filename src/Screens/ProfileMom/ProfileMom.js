@@ -44,7 +44,7 @@ const ProfileMom = (props) => {
   return (
     <>
       <TopSection
-        name={user.profile.name}
+        name={user.profile?.name}
         phoneNumber={user.username}
         photo={profile.picture}
       />

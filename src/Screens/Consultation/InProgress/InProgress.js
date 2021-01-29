@@ -29,6 +29,7 @@ const InProgress = (props) => {
       CoreServices.getConsultations({ params: { type: 'ongoing' } }).then(
         (res) => {
           setConsultations(res.payload.data.reverse());
+          console.log(res.payload.data);
           setIsLoaded(true);
         },
         (error) => {
@@ -51,7 +52,7 @@ const InProgress = (props) => {
       lastPost={item.lastPost}
       description={item.description}
       createdAt={item.created_at}
-      name={item.user.profile.name}
+      name={item.user.profile?.name}
       onPress={() => navigation.navigate('Chat', { consultation: item })}
     />
   );
