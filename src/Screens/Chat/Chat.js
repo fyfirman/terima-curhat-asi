@@ -37,6 +37,7 @@ const Chat = (props) => {
       );
 
       privates.bind(`consultation_posts.${consultation.id}`, (newMessage) => {
+        console.log(`Menerima pesan : ${newMessage}`);
         setMessages((prevMessage) => [
           newMessage.consultationPost,
           ...prevMessage

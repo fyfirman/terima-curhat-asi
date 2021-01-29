@@ -14,7 +14,7 @@ const init = (interest = 'debug-donuts') => {
 
   // Init interests after registration
   RNPusherPushNotifications.on('registered', () => {
-    console.log('Successfully registered');
+    console.log('Successfully registered beams services');
     // Debugging
     // console.log(`Pusher registered. Trying to subscribe ${interest}...`);
     // subscribe(interest);

@@ -1,5 +1,4 @@
 const getInitial = (name) => {
-  console.log(name);
   if (name === undefined) {
     return 'U';
   }

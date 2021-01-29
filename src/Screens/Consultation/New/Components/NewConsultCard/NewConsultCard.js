@@ -26,7 +26,6 @@ const NewConsultCard = (props) => {
   const handleReject = () => {
     CoreServices.postRejectConsultation(consultation.id).then(
       (res) => {
-        console.log(res);
         ToastAndroid.show(
           'Permintaan konsultasi telah ditolak',
           ToastAndroid.SHORT

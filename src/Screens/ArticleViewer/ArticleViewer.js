@@ -17,7 +17,6 @@ const ArticleViewer = (props) => {
   const [uri, setUri] = useState(url);
 
   useEffect(() => {
-    console.log(url);
     setUri(url);
   }, []);
 
