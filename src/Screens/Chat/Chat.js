@@ -32,17 +32,19 @@ const Chat = (props) => {
     const listenChatServices = () => {
       const socket = ChatServices.create(session);
 
-      const privates = socket.subscribe(
+      const privateChannel = socket.subscribe(
         `private-consultations.${consultation.id}`
       );
 
-      privates.bind(`consultation_posts.${consultation.id}`, (newMessage) => {
-        console.log(`Menerima pesan : ${newMessage}`);
-        setMessages((prevMessage) => [
-          newMessage.consultationPost,
-          ...prevMessage
-        ]);
-      });
+      privateChannel.bind(
+        `consultation_posts.${consultation.id}`,
+        (newMessage) => {
+          setMessages((prevMessage) => [
+            newMessage.consultationPost,
+            ...prevMessage
+          ]);
+        }
+      );
     };
 
     const fetchConsultationPost = () => {
