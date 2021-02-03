@@ -85,7 +85,7 @@ const Home = (props) => {
           <Text style={styles.headings}>{`Terima\nCurhat ASI`}</Text>
           <Image
             style={styles.vector}
-            source={require('../../assets/images/baru1.png')}
+            source={require('../../assets/images/vector.png')}
           />
         </View>
       </View>

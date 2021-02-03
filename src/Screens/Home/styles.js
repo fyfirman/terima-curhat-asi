@@ -37,7 +37,7 @@ export const primaryInfo = {
 
 export const vector = {
   width: 200,
-  height: 100
+  height: 150
 };
 
 export const headerBackground = {
