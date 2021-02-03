@@ -88,6 +88,22 @@ const Chat = (props) => {
     );
   };
 
+  const renderChat = () => {
+    if (messages.length !== 0) {
+      return (
+        <FlatList
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          initialNumToRender={10}
+          initialScrollIndex={messages - 1}
+          inverted
+        />
+      );
+    }
+    return <EmptyInfo info="Tidak ada pesan" />;
+  };
+
   return (
     <>
       <AppBar
@@ -100,21 +116,7 @@ const Chat = (props) => {
           <InputBar user={user} consultation={consultation} />
         )}
         {isLoaded ? (
-          messages.length !== 0 ? (
-            <FlatList
-              data={messages}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.id}
-              initialNumToRender={10}
-              initialScrollIndex={messages - 1}
-              inverted
-            />
-          ) : (
-            <EmptyInfo
-              info="Tidak ada pesan"
-              style={{ backgroundColor: 'rgba(0,0,0,0)' }}
-            />
-          )
+          renderChat()
         ) : (
           <LoadingContent containerStyles={styles.loadingContentStyles} />
         )}
