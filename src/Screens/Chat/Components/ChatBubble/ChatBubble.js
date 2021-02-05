@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Avatar } from '../../../../Components';
+import TimeSection from './TimeSection';
 import * as styles from './styles';
 
 const propTypes = {
   message: PropTypes.string,
   senderName: PropTypes.string,
-  time: PropTypes.instanceOf(Date),
+  dateSent: PropTypes.instanceOf(Date),
   self: PropTypes.bool,
   avatar: PropTypes.string,
   imageResource: PropTypes.string
@@ -17,14 +18,14 @@ const propTypes = {
 const defaultProps = {
   message: '',
   senderName: 'User',
-  time: new Date(),
+  dateSent: new Date(),
   self: false,
   avatar: null,
   imageResource: null
 };
 
 const ChatBubble = (props) => {
-  const { message, senderName, time, self, avatar, imageResource } = props;
+  const { message, senderName, dateSent, self, avatar, imageResource } = props;
   const [imageViewer, setImageViewer] = useState(false);
 
   return (
@@ -59,15 +60,7 @@ const ChatBubble = (props) => {
             </TouchableOpacity>
           )}
           {!imageResource && <Text style={styles.message}>{message}</Text>}
-          <Text style={styles.time}>
-            {`${
-              time.getHours() < 9 ? `0${time.getHours()}` : time.getHours()
-            }:${
-              time.getMinutes() < 9
-                ? `0${time.getMinutes()}`
-                : time.getMinutes()
-            }`}
-          </Text>
+          <TimeSection date={dateSent} />
         </View>
       </View>
     </>

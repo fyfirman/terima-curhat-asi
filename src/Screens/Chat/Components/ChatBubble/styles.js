@@ -36,10 +36,4 @@ export const message = {
   fontSize: 15
 };
 
-export const time = {
-  fontFamily: FontFamily.OpenSans.regular,
-  fontSize: 11,
-  textAlign: 'right'
-};
-
 export const imageStyle = { width: 200, height: 200, aspectRatio: 1 };
