@@ -7,7 +7,7 @@ const propTypes = {
   date: PropTypes.instanceOf(Date).isRequired
 };
 
-const Time = ({ date }) => {
+const TimeSection = ({ date }) => {
   const addZero = (time) => {
     if (time < 9) return `0${time}`;
     return time;
@@ -20,6 +20,6 @@ const Time = ({ date }) => {
   );
 };
 
-Time.propTypes = propTypes;
+TimeSection.propTypes = propTypes;
 
-export default Time;
+export default TimeSection;

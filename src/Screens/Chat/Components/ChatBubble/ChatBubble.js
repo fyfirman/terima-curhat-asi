@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Avatar } from '../../../../Components';
-import TimeSection from './TimeSection';
+// import { StringHelper } from '../../../Helper';
+import { TimeSection } from './TimeSection';
 import * as styles from './styles';
 
 const propTypes = {

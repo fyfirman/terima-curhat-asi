@@ -1,1 +1,1 @@
-export { default } from './TimeSection';
+export { default as TimeSection } from './TimeSection';

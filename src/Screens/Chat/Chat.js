@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, ToastAndroid } from 'react-native';
 import PropTypes from 'prop-types';
-
-// Redux
 import { connect } from 'react-redux';
+// import RNUrlPreview from 'react-native-url-preview';
+import { LinkPreview } from '@flyerhq/react-native-link-preview';
 
 // Internal
 import { CoreServices, ChatServices } from '../../Services';
@@ -64,7 +64,13 @@ const Chat = (props) => {
     fetchConsultationPost();
   }, []);
 
-  const renderItem = ({ item }) => {
+  const getUrlFromString = (string) => {
+    const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+
+    return string.match(expression);
+  };
+
+  const renderItem = async ({ item }) => {
     if (item.voice_note_id !== null) {
       return (
         <VoiceNoteBubble
@@ -75,7 +81,7 @@ const Chat = (props) => {
         />
       );
     }
-    return (
+    const chatBubble = (
       <ChatBubble
         senderName={item.user.profile?.name}
         message={item.message}
@@ -86,6 +92,13 @@ const Chat = (props) => {
         }
       />
     );
+    const urls = getUrlFromString(item.message);
+    // if (urls !== null) {
+    // return (
+    // <RNUrlPreview text="any text to be parsed , https://www.youtube.com/watch?v=Kmiw4FYTg2U" />
+    //   );
+    // }
+    return chatBubble;
   };
 
   const renderChat = () => {
@@ -111,7 +124,8 @@ const Chat = (props) => {
         user={consultation.user}
         consultation={consultation}
       />
-      <View style={styles.inner}>
+      <LinkPreview text="This link http://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=B4CRkpBGQzU&format=json can be extracted from the text" />
+      {/* <View style={styles.inner}>
         {!consultation.closed_by && (
           <InputBar user={user} consultation={consultation} />
         )}
@@ -120,7 +134,7 @@ const Chat = (props) => {
         ) : (
           <LoadingContent containerStyles={styles.loadingContentStyles} />
         )}
-      </View>
+      </View> */}
     </>
   );
 };
