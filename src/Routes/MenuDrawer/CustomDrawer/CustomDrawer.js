@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ImagePicker from 'react-native-image-picker';
 import { SessionAction, UserAction } from '../../../Redux/Actions';
 
 import { Colors } from '../../../Theme';
@@ -68,6 +69,40 @@ const CustomDrawer = (props) => {
     navigation.navigate('Login');
   };
 
+  const changeAvatar = () => {
+    showPicker();
+  };
+
+  const showPicker = () => {
+    const options = {
+      title: 'Pilih foto',
+      takePhotoButtonTitle: 'Buka kamera',
+      chooseFromLibraryButtonTitle: 'Pilih dari galeri',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.error) {
+        ToastAndroid.show(response.error, ToastAndroid.LONG);
+      } else if (response.didCancel) {
+        ToastAndroid.show(
+          'Anda membatalkan ganti foto profile',
+          ToastAndroid.SHORT
+        );
+      } else {
+        handleSubmitWithImage(response);
+      }
+    });
+  };
+
+  const handleSubmitWithImage = (imageData) => {
+    // Change this
+    console.log('Success');
+  };
+
   const renderAvatar = () => {
     if (profileIsLoaded) {
       if (user.profile?.picture === null) {
@@ -84,8 +119,8 @@ const CustomDrawer = (props) => {
         <Avatar.Image
           source={{
             uri:
+              user.profile?.picture ??
               'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg'
-            // TODO: fix uri avatar with data from api
           }}
           size={64}
         />
@@ -103,7 +138,7 @@ const CustomDrawer = (props) => {
 
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.root}>
-      <TouchableOpacity style={styles.userInfoSection} onPress={() => {}}>
+      <TouchableOpacity style={styles.userInfoSection} onPress={changeAvatar}>
         {renderAvatar()}
         <View style={styles.infoSection}>
           <Text style={styles.name}>
@@ -111,6 +146,9 @@ const CustomDrawer = (props) => {
           </Text>
           <Text style={styles.profession}>
             {profileIsLoaded ? user.user_group.name : ''}
+          </Text>
+          <Text style={styles.profession}>
+            Tekan disini untuk mengubah foto profil
           </Text>
         </View>
       </TouchableOpacity>

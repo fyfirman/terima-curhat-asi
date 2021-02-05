@@ -12,11 +12,13 @@ export const menuItems = {
 export const userInfoSection = {
   flexDirection: 'row',
   padding: 8,
-  marginVertical: 24
+  marginVertical: 24,
+  alignContent: 'space-around'
 };
 
 export const infoSection = {
-  padding: 8,
+  paddingLeft: 8,
+  paddingRight: 64,
   justifyContent: 'center'
 };
 
