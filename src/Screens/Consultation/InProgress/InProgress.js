@@ -29,7 +29,6 @@ const InProgress = (props) => {
       CoreServices.getConsultations({ params: { type: 'ongoing' } }).then(
         (res) => {
           setConsultations(res.payload.data.reverse());
-          console.log(res.payload.data);
           setIsLoaded(true);
         },
         (error) => {
