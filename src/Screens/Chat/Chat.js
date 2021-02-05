@@ -62,12 +62,6 @@ const Chat = (props) => {
     fetchConsultationPost();
   }, []);
 
-  const getUrlFromString = (string) => {
-    const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-
-    return string.match(expression);
-  };
-
   const renderItem = ({ item }) => {
     if (item.voice_note_id !== null) {
       return (
