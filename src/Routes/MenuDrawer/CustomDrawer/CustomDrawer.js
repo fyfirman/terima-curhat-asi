@@ -70,10 +70,15 @@ const CustomDrawer = (props) => {
   };
 
   const changeAvatar = () => {
-    showPicker();
+    showPicker(handleSubmitWithImage, () => {
+      ToastAndroid.show(
+        'Anda membatalkan ganti foto profile',
+        ToastAndroid.SHORT
+      );
+    });
   };
 
-  const showPicker = () => {
+  const showPicker = (success, abort) => {
     const options = {
       title: 'Pilih foto',
       takePhotoButtonTitle: 'Buka kamera',
@@ -88,18 +93,15 @@ const CustomDrawer = (props) => {
       if (response.error) {
         ToastAndroid.show(response.error, ToastAndroid.LONG);
       } else if (response.didCancel) {
-        ToastAndroid.show(
-          'Anda membatalkan ganti foto profile',
-          ToastAndroid.SHORT
-        );
+        abort();
       } else {
-        handleSubmitWithImage(response);
+        success();
       }
     });
   };
 
   const handleSubmitWithImage = (imageData) => {
-    // Change this
+    // TODO: Change this
     console.log('Success');
   };
 
