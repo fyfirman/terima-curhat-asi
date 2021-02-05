@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Image, Modal, TouchableOpacity } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { Avatar } from '../../../../Components';
-// import { StringHelper } from '../../../Helper';
+import { Avatar, HighlightUrlText } from '../../../../Components';
 import { TimeSection } from './TimeSection';
 import * as styles from './styles';
 
@@ -60,7 +59,11 @@ const ChatBubble = (props) => {
               />
             </TouchableOpacity>
           )}
-          {!imageResource && <Text style={styles.message}>{message}</Text>}
+          {!imageResource && (
+            <HighlightUrlText style={styles.message}>
+              {message}
+            </HighlightUrlText>
+          )}
           <TimeSection date={dateSent} />
         </View>
       </View>

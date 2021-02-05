@@ -5,7 +5,7 @@ import * as styles from './styles';
 import { StringHelper } from '../../Helper';
 
 const propTypes = {
-  text: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   style: PropTypes.objectOf(PropTypes.any)
 };
 
@@ -14,14 +14,14 @@ const defaultProps = {
 };
 
 const HighlightUrlText = (props) => {
-  const { text, style } = props;
+  const { children, style } = props;
 
   const openUrl = (url) => {
     Linking.openURL(url.includes('http') ? url : `https://${url}`);
   };
 
   const formatUrl = () =>
-    text.split(' ').map((word) => {
+    children.split(' ').map((word) => {
       if (StringHelper.isUrl(word)) {
         return (
           <Text
