@@ -7,3 +7,4 @@ export { default as Article } from './Article';
 export { default as Help } from './Help';
 export { default as ProfileMom } from './ProfileMom';
 export { default as ArticleViewer } from './ArticleViewer';
+export { default as ProfileSelf } from './ProfileSelf';

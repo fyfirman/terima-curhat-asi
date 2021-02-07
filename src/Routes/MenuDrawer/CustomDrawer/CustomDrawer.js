@@ -158,7 +158,10 @@ const CustomDrawer = (props) => {
 
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.root}>
-      <TouchableOpacity style={styles.userInfoSection} onPress={changeAvatar}>
+      <TouchableOpacity
+        style={styles.userInfoSection}
+        onPress={() => navigation.navigate('ProfileSelf')}
+      >
         {renderAvatar()}
         <View style={styles.infoSection}>
           <Text style={styles.name}>

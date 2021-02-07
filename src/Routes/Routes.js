@@ -14,7 +14,8 @@ import {
   Chat,
   Invite,
   ProfileMom,
-  ArticleViewer
+  ArticleViewer,
+  ProfileSelf
 } from '../Screens';
 import { HeaderOptions } from '../Theme';
 import { LoadingScreen } from '../Components';
@@ -92,6 +93,13 @@ const Routes = (props) => {
               component={ProfileMom}
               options={({ navigation }) =>
                 HeaderOptions.withBack(navigation, 'Profil Ibu & Keluarga')
+              }
+            />
+            <Stack.Screen
+              name="ProfileSelf"
+              component={ProfileSelf}
+              options={({ navigation }) =>
+                HeaderOptions.withBack(navigation, 'Profil Saya')
               }
             />
           </Stack.Navigator>
