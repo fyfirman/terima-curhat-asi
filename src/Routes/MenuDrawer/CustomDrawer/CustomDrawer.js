@@ -11,7 +11,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ImagePicker from 'react-native-image-picker';
 import { SessionAction, UserAction } from '../../../Redux/Actions';
 
 import { Colors } from '../../../Theme';
@@ -67,60 +66,6 @@ const CustomDrawer = (props) => {
     flushSession();
     flushUser();
     navigation.navigate('Login');
-  };
-
-  const changeAvatar = () => {
-    showPicker(handleSubmitWithImage, () => {
-      ToastAndroid.show(
-        'Anda membatalkan ganti foto profile',
-        ToastAndroid.SHORT
-      );
-    });
-  };
-
-  const showPicker = (success, abort) => {
-    const options = {
-      title: 'Pilih foto',
-      takePhotoButtonTitle: 'Buka kamera',
-      chooseFromLibraryButtonTitle: 'Pilih dari galeri',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images'
-      }
-    };
-
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.error) {
-        ToastAndroid.show(response.error, ToastAndroid.LONG);
-      } else if (response.didCancel) {
-        abort();
-      } else {
-        success(response);
-      }
-    });
-  };
-
-  const handleSubmitWithImage = (imageData) => {
-    const body = {
-      mime_type: imageData.type,
-      picture: {
-        uri: imageData.uri,
-        type: imageData.type,
-        name: imageData.fileName
-      }
-    };
-
-    CoreServices.postChangeProfilePicture(body).then(
-      (res) => {
-        // TODO: fix this after backend fixed
-        ToastAndroid.show(`Berhasil mengganti foto profile`, ToastAndroid.LONG);
-        console.log(res);
-      },
-      (error) => {
-        ToastAndroid.show(`Error : ${error.message}`, ToastAndroid.LONG);
-        console.error(error);
-      }
-    );
   };
 
   const renderAvatar = () => {

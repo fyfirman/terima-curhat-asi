@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native';
 import PropTypes from 'prop-types';
+import { ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import ImagePicker from 'react-native-image-picker';
+import { CoreServices } from '../../Services';
 import { ProfileInfoItem } from '../../Components';
 import { TopSection } from './Components';
 
@@ -13,6 +14,60 @@ const propTypes = {
 const defaultProps = {};
 
 const ProfileSelf = ({ user }) => {
+  const handleChangeAvatar = () => {
+    showPicker(handleSubmitWithImage, () => {
+      ToastAndroid.show(
+        'Anda membatalkan ganti foto profile',
+        ToastAndroid.SHORT
+      );
+    });
+  };
+
+  const showPicker = (success, abort) => {
+    const options = {
+      title: 'Pilih foto',
+      takePhotoButtonTitle: 'Buka kamera',
+      chooseFromLibraryButtonTitle: 'Pilih dari galeri',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.error) {
+        ToastAndroid.show(response.error, ToastAndroid.LONG);
+      } else if (response.didCancel) {
+        abort();
+      } else {
+        success(response);
+      }
+    });
+  };
+
+  const handleSubmitWithImage = (imageData) => {
+    const body = {
+      mime_type: imageData.type,
+      picture: {
+        uri: imageData.uri,
+        type: imageData.type,
+        name: imageData.fileName
+      }
+    };
+
+    CoreServices.postChangeProfilePicture(body).then(
+      (res) => {
+        // TODO: fix this after backend fixed
+        ToastAndroid.show(`Berhasil mengganti foto profile`, ToastAndroid.LONG);
+        console.log(res);
+      },
+      (error) => {
+        ToastAndroid.show(`Error : ${error.message}`, ToastAndroid.LONG);
+        console.error(error);
+      }
+    );
+  };
+
   return (
     <>
       <TopSection

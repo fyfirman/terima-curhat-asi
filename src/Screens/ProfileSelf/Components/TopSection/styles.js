@@ -9,7 +9,8 @@ export const topSection = {
 };
 
 export const infoContainer = {
-  padding: 8,
+  paddingVertical: 8,
+  paddingHorizontal: 16,
   justifyContent: 'space-around'
 };
 
@@ -22,4 +23,11 @@ export const secondary = {
   fontFamily: FontFamily.OpenSans.regular,
   fontSize: 14,
   color: Colors.textSecondary
+};
+
+export const changePhoto = {
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 11,
+  color: Colors.textSecondary,
+  textAlign: 'center'
 };
