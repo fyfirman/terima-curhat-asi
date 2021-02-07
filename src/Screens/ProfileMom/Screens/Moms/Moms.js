@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
-import { InfoItem } from '../../Components';
+import { ProfileInfoItem } from '../../../../Components';
 import { StringHelper } from '../../../../Helper';
 
 const propTypes = {
@@ -16,27 +16,30 @@ const Moms = (props) => {
 
   return (
     <ScrollView>
-      <InfoItem label="Nama" info={user.profile?.name} />
+      <ProfileInfoItem label="Nama" info={user.profile?.name} />
       {/* TODO: format date of birth */}
-      <InfoItem label="Umur" info={user.profile?.age.toString()} />
-      <InfoItem label="Tanggal Lahir" info={user.profile?.dob} />
-      <InfoItem
+      <ProfileInfoItem label="Umur" info={user.profile?.age.toString()} />
+      <ProfileInfoItem label="Tanggal Lahir" info={user.profile?.dob} />
+      <ProfileInfoItem
         label="Agama"
         info={StringHelper.toTitleCase(user.profile?.religion || '')}
       />
-      <InfoItem label="Golongan Darah" info={user.profile?.blood_type} />
-      <InfoItem
+      <ProfileInfoItem label="Golongan Darah" info={user.profile?.blood_type} />
+      <ProfileInfoItem
         label="Status Pernikahan"
         info={user.profile?.marital_status_text}
       />
-      <InfoItem label="Pendidikan" info={user.profile?.education_text} />
-      <InfoItem
+      <ProfileInfoItem label="Pendidikan" info={user.profile?.education_text} />
+      <ProfileInfoItem
         label="Pekerjaan/Profesi"
         info={user.profile?.occupation.name}
       />
-      <InfoItem label="Alamat" info={user.profile?.full_address} />
-      <InfoItem label="Tinggal Dengan" info={user.profile?.housemate_text} />
-      <InfoItem
+      <ProfileInfoItem label="Alamat" info={user.profile?.full_address} />
+      <ProfileInfoItem
+        label="Tinggal Dengan"
+        info={user.profile?.housemate_text}
+      />
+      <ProfileInfoItem
         label="Kepemilikan Rumah"
         info={user.profile?.house_ownership_text}
       />

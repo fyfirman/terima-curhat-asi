@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, ScrollView } from 'react-native';
-import { InfoItem } from '../../Components';
+import { ProfileInfoItem } from '../../../../Components';
 import * as styles from './styles';
 import { StringHelper } from '../../../../Helper';
 
@@ -17,16 +17,19 @@ const Husband = (props) => {
 
   return husband ? (
     <ScrollView>
-      <InfoItem label="Relasi" info={husband.relation_type_text} />
-      <InfoItem label="Nama" info={husband.name} />
-      <InfoItem label="Tempat Lahir" info={husband.pob} />
-      <InfoItem label="Tanggal Lahir" info={husband.dob} />
-      <InfoItem
+      <ProfileInfoItem label="Relasi" info={husband.relation_type_text} />
+      <ProfileInfoItem label="Nama" info={husband.name} />
+      <ProfileInfoItem label="Tempat Lahir" info={husband.pob} />
+      <ProfileInfoItem label="Tanggal Lahir" info={husband.dob} />
+      <ProfileInfoItem
         label="Agama"
         info={StringHelper.toTitleCase(husband.religion || '')}
       />
-      <InfoItem label="Pendidikan" info={husband.education_text} />
-      <InfoItem label="Pekerjaan/Profesi" info={husband.occupation_name} />
+      <ProfileInfoItem label="Pendidikan" info={husband.education_text} />
+      <ProfileInfoItem
+        label="Pekerjaan/Profesi"
+        info={husband.occupation_name}
+      />
     </ScrollView>
   ) : (
     <View style={styles.infoContainer}>

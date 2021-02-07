@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, ScrollView } from 'react-native';
-import { InfoItem } from '../../Components';
+import { ProfileInfoItem } from '../../../../Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -16,28 +16,28 @@ const Pregnancy = (props) => {
 
   return pregnancy ? (
     <ScrollView>
-      <InfoItem
+      <ProfileInfoItem
         label="Tinggi Badan Sebelum Hamil"
         info={`${pregnancy.height_before} cm`}
       />
-      <InfoItem
+      <ProfileInfoItem
         label="Tinggi Badan Setelah Hamil"
         info={`${pregnancy.height_during} cm`}
       />
-      <InfoItem
+      <ProfileInfoItem
         label="Berat Badan Sebelum Hamil"
         info={`${pregnancy.weight_before} kg`}
       />
-      <InfoItem
+      <ProfileInfoItem
         label="Berat Badan Setelah Hamil"
         info={`${pregnancy.weight_during} kg`}
       />
-      <InfoItem
+      <ProfileInfoItem
         label="Pernah Keguguran"
         info={pregnancy.abortus_experienced ? 'Ya' : 'Tidak'}
       />
-      <InfoItem label="Kehamilan ke-" info={pregnancy.pregnancy_num} />
-      <InfoItem
+      <ProfileInfoItem label="Kehamilan ke-" info={pregnancy.pregnancy_num} />
+      <ProfileInfoItem
         label="Penyakit/Keluhan Saat Hamil"
         info={pregnancy.pregnancy_complaints}
       />

@@ -9,3 +9,4 @@ export { default as EmptyInfo } from './EmptyInfo';
 export { default as ArticleCard } from './ArticleCard';
 export { default as CustomHeaderWebView } from './CustomHeaderWebView';
 export { default as HighlightUrlText } from './HighlightUrlText';
+export { default as ProfileInfoItem } from './ProfileInfoItem';

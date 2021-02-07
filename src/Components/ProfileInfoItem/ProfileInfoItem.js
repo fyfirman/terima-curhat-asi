@@ -10,7 +10,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const InfoItem = (props) => {
+const ProfileInfoItem = (props) => {
   const { label, info } = props;
 
   return (
@@ -21,7 +21,7 @@ const InfoItem = (props) => {
   );
 };
 
-InfoItem.propTypes = propTypes;
-InfoItem.defaultProps = defaultProps;
+ProfileInfoItem.propTypes = propTypes;
+ProfileInfoItem.defaultProps = defaultProps;
 
-export default InfoItem;
+export default ProfileInfoItem;

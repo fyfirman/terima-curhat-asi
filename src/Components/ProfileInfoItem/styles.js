@@ -1,4 +1,4 @@
-import { Colors, FontFamily } from '../../../../Theme';
+import { Colors, FontFamily } from '../../Theme';
 
 export const root = {
   backgroundColor: 'white',

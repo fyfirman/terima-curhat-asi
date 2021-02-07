@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, ScrollView } from 'react-native';
-import { InfoItem } from '../../Components';
+import { ProfileInfoItem } from '../../../../Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -29,23 +29,26 @@ const Baby = (props) => {
 
   return baby ? (
     <ScrollView>
-      <InfoItem
+      <ProfileInfoItem
         label="Usia Kehamilan Saat Melahirkan"
         info={`${baby.pregnancy_weeks} minggu`}
       />
-      <InfoItem label="Berat Badan Bayi" info={`${baby.weight} kg`} />
-      <InfoItem label="Panjang Badan Bayi" info={`${baby.height} cm`} />
-      <InfoItem label="Diameter Kepala Bayi" info={`${baby.diameter} cm`} />
-      <InfoItem
+      <ProfileInfoItem label="Berat Badan Bayi" info={`${baby.weight} kg`} />
+      <ProfileInfoItem label="Panjang Badan Bayi" info={`${baby.height} cm`} />
+      <ProfileInfoItem
+        label="Diameter Kepala Bayi"
+        info={`${baby.diameter} cm`}
+      />
+      <ProfileInfoItem
         label="Jenis Kelamin"
         info={baby.gender === 'male' ? 'Laki-laki' : 'Perempuan'}
       />
-      <InfoItem label="IMD" info={baby.imd ? 'Ya' : 'Tidak'} />
-      <InfoItem
+      <ProfileInfoItem label="IMD" info={baby.imd ? 'Ya' : 'Tidak'} />
+      <ProfileInfoItem
         label="Peletakan 1 jam"
         info={baby.one_hour_init ? 'Ya' : 'Tidak'}
       />
-      <InfoItem label="Asupan" info={getFeeds()} />
+      <ProfileInfoItem label="Asupan" info={getFeeds()} />
     </ScrollView>
   ) : (
     <View style={styles.infoContainer}>
