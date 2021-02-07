@@ -30,6 +30,8 @@ const postStoreConsultationPost = (id, data) =>
   post(`api/consultations/${id}/consultation_posts`, data, Config.withToken());
 const postInviteUserToConsultation = (id, userId) =>
   post(`api/consultations/${id}/invite/${userId}`, null, Config.withToken());
+const postChangeProfilePicture = (data) =>
+  post(`api/profile/picture`, data, Config.withToken());
 
 // Put
 const putCloseConsulation = (id) =>
@@ -51,6 +53,7 @@ const CoreServices = {
   postRejectConsultation,
   postStoreConsultationPost,
   postInviteUserToConsultation,
+  postChangeProfilePicture,
   putCloseConsulation
 };
 

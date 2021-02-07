@@ -95,14 +95,32 @@ const CustomDrawer = (props) => {
       } else if (response.didCancel) {
         abort();
       } else {
-        success();
+        success(response);
       }
     });
   };
 
   const handleSubmitWithImage = (imageData) => {
-    // TODO: Change this
-    console.log('Success');
+    const body = {
+      mime_type: imageData.type,
+      picture: {
+        uri: imageData.uri,
+        type: imageData.type,
+        name: imageData.fileName
+      }
+    };
+
+    CoreServices.postChangeProfilePicture(body).then(
+      (res) => {
+        // TODO: fix this after backend fixed
+        ToastAndroid.show(`Berhasil mengganti foto profile`, ToastAndroid.LONG);
+        console.log(res);
+      },
+      (error) => {
+        ToastAndroid.show(`Error : ${error.message}`, ToastAndroid.LONG);
+        console.error(error);
+      }
+    );
   };
 
   const renderAvatar = () => {
