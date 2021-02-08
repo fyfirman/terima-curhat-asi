@@ -25,7 +25,6 @@ const defaultProps = {
 };
 
 const ChatBubble = (props) => {
-  // TODO: check this photoUri input
   const {
     message,
     senderName,
