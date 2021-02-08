@@ -83,9 +83,7 @@ const CustomDrawer = (props) => {
       return (
         <Avatar.Image
           source={{
-            uri:
-              user.profile?.picture ??
-              'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg'
+            uri: user.profile?.picture?.original
           }}
           size={64}
         />
