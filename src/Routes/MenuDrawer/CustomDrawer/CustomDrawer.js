@@ -6,7 +6,6 @@ import {
   DrawerItemList,
   DrawerItem
 } from '@react-navigation/drawer';
-import { Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 // Redux
 import { bindActionCreators } from 'redux';
@@ -14,7 +13,7 @@ import { connect } from 'react-redux';
 import { SessionAction, UserAction } from '../../../Redux/Actions';
 
 import { Colors } from '../../../Theme';
-import { PromptDialog } from '../../../Components';
+import { Avatar, PromptDialog } from '../../../Components';
 import { CoreServices, PusherBeamsServices } from '../../../Services';
 import { getInitial } from '../../../Helper';
 import * as styles from './styles';
@@ -70,33 +69,16 @@ const CustomDrawer = (props) => {
 
   const renderAvatar = () => {
     if (profileIsLoaded) {
-      if (user.profile?.picture === null) {
-        return (
-          <Avatar.Text
-            label={getInitial(user.profile?.name)}
-            size={64}
-            labelStyle={styles.avatarTextLabel}
-            style={styles.avatarText}
-          />
-        );
-      }
       return (
-        <Avatar.Image
-          source={{
-            uri: user.profile?.picture?.original
-          }}
+        <Avatar
+          name={getInitial(user.profile?.name)}
+          style={styles.avatarText}
+          photo={user.profile?.picture?.original}
           size={64}
         />
       );
     }
-    return (
-      <Avatar.Text
-        label=""
-        size={64}
-        labelStyle={styles.avatarTextLabel}
-        style={styles.avatarText}
-      />
-    );
+    return <Avatar name="" size={64} style={styles.avatarText} />;
   };
 
   return (
