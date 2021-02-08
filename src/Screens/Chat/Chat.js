@@ -70,6 +70,7 @@ const Chat = (props) => {
           time={DateFormatter.convertStringToDate(item.created_at)}
           self={item.user.id === user.id}
           voiceNote={UriHelper.getStorage(item.voice_note.original)}
+          photoUri={item.user.profile?.picture?.original}
         />
       );
     }
@@ -82,6 +83,7 @@ const Chat = (props) => {
         imageResource={
           item.picture_id ? UriHelper.getStorage(item.picture.original) : null
         }
+        photoUri={item.user.profile?.picture?.original}
       />
     );
     return chatBubble;

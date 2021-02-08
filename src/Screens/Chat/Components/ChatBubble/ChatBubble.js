@@ -11,7 +11,7 @@ const propTypes = {
   senderName: PropTypes.string,
   dateSent: PropTypes.instanceOf(Date),
   self: PropTypes.bool,
-  avatar: PropTypes.string,
+  photoUri: PropTypes.string,
   imageResource: PropTypes.string
 };
 
@@ -20,13 +20,20 @@ const defaultProps = {
   senderName: 'User',
   dateSent: new Date(),
   self: false,
-  avatar: null,
+  photoUri: null,
   imageResource: null
 };
 
 const ChatBubble = (props) => {
-  // TODO: check this avatar input
-  const { message, senderName, dateSent, self, avatar, imageResource } = props;
+  // TODO: check this photoUri input
+  const {
+    message,
+    senderName,
+    dateSent,
+    self,
+    photoUri,
+    imageResource
+  } = props;
   const [imageViewer, setImageViewer] = useState(false);
 
   return (
@@ -45,7 +52,7 @@ const ChatBubble = (props) => {
         {!self && (
           <Avatar
             name={senderName ?? 'User'}
-            photo={avatar}
+            photo={photoUri}
             size={40}
             style={styles.ava}
           />

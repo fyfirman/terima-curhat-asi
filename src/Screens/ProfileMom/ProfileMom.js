@@ -46,7 +46,7 @@ const ProfileMom = (props) => {
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}
-        photo={profile.picture}
+        photo={user.profile?.picture?.original}
       />
 
       {isLoaded ? (
