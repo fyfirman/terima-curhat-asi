@@ -35,16 +35,14 @@ const ChatItem = (props) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Avatar name={name ?? 'User'} photo={photo} size={40} />
+      <Avatar name={name ?? 'User'} photo={photo} size={55} />
       <View style={styles.infoContainer}>
         <View style={styles.topSection}>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.time}>{`Tanggal dibuat : ${renderTime()}`}</Text>
-          {/* <Text style={styles.time}>{renderTime()}</Text> */}
         </View>
         <Text style={styles.message} numberOfLines={1}>
           {`Keluhan : ${description}`}
-          {/* {lastPost ? lastPost.message : 'Tidak ada pesan'} */}
         </Text>
       </View>
     </TouchableOpacity>
