@@ -15,7 +15,6 @@ import { SessionAction, UserAction } from '../../../Redux/Actions';
 import { Colors } from '../../../Theme';
 import { Avatar, PromptDialog } from '../../../Components';
 import { CoreServices, PusherBeamsServices } from '../../../Services';
-import { getInitial } from '../../../Helper';
 import * as styles from './styles';
 import BeamsInterest from '../../../Constant/BeamsInterest';
 
