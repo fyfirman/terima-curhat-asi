@@ -74,6 +74,7 @@ const Invite = (props) => {
       name={item.profile.name}
       domicile={item.profile.domicile}
       onPress={() => handleInvite(item.id)}
+      photo={item.profile?.picture?.original}
     />
   );
 
