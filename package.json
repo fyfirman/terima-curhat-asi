@@ -8,7 +8,9 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ./src && prettier --write ./src",
-    "release": "react-native run-android --variant=release"
+    "release": "react-native run-android --variant=release",
+    "build-assemble": "set ENVFILE=.env.production && cd android && gradlew assembleRelease", 
+    "build-bundle": "set ENVFILE=.env.production && cd android && gradlew bundleRelease" 
   },
   "dependencies": {
     "@codler/react-native-keyboard-aware-scroll-view": "git+https://github.com/codler/react-native-keyboard-aware-scroll-view.git",
