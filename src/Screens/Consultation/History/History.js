@@ -47,6 +47,7 @@ const History = (props) => {
       createdAt={item.created_at}
       name={item.user.profile?.name}
       onPress={() => navigation.navigate('Chat', { consultation: item })}
+      photo={item.user.profile?.picture?.original}
     />
   );
 
