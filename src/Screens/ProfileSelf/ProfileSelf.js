@@ -3,19 +3,22 @@ import PropTypes from 'prop-types';
 import { ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
+import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
+import { UserAction } from '../../Redux/Actions';
 import { ProfileInfoItem } from '../../Components';
 import { TopSection } from './Components';
 
 const propTypes = {
-  user: PropTypes.objectOf(PropTypes.any).isRequired
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  setUser: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
-const ProfileSelf = ({ user }) => {
+const ProfileSelf = ({ user, setUser }) => {
   const handleChangeAvatar = () => {
-    showPicker(handleSubmitWithImage, () => {
+    showPicker(sendImageToServer, () => {
       ToastAndroid.show(
         'Anda membatalkan ganti foto profile',
         ToastAndroid.SHORT
@@ -45,9 +48,8 @@ const ProfileSelf = ({ user }) => {
     });
   };
 
-  const handleSubmitWithImage = (imageData) => {
+  const sendImageToServer = (imageData) => {
     const body = {
-      mime_type: imageData.type,
       picture: {
         uri: imageData.uri,
         type: imageData.type,
@@ -56,10 +58,9 @@ const ProfileSelf = ({ user }) => {
     };
 
     CoreServices.postChangeProfilePicture(body).then(
-      (res) => {
-        // TODO: fix this after backend fixed
+      () => {
+        refreshUser();
         ToastAndroid.show(`Berhasil mengganti foto profile`, ToastAndroid.LONG);
-        console.log(res);
       },
       (error) => {
         ToastAndroid.show(`Error : ${error.message}`, ToastAndroid.LONG);
@@ -68,12 +69,31 @@ const ProfileSelf = ({ user }) => {
     );
   };
 
+  const refreshUser = () => {
+    CoreServices.getProfile()
+      .then(
+        (res) => {
+          setUser(res.payload);
+        },
+        (error) => {
+          if (error.response === null) {
+            throw error;
+          }
+        }
+      )
+      .catch((error) => {
+        ToastAndroid.show('Tidak terkoneksi dengan server', ToastAndroid.SHORT);
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}
         userGroup={user.user_group.name}
+        handlePressPhoto={() => handleChangeAvatar}
       />
 
       <ProfileInfoItem
@@ -104,4 +124,8 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, null)(ProfileSelf);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(UserAction, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileSelf);
