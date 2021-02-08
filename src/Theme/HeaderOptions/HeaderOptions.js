@@ -1,6 +1,5 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Chat from './Chat';
 import * as styles from './styles';
 
 const ICON_SIZE = 30;
@@ -43,8 +42,7 @@ const withMenu = (navigation, title) => {
 
 const HeaderOptions = {
   withBack,
-  withMenu,
-  Chat
+  withMenu
 };
 
 export default HeaderOptions;
