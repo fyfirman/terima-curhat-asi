@@ -46,7 +46,7 @@ const New = (props) => {
       onPress={() => {
         navigation.navigate('ProfileMom', { user: item.user });
       }}
-      photo={item.user.profile?.photo}
+      photo={item.user.profile?.picture?.original}
       navigation={navigation}
     />
   );
