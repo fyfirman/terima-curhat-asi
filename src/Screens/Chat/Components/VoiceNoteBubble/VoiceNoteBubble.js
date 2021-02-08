@@ -49,7 +49,12 @@ const ChatBubble = (props) => {
   return (
     <View style={styles.root(self)}>
       {!self && (
-        <Avatar style={styles.ava} size={40} name={senderName} photo={avatar} />
+        <Avatar
+          name={senderName ?? 'User'}
+          photo={avatar}
+          size={40}
+          style={styles.ava}
+        />
       )}
       <View style={styles.container(self)}>
         {!self && <Text style={styles.name}>{senderName}</Text>}

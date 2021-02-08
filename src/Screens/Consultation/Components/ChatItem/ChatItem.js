@@ -35,7 +35,7 @@ const ChatItem = (props) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Avatar name={name} photo={photo} size={55} />
+      <Avatar name={name ?? 'User'} photo={photo} size={40} />
       <View style={styles.infoContainer}>
         <View style={styles.topSection}>
           <Text style={styles.name}>{name}</Text>

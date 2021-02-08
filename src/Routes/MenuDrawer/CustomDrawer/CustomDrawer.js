@@ -71,7 +71,7 @@ const CustomDrawer = (props) => {
     if (profileIsLoaded) {
       return (
         <Avatar
-          name={getInitial(user.profile?.name)}
+          name={user.profile?.name}
           style={styles.avatarText}
           photo={user.profile?.picture?.original}
           size={64}

@@ -54,7 +54,7 @@ const ChatAppBar = (props) => {
         />
         <Avatar
           name={user.profile?.name}
-          photo={user.photo ? user.photo : null}
+          photo={user.profile?.picture?.original}
           size={36}
         />
       </TouchableOpacity>

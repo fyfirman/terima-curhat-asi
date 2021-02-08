@@ -25,6 +25,7 @@ const defaultProps = {
 };
 
 const ChatBubble = (props) => {
+  // TODO: check this avatar input
   const { message, senderName, dateSent, self, avatar, imageResource } = props;
   const [imageViewer, setImageViewer] = useState(false);
 
@@ -43,10 +44,10 @@ const ChatBubble = (props) => {
       <View style={styles.root(self)}>
         {!self && (
           <Avatar
-            style={styles.ava}
-            size={40}
-            name={senderName || 'User'}
+            name={senderName ?? 'User'}
             photo={avatar}
+            size={40}
+            style={styles.ava}
           />
         )}
         <View style={styles.container(self)}>

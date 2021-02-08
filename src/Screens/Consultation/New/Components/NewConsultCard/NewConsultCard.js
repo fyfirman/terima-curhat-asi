@@ -25,7 +25,7 @@ const NewConsultCard = (props) => {
 
   const handleReject = () => {
     CoreServices.postRejectConsultation(consultation.id).then(
-      (res) => {
+      () => {
         ToastAndroid.show(
           'Permintaan konsultasi telah ditolak',
           ToastAndroid.SHORT
@@ -40,7 +40,7 @@ const NewConsultCard = (props) => {
 
   const handleAccept = () => {
     CoreServices.postAcceptConsultation(consultation.id).then(
-      (res) => {
+      () => {
         PusherBeamsServices.subscribe(
           BeamsInterest.CONSULTATION + consultation.id
         );

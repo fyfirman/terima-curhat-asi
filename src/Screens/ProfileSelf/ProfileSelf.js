@@ -93,7 +93,8 @@ const ProfileSelf = ({ user, setUser }) => {
         name={user.profile?.name}
         phoneNumber={user.username}
         userGroup={user.user_group.name}
-        handlePressPhoto={() => handleChangeAvatar}
+        handlePressPhoto={handleChangeAvatar}
+        photo={user.profile?.picture?.original}
       />
 
       <ProfileInfoItem
@@ -110,7 +111,7 @@ const ProfileSelf = ({ user, setUser }) => {
       <ProfileInfoItem
         label="Provinsi"
         info={
-          user?.profile?.village?.sub_district?.district?.province?.name ?? '-'
+          user.profile?.village?.sub_district?.district?.province?.name ?? '-'
         }
       />
     </>

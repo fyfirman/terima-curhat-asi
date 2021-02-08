@@ -21,7 +21,7 @@ const ChatItem = (props) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Avatar name={name} style={styles.ava} photo={photo || null} size={55} />
+      <Avatar name={name} photo={photo} size={55} style={styles.ava} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.status}>
