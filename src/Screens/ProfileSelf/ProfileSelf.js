@@ -100,19 +100,30 @@ const ProfileSelf = ({ user, setUser }) => {
       <ProfileInfoItem
         label="Tempat, Tanggal Lahir"
         info={`${user?.profile?.pob}, ${user?.profile?.dob}`}
+        editable
       />
-      <ProfileInfoItem label="Umur" info={user?.profile?.age} />
+      <ProfileInfoItem label="Umur" info={user?.profile?.age} editable />
       <ProfileInfoItem
         label="Jenis Kelamin"
         info={user?.profile?.gender === 'female' ? 'Perempuan' : 'Laki-Laki'}
+        editable
       />
-      <ProfileInfoItem label="Alamat" info={user?.profile?.address ?? '-'} />
-      <ProfileInfoItem label="Domisili" info={user?.profile?.domicile ?? '-'} />
+      <ProfileInfoItem
+        label="Alamat"
+        info={user?.profile?.address ?? '-'}
+        editable
+      />
+      <ProfileInfoItem
+        label="Domisili"
+        info={user?.profile?.domicile ?? '-'}
+        editable
+      />
       <ProfileInfoItem
         label="Provinsi"
         info={
           user.profile?.village?.sub_district?.district?.province?.name ?? '-'
         }
+        editable
       />
     </>
   );

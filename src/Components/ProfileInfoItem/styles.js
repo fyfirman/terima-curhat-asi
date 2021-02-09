@@ -4,7 +4,9 @@ export const root = {
   backgroundColor: 'white',
   padding: 16,
   borderBottomWidth: 1,
-  borderBottomColor: Colors.borderBottomCard
+  borderBottomColor: Colors.borderBottomCard,
+  flexDirection: 'row',
+  justifyContent: 'space-between'
 };
 
 export const label = {
