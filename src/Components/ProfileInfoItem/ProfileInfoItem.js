@@ -8,15 +8,17 @@ import * as styles from './styles';
 const propTypes = {
   label: PropTypes.string.isRequired,
   info: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  editable: PropTypes.bool
+  editable: PropTypes.bool,
+  onPressEditButton: PropTypes.func
 };
 
 const defaultProps = {
-  editable: false
+  editable: false,
+  onPressEditButton: () => {}
 };
 
 const ProfileInfoItem = (props) => {
-  const { label, info, editable } = props;
+  const { label, info, editable, onPressEditButton } = props;
 
   return (
     <View style={styles.root}>
@@ -25,7 +27,12 @@ const ProfileInfoItem = (props) => {
         <Text style={styles.info}>{info !== null ? info : '-'}</Text>
       </View>
       {editable && (
-        <IconButton icon="pencil" size={24} color={Colors.textSecondary} />
+        <IconButton
+          icon="pencil"
+          size={24}
+          color={Colors.textSecondary}
+          onPress={onPressEditButton}
+        />
       )}
     </View>
   );

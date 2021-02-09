@@ -87,6 +87,10 @@ const ProfileSelf = ({ user, setUser }) => {
       });
   };
 
+  const handleEdit = () => {
+    console.log('Edit pressed');
+  };
+
   return (
     <>
       <TopSection
@@ -100,22 +104,31 @@ const ProfileSelf = ({ user, setUser }) => {
       <ProfileInfoItem
         label="Tempat, Tanggal Lahir"
         info={`${user?.profile?.pob}, ${user?.profile?.dob}`}
+        onPressEditButton={handleEdit}
         editable
       />
-      <ProfileInfoItem label="Umur" info={user?.profile?.age} editable />
+      <ProfileInfoItem
+        label="Umur"
+        info={user?.profile?.age}
+        onPressEditButton={handleEdit}
+        editable
+      />
       <ProfileInfoItem
         label="Jenis Kelamin"
         info={user?.profile?.gender === 'female' ? 'Perempuan' : 'Laki-Laki'}
+        onPressEditButton={handleEdit}
         editable
       />
       <ProfileInfoItem
         label="Alamat"
         info={user?.profile?.address ?? '-'}
+        onPressEditButton={handleEdit}
         editable
       />
       <ProfileInfoItem
         label="Domisili"
         info={user?.profile?.domicile ?? '-'}
+        onPressEditButton={handleEdit}
         editable
       />
       <ProfileInfoItem
@@ -123,6 +136,7 @@ const ProfileSelf = ({ user, setUser }) => {
         info={
           user.profile?.village?.sub_district?.district?.province?.name ?? '-'
         }
+        onPressEditButton={handleEdit}
         editable
       />
     </>
