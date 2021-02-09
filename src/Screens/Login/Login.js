@@ -140,6 +140,7 @@ const Login = (props) => {
             items={[
               { value: 'kdr', label: 'Kader' },
               { value: 'bdn', label: 'Bidan' },
+              { value: 'cons', label: 'Konselor' },
               { value: 'du', label: 'Dokter Umum' },
               { value: 'dsp', label: 'Dokter Spesialis/Ahli' }
             ]}
