@@ -130,6 +130,7 @@ const ProfileSelf = ({ user, setUser }) => {
           onSave={() => {
             console.log('Test');
           }}
+          header="Nama"
         />
       </Portal>
       <TopSection

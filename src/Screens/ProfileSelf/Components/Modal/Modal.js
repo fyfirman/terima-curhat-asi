@@ -10,13 +10,16 @@ const propTypes = {
   visible: PropTypes.bool.isRequired,
   onDismiss: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired
+  onSave: PropTypes.func.isRequired,
+  header: PropTypes.string
 };
 
-const defaultProps = {};
+const defaultProps = {
+  header: ''
+};
 
 const CustomModal = (props) => {
-  const { visible, onDismiss, onCancel, onSave } = props;
+  const { visible, onDismiss, onCancel, onSave, header } = props;
 
   return (
     <Modal
@@ -24,7 +27,7 @@ const CustomModal = (props) => {
       onDismiss={onDismiss}
       contentContainerStyle={styles.containerStyle}
     >
-      <Text style={styles.header}>Nama</Text>
+      <Text style={styles.header}>{header}</Text>
       <TextInput />
       <View style={styles.buttonModalContainer}>
         <Button title="Batalkan" onPress={onCancel} />
