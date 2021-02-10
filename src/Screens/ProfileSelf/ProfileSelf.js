@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ToastAndroid, View } from 'react-native';
-import { Modal, Portal, Text } from 'react-native-paper';
+import { Portal, Text } from 'react-native-paper';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
 import { ProfileInfoItem, TextInput } from '../../Components';
-import { TopSection, Button } from './Components';
+import { TopSection, Modal } from './Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -23,12 +23,6 @@ const ProfileSelf = ({ user, setUser }) => {
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const containerStyle = {
-    backgroundColor: 'white',
-    padding: 20,
-    margin: 20,
-    borderRadius: 4
-  };
 
   const handleChangeAvatar = () => {
     showPicker(sendImageToServer, () => {
@@ -113,7 +107,6 @@ const ProfileSelf = ({ user, setUser }) => {
       sub_district_id: user.profile?.village?.sub_district?.id,
       village_id: user.profile?.village?.id
     };
-    showModal();
 
     // CoreServices.postUpdateProfile(body).then(
     //   (res) => {
@@ -127,68 +120,50 @@ const ProfileSelf = ({ user, setUser }) => {
     // );
   };
 
-  const renderInputName = () => {
-    return <TextInput />;
-  };
-
   return (
     <>
       <Portal>
         <Modal
-          visible={visible}
           onDismiss={hideModal}
-          contentContainerStyle={containerStyle}
-        >
-          <Text style={styles.header}>Nama</Text>
-          {renderInputName()}
-          <View style={styles.buttonModalContainer}>
-            <Button
-              title="Batalkan"
-              onPress={() => {
-                console.log('tes');
-              }}
-            />
-            <Button
-              title="Simpan"
-              onPress={() => {
-                console.log('tes');
-              }}
-            />
-          </View>
-        </Modal>
+          onCancel={hideModal}
+          visible={visible}
+          onSave={() => {
+            console.log('Test');
+          }}
+        />
       </Portal>
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}
         userGroup={user.user_group.name}
         onPressPhoto={handleChangeAvatar}
-        onPressEditButton={handleEdit}
+        onPressEditButton={showModal}
         photo={user.profile?.picture?.original}
       />
 
       <ProfileInfoItem
         label="Tempat, Tanggal Lahir"
         info={`${user?.profile?.pob}, ${user?.profile?.dob}`}
-        onPressEditButton={handleEdit}
+        onPressEditButton={showModal}
         editable
       />
       <ProfileInfoItem label="Umur" info={user?.profile?.age} />
       <ProfileInfoItem
         label="Jenis Kelamin"
         info={user?.profile?.gender === 'female' ? 'Perempuan' : 'Laki-Laki'}
-        onPressEditButton={handleEdit}
+        onPressEditButton={showModal}
         editable
       />
       <ProfileInfoItem
         label="Alamat"
         info={user?.profile?.address ?? '-'}
-        onPressEditButton={handleEdit}
+        onPressEditButton={showModal}
         editable
       />
       <ProfileInfoItem
         label="Domisili"
         info={user?.profile?.domicile ?? '-'}
-        onPressEditButton={handleEdit}
+        onPressEditButton={showModal}
         editable
       />
       <ProfileInfoItem
@@ -196,7 +171,7 @@ const ProfileSelf = ({ user, setUser }) => {
         info={
           user.profile?.village?.sub_district?.district?.province?.name ?? '-'
         }
-        onPressEditButton={handleEdit}
+        onPressEditButton={showModal}
         editable
       />
     </>
