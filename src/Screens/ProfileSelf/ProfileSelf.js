@@ -134,24 +134,14 @@ const ProfileSelf = ({ user, setUser }) => {
     switch (modal) {
       case 'name':
         return (
-          <Modal
-            onDismiss={hideModal}
-            onCancel={hideModal}
-            visible={visible}
-            onSave={handleEdit}
-          >
+          <>
             <Text style={styles.header}>Nama</Text>
             <TextInput onChangeText={(text) => setName(text)} />
-          </Modal>
+          </>
         );
       case 'birth':
         return (
-          <Modal
-            onDismiss={hideModal}
-            onCancel={hideModal}
-            visible={visible}
-            onSave={handleEdit}
-          >
+          <>
             <Text style={styles.header}>Tempat Lahir</Text>
             <TextInput onChangeText={(text) => setPob(text)} />
             <Text style={styles.header}>Tanggal Lahir</Text>
@@ -162,7 +152,7 @@ const ProfileSelf = ({ user, setUser }) => {
               mode="date"
               maximumDate={new Date('2000-12-31')}
             />
-          </Modal>
+          </>
         );
 
       default:
@@ -176,7 +166,16 @@ const ProfileSelf = ({ user, setUser }) => {
 
   return (
     <>
-      <Portal>{renderModal()}</Portal>
+      <Portal>
+        <Modal
+          onDismiss={hideModal}
+          onCancel={hideModal}
+          visible={visible}
+          onSave={handleEdit}
+        >
+          {renderModal()}
+        </Modal>
+      </Portal>
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}
