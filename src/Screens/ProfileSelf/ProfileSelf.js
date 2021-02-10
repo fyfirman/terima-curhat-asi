@@ -73,6 +73,7 @@ const ProfileSelf = ({ user, setUser }) => {
     CoreServices.getProfile()
       .then(
         (res) => {
+          console.log(res.payload);
           setUser(res.payload);
         },
         (error) => {
@@ -88,7 +89,28 @@ const ProfileSelf = ({ user, setUser }) => {
   };
 
   const handleEdit = () => {
-    console.log('Edit pressed');
+    const body = {
+      name: user.profile?.name,
+      pob: user?.profile?.pob,
+      dob: user?.profile?.dob,
+      gender: user?.profile?.gender,
+      address: user?.profile?.address,
+      province_id: user.profile?.village?.sub_district?.district?.province?.id,
+      district_id: user.profile?.village?.sub_district?.district?.id,
+      sub_district_id: user.profile?.village?.sub_district?.id,
+      village_id: user.profile?.village?.id
+    };
+
+    CoreServices.postUpdateProfile(body).then(
+      (res) => {
+        console.log(res.message);
+        refreshUser();
+      },
+      (error) => {
+        ToastAndroid.show(error.message, ToastAndroid.SHORT);
+        console.error(error);
+      }
+    );
   };
 
   return (
