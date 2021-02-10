@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ToastAndroid, View } from 'react-native';
+import { ToastAndroid } from 'react-native';
 import { Portal, Text } from 'react-native-paper';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
@@ -20,8 +20,13 @@ const defaultProps = {};
 
 const ProfileSelf = ({ user, setUser }) => {
   const [visible, setVisible] = useState(false);
+  const [modal, setModal] = useState(null);
 
-  const showModal = () => setVisible(true);
+  const showModal = (type) => {
+    setModal(type);
+    setVisible(true);
+  };
+
   const hideModal = () => setVisible(false);
 
   const handleChangeAvatar = () => {
@@ -120,6 +125,28 @@ const ProfileSelf = ({ user, setUser }) => {
     // );
   };
 
+  const renderModal = () => {
+    switch (modal) {
+      case 'name':
+        return (
+          <>
+            <Text style={styles.header}>Nama</Text>
+            <TextInput />
+          </>
+        );
+      case 'birth':
+        return (
+          <>
+            <Text style={styles.header}>Tanggal lahir</Text>
+            <TextInput />
+          </>
+        );
+
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       <Portal>
@@ -130,41 +157,42 @@ const ProfileSelf = ({ user, setUser }) => {
           onSave={() => {
             console.log('Test');
           }}
-          header="Nama"
-        />
+        >
+          {renderModal()}
+        </Modal>
       </Portal>
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}
         userGroup={user.user_group.name}
         onPressPhoto={handleChangeAvatar}
-        onPressEditButton={showModal}
+        onPressEditButton={() => showModal('name')}
         photo={user.profile?.picture?.original}
       />
 
       <ProfileInfoItem
         label="Tempat, Tanggal Lahir"
         info={`${user?.profile?.pob}, ${user?.profile?.dob}`}
-        onPressEditButton={showModal}
+        onPressEditButton={() => showModal('birth')}
         editable
       />
       <ProfileInfoItem label="Umur" info={user?.profile?.age} />
       <ProfileInfoItem
         label="Jenis Kelamin"
         info={user?.profile?.gender === 'female' ? 'Perempuan' : 'Laki-Laki'}
-        onPressEditButton={showModal}
+        onPressEditButton={() => showModal('gender')}
         editable
       />
       <ProfileInfoItem
         label="Alamat"
         info={user?.profile?.address ?? '-'}
-        onPressEditButton={showModal}
+        onPressEditButton={() => showModal('address')}
         editable
       />
       <ProfileInfoItem
         label="Domisili"
         info={user?.profile?.domicile ?? '-'}
-        onPressEditButton={showModal}
+        onPressEditButton={() => showModal('domicile')}
         editable
       />
       <ProfileInfoItem
@@ -172,7 +200,7 @@ const ProfileSelf = ({ user, setUser }) => {
         info={
           user.profile?.village?.sub_district?.district?.province?.name ?? '-'
         }
-        onPressEditButton={showModal}
+        onPressEditButton={() => showModal('province')}
         editable
       />
     </>

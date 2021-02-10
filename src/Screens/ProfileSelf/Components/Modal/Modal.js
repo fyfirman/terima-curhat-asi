@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { Modal } from 'react-native-paper';
 import { Button } from '..';
-import { TextInput } from '../../../../Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -11,15 +10,13 @@ const propTypes = {
   onDismiss: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-  header: PropTypes.string
+  children: PropTypes.node.isRequired
 };
 
-const defaultProps = {
-  header: ''
-};
+const defaultProps = {};
 
 const CustomModal = (props) => {
-  const { visible, onDismiss, onCancel, onSave, header } = props;
+  const { visible, onDismiss, onCancel, onSave, children } = props;
 
   return (
     <Modal
@@ -27,8 +24,7 @@ const CustomModal = (props) => {
       onDismiss={onDismiss}
       contentContainerStyle={styles.containerStyle}
     >
-      <Text style={styles.header}>{header}</Text>
-      <TextInput />
+      {children}
       <View style={styles.buttonModalContainer}>
         <Button title="Batalkan" onPress={onCancel} />
         <Button title="Simpan" onPress={onSave} />
