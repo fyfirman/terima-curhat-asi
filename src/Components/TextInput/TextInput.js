@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
-import { Colors, FontFamily } from '../../Theme';
+import { Colors } from '../../Theme';
 import * as styles from './styles';
 
 const propTypes = {};

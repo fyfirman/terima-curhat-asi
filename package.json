@@ -9,8 +9,8 @@
     "test": "jest",
     "lint": "eslint ./src && prettier --write ./src",
     "release": "react-native run-android --variant=release",
-    "build-assemble": "set ENVFILE=.env.production && cd android && gradlew assembleRelease", 
-    "build-bundle": "set ENVFILE=.env.production && cd android && gradlew bundleRelease" 
+    "build-assemble": "set ENVFILE=.env.production && cd android && gradlew assembleRelease",
+    "build-bundle": "set ENVFILE=.env.production && cd android && gradlew bundleRelease"
   },
   "dependencies": {
     "@codler/react-native-keyboard-aware-scroll-view": "git+https://github.com/codler/react-native-keyboard-aware-scroll-view.git",
@@ -31,6 +31,7 @@
     "react": "16.13.1",
     "react-native": "0.63.1",
     "react-native-audio-recorder-player": "^2.5.3",
+    "react-native-date-picker": "^3.2.9",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "^2.3.4",

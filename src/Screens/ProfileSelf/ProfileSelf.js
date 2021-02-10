@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ToastAndroid } from 'react-native';
 import { Portal, Text } from 'react-native-paper';
+import DatePicker from 'react-native-date-picker';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import { bindActionCreators } from 'redux';
@@ -21,6 +22,9 @@ const defaultProps = {};
 const ProfileSelf = ({ user, setUser }) => {
   const [visible, setVisible] = useState(false);
   const [modal, setModal] = useState(null);
+  const [name, setName] = useState(user?.profile?.name);
+  const [pob, setPob] = useState(user?.profile?.pob);
+  const [dob, setDob] = useState(new Date(user?.profile?.dob));
 
   const showModal = (type) => {
     setModal(type);
@@ -102,9 +106,9 @@ const ProfileSelf = ({ user, setUser }) => {
 
   const handleEdit = () => {
     const body = {
-      name: user.profile?.name,
-      pob: user?.profile?.pob,
-      dob: user?.profile?.dob,
+      name,
+      pob,
+      dob: `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`,
       gender: user?.profile?.gender,
       address: user?.profile?.address,
       province_id: user.profile?.village?.sub_district?.district?.province?.id,
@@ -113,54 +117,66 @@ const ProfileSelf = ({ user, setUser }) => {
       village_id: user.profile?.village?.id
     };
 
-    // CoreServices.postUpdateProfile(body).then(
-    //   (res) => {
-    //     console.log(res.message);
-    //     refreshUser();
-    //   },
-    //   (error) => {
-    //     ToastAndroid.show(error.message, ToastAndroid.SHORT);
-    //     console.error(error);
-    //   }
-    // );
+    CoreServices.postUpdateProfile(body).then(
+      () => {
+        refreshUser();
+        hideModal();
+        ToastAndroid.show('Berhasil mengupdate profil', ToastAndroid.LONG);
+      },
+      (error) => {
+        ToastAndroid.show(error.message, ToastAndroid.LONG);
+        console.error(error);
+      }
+    );
   };
 
   const renderModal = () => {
     switch (modal) {
       case 'name':
         return (
-          <>
+          <Modal
+            onDismiss={hideModal}
+            onCancel={hideModal}
+            visible={visible}
+            onSave={handleEdit}
+          >
             <Text style={styles.header}>Nama</Text>
-            <TextInput />
-          </>
+            <TextInput onChangeText={(text) => setName(text)} />
+          </Modal>
         );
       case 'birth':
         return (
-          <>
-            <Text style={styles.header}>Tanggal lahir</Text>
-            <TextInput />
-          </>
+          <Modal
+            onDismiss={hideModal}
+            onCancel={hideModal}
+            visible={visible}
+            onSave={handleEdit}
+          >
+            <Text style={styles.header}>Tempat Lahir</Text>
+            <TextInput onChangeText={(text) => setPob(text)} />
+            <Text style={styles.header}>Tanggal Lahir</Text>
+            <DatePicker
+              date={dob}
+              onDateChange={setDob}
+              androidVariant="nativeAndroid"
+              mode="date"
+              maximumDate={new Date('2000-12-31')}
+            />
+          </Modal>
         );
 
       default:
-        break;
+        return (
+          <>
+            <Text style={styles.header}>Wrong choice</Text>
+          </>
+        );
     }
   };
 
   return (
     <>
-      <Portal>
-        <Modal
-          onDismiss={hideModal}
-          onCancel={hideModal}
-          visible={visible}
-          onSave={() => {
-            console.log('Test');
-          }}
-        >
-          {renderModal()}
-        </Modal>
-      </Portal>
+      <Portal>{renderModal()}</Portal>
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}
