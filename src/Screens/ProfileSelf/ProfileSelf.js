@@ -119,7 +119,7 @@ const ProfileSelf = ({ user, setUser }) => {
         name={user.profile?.name}
         phoneNumber={user.username}
         userGroup={user.user_group.name}
-        handlePressPhoto={handleChangeAvatar}
+        onPressPhoto={handleChangeAvatar}
         photo={user.profile?.picture?.original}
       />
 
