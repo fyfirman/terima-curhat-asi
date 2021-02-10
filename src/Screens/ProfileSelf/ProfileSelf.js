@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, TouchableOpacity, View } from 'react-native';
 import { Portal, Text } from 'react-native-paper';
 import DatePicker from 'react-native-date-picker';
 import { connect } from 'react-redux';
@@ -9,8 +9,9 @@ import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
 import { ProfileInfoItem, TextInput } from '../../Components';
-import { TopSection, Modal } from './Components';
+import { TopSection, Modal, RadioButton } from './Components';
 import * as styles from './styles';
+import { Colors } from '../../Theme';
 
 const propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -25,6 +26,7 @@ const ProfileSelf = ({ user, setUser }) => {
   const [name, setName] = useState(user?.profile?.name);
   const [pob, setPob] = useState(user?.profile?.pob);
   const [dob, setDob] = useState(new Date(user?.profile?.dob));
+  const [gender, setGender] = useState(user?.profile?.gender);
 
   const showModal = (type) => {
     setModal(type);
@@ -109,7 +111,7 @@ const ProfileSelf = ({ user, setUser }) => {
       name,
       pob,
       dob: `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`,
-      gender: user?.profile?.gender,
+      gender,
       address: user?.profile?.address,
       province_id: user.profile?.village?.sub_district?.district?.province?.id,
       district_id: user.profile?.village?.sub_district?.district?.id,
@@ -154,7 +156,28 @@ const ProfileSelf = ({ user, setUser }) => {
             />
           </>
         );
-
+      case 'gender':
+        return (
+          <>
+            <Text style={styles.header}>Jenis Kelamin</Text>
+            <RadioButton
+              label="Perempuan"
+              onPress={() => {
+                setGender('female');
+              }}
+              status={gender === 'female' ? 'checked' : 'unchecked'}
+              value="female"
+            />
+            <RadioButton
+              label="Laki-laki"
+              onPress={() => {
+                setGender('male');
+              }}
+              status={gender === 'male' ? 'checked' : 'unchecked'}
+              value="male"
+            />
+          </>
+        );
       default:
         return (
           <>
