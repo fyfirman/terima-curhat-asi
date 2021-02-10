@@ -120,6 +120,7 @@ const ProfileSelf = ({ user, setUser }) => {
         phoneNumber={user.username}
         userGroup={user.user_group.name}
         onPressPhoto={handleChangeAvatar}
+        onPressEditButton={handleEdit}
         photo={user.profile?.picture?.original}
       />
 
@@ -129,12 +130,7 @@ const ProfileSelf = ({ user, setUser }) => {
         onPressEditButton={handleEdit}
         editable
       />
-      <ProfileInfoItem
-        label="Umur"
-        info={user?.profile?.age}
-        onPressEditButton={handleEdit}
-        editable
-      />
+      <ProfileInfoItem label="Umur" info={user?.profile?.age} />
       <ProfileInfoItem
         label="Jenis Kelamin"
         info={user?.profile?.gender === 'female' ? 'Perempuan' : 'Laki-Laki'}
