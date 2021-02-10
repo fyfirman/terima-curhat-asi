@@ -5,10 +5,12 @@ export const topSection = {
   padding: 16,
   flexDirection: 'row',
   elevation: 2,
-  marginBottom: 16
+  marginBottom: 16,
+  justifyContent: 'space-between'
 };
 
 export const infoContainer = {
+  flex: 1,
   paddingVertical: 8,
   paddingHorizontal: 16,
   justifyContent: 'space-around'
