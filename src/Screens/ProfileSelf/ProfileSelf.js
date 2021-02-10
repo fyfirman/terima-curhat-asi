@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, View } from 'react-native';
+import { Modal, Portal, Text } from 'react-native-paper';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
-import { ProfileInfoItem } from '../../Components';
-import { TopSection } from './Components';
+import { ProfileInfoItem, TextInput } from '../../Components';
+import { TopSection, Button } from './Components';
+import * as styles from './styles';
 
 const propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -17,6 +19,17 @@ const propTypes = {
 const defaultProps = {};
 
 const ProfileSelf = ({ user, setUser }) => {
+  const [visible, setVisible] = useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {
+    backgroundColor: 'white',
+    padding: 20,
+    margin: 20,
+    borderRadius: 4
+  };
+
   const handleChangeAvatar = () => {
     showPicker(sendImageToServer, () => {
       ToastAndroid.show(
@@ -100,21 +113,50 @@ const ProfileSelf = ({ user, setUser }) => {
       sub_district_id: user.profile?.village?.sub_district?.id,
       village_id: user.profile?.village?.id
     };
+    showModal();
 
-    CoreServices.postUpdateProfile(body).then(
-      (res) => {
-        console.log(res.message);
-        refreshUser();
-      },
-      (error) => {
-        ToastAndroid.show(error.message, ToastAndroid.SHORT);
-        console.error(error);
-      }
-    );
+    // CoreServices.postUpdateProfile(body).then(
+    //   (res) => {
+    //     console.log(res.message);
+    //     refreshUser();
+    //   },
+    //   (error) => {
+    //     ToastAndroid.show(error.message, ToastAndroid.SHORT);
+    //     console.error(error);
+    //   }
+    // );
+  };
+
+  const renderInputName = () => {
+    return <TextInput />;
   };
 
   return (
     <>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={containerStyle}
+        >
+          <Text style={styles.header}>Nama</Text>
+          {renderInputName()}
+          <View style={styles.buttonModalContainer}>
+            <Button
+              title="Batalkan"
+              onPress={() => {
+                console.log('tes');
+              }}
+            />
+            <Button
+              title="Simpan"
+              onPress={() => {
+                console.log('tes');
+              }}
+            />
+          </View>
+        </Modal>
+      </Portal>
       <TopSection
         name={user.profile?.name}
         phoneNumber={user.username}

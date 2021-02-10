@@ -1,23 +1,14 @@
-import { Colors, FontFamily } from '../../Theme';
+import { FontFamily, Colors } from '../../Theme';
 
 export const root = {};
 
-export const tabStyle = {
-  width: 100
+export const header = {
+  color: Colors.textPrimary,
+  fontFamily: FontFamily.OpenSans.regular,
+  fontSize: 14
 };
 
-export const tabContainer = {
-  borderBottomWidth: 1,
-  borderBottomColor: Colors.borderBottomCard,
-  elevation: 0
-};
-
-export const tabIndicatorStyle = {
-  backgroundColor: Colors.persianPink,
-  height: 3
-};
-
-export const tabLabelStyle = {
-  fontFamily: FontFamily.OpenSans.semiBold,
-  fontSize: 12
+export const buttonModalContainer = {
+  flexDirection: 'row',
+  justifyContent: 'flex-end'
 };
