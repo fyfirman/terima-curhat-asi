@@ -9,7 +9,7 @@ const propTypes = {
   label: PropTypes.string,
   onPress: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  status: PropTypes.bool.isRequired
+  status: PropTypes.string.isRequired
 };
 
 const defaultProps = {

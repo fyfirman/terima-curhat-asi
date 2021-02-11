@@ -152,7 +152,9 @@ const ProfileSelf = ({ user, setUser }) => {
     const body = {
       name,
       pob,
-      dob: `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`,
+      dob: `${dob.getFullYear()}-${
+        dob.getMonth() < 9 ? `0${dob.getMonth() + 1}` : dob.getMonth() + 1
+      }-${dob.getDate()}`,
       gender,
       address,
       province_id: province?.id,
