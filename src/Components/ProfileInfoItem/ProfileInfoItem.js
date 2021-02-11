@@ -22,13 +22,14 @@ const ProfileInfoItem = (props) => {
 
   return (
     <View style={styles.root}>
-      <View>
+      <View style={{ flex: 9 }}>
         <Text style={styles.label}>{label}</Text>
         <Text style={styles.info}>{info !== null ? info : '-'}</Text>
       </View>
       {editable && (
         <IconButton
           icon="pencil"
+          style={{ flex: 1 }}
           size={24}
           color={Colors.textSecondary}
           onPress={onPressEditButton}

@@ -19,6 +19,13 @@ const getDoctorSpecialist = () =>
 const getMomsProfile = (userId) =>
   get(`api/mommies/${userId}`, Config.withToken());
 const getArticleList = () => get('api/articles', Config.withToken());
+const getProvinces = () => get(`api/provinces/`, Config.withToken());
+const getDistricts = (provinceId) =>
+  get(`api/districts/${provinceId}`, Config.withToken());
+const getSubDistricts = (districtId) =>
+  get(`api/sub_districts/${districtId}`, Config.withToken());
+const getVillages = (subDistrictId) =>
+  get(`api/villages/${subDistrictId}`, Config.withToken());
 
 // Post
 const postGenerateToken = (data) => post('auth/token', Config.withOauth(data));
@@ -50,6 +57,10 @@ const CoreServices = {
   getDoctorSpecialist,
   getMomsProfile,
   getArticleList,
+  getProvinces,
+  getDistricts,
+  getSubDistricts,
+  getVillages,
   postGenerateToken,
   postAcceptConsultation,
   postRejectConsultation,

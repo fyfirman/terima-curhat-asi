@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ToastAndroid, TouchableOpacity, View } from 'react-native';
+import { ToastAndroid } from 'react-native';
 import { Portal, Text } from 'react-native-paper';
 import DatePicker from 'react-native-date-picker';
 import { connect } from 'react-redux';
@@ -9,9 +9,8 @@ import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
 import { ProfileInfoItem, TextInput } from '../../Components';
-import { TopSection, Modal, RadioButton } from './Components';
+import { TopSection, Modal, RadioButton, Dropdown } from './Components';
 import * as styles from './styles';
-import { Colors } from '../../Theme';
 
 const propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -28,6 +27,17 @@ const ProfileSelf = ({ user, setUser }) => {
   const [dob, setDob] = useState(new Date(user?.profile?.dob));
   const [gender, setGender] = useState(user?.profile?.gender);
   const [address, setAddress] = useState(user?.profile?.address);
+  const [province, setProvince] = useState(
+    user.profile?.village?.sub_district?.district?.province
+  );
+  const [tempProvince, setTempProvince] = useState(null);
+  const [provinceItems, setProvinceItems] = useState([]);
+
+  useEffect(() => {
+    CoreServices.getProvinces().then((res) => {
+      setProvinceItems(res);
+    });
+  }, []);
 
   const showModal = (type) => {
     setModal(type);
@@ -114,7 +124,7 @@ const ProfileSelf = ({ user, setUser }) => {
       dob: `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`,
       gender,
       address,
-      province_id: user.profile?.village?.sub_district?.district?.province?.id,
+      province_id: province?.id,
       district_id: user.profile?.village?.sub_district?.district?.id,
       sub_district_id: user.profile?.village?.sub_district?.id,
       village_id: user.profile?.village?.id
@@ -186,6 +196,60 @@ const ProfileSelf = ({ user, setUser }) => {
             <TextInput onChangeText={(text) => setAddress(text)} />
           </>
         );
+      case 'domicile':
+        return (
+          <>
+            <Text style={styles.header}>Provinsi</Text>
+            <Dropdown
+              onItemSelect={(item) => {
+                setProvince(item);
+                setTempProvince(item.name);
+              }}
+              onTextChange={(text) => {
+                setTempProvince(text);
+              }}
+              items={provinceItems}
+              value={tempProvince}
+            />
+            <Text style={styles.header}>Kota/Kabupaten</Text>
+            <Dropdown
+              onItemSelect={(item) => {
+                setProvince(item);
+                setTempProvince(item.name);
+              }}
+              onTextChange={(text) => {
+                setTempProvince(text);
+              }}
+              items={provinceItems}
+              value={tempProvince}
+            />
+            <Text style={styles.header}>Kelurahan</Text>
+            <Dropdown
+              onItemSelect={(item) => {
+                setProvince(item);
+                setTempProvince(item.name);
+              }}
+              onTextChange={(text) => {
+                setTempProvince(text);
+              }}
+              items={provinceItems}
+              value={tempProvince}
+            />
+            <Text style={styles.header}>Kecamatan</Text>
+            <Dropdown
+              onItemSelect={(item) => {
+                setProvince(item);
+                setTempProvince(item.name);
+              }}
+              onTextChange={(text) => {
+                setTempProvince(text);
+              }}
+              items={provinceItems}
+              value={tempProvince}
+            />
+            {/* Add disctrict, sub district, villages dropdown */}
+          </>
+        );
       default:
         return (
           <>
@@ -237,16 +301,8 @@ const ProfileSelf = ({ user, setUser }) => {
       />
       <ProfileInfoItem
         label="Domisili"
-        info={user?.profile?.domicile ?? '-'}
+        info={`${user?.profile?.domicile}, ${user.profile?.village?.sub_district?.district?.province?.name}`}
         onPressEditButton={() => showModal('domicile')}
-        editable
-      />
-      <ProfileInfoItem
-        label="Provinsi"
-        info={
-          user.profile?.village?.sub_district?.district?.province?.name ?? '-'
-        }
-        onPressEditButton={() => showModal('province')}
         editable
       />
     </>
