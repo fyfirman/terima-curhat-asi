@@ -32,12 +32,43 @@ const ProfileSelf = ({ user, setUser }) => {
   );
   const [tempProvince, setTempProvince] = useState(null);
   const [provinceItems, setProvinceItems] = useState([]);
+  const [district, setDistrict] = useState(
+    user.profile?.village?.sub_district?.district
+  );
+  const [tempDistrict, setTempDistrict] = useState(null);
+  const [districtItems, setDistrictItems] = useState([]);
+  const [subDisctric, setSubDistrict] = useState(
+    user.profile?.village?.sub_district
+  );
+  const [tempSubDistrict, setTempSubDistrict] = useState(null);
+  const [subDistrictItems, setSubDistrictItems] = useState([]);
+  const [village, setVillage] = useState(user.profile?.village);
+  const [tempVillage, setTempVillage] = useState(null);
+  const [villageItems, setVillageItems] = useState([]);
 
   useEffect(() => {
     CoreServices.getProvinces().then((res) => {
       setProvinceItems(res);
     });
   }, []);
+
+  useEffect(() => {
+    CoreServices.getDistricts(province.id).then((res) => {
+      setDistrictItems(res);
+    });
+  }, [province]);
+
+  useEffect(() => {
+    CoreServices.getSubDistricts(district.id).then((res) => {
+      setSubDistrictItems(res);
+    });
+  }, [district]);
+
+  useEffect(() => {
+    CoreServices.getVillages(subDisctric.id).then((res) => {
+      setVillageItems(res);
+    });
+  }, [subDisctric]);
 
   const showModal = (type) => {
     setModal(type);
@@ -125,9 +156,9 @@ const ProfileSelf = ({ user, setUser }) => {
       gender,
       address,
       province_id: province?.id,
-      district_id: user.profile?.village?.sub_district?.district?.id,
-      sub_district_id: user.profile?.village?.sub_district?.id,
-      village_id: user.profile?.village?.id
+      district_id: district?.id,
+      sub_district_id: subDisctric?.id,
+      village_id: village?.id
     };
 
     CoreServices.postUpdateProfile(body).then(
@@ -214,38 +245,38 @@ const ProfileSelf = ({ user, setUser }) => {
             <Text style={styles.header}>Kota/Kabupaten</Text>
             <Dropdown
               onItemSelect={(item) => {
-                setProvince(item);
-                setTempProvince(item.name);
+                setDistrict(item);
+                setTempDistrict(item.name);
               }}
               onTextChange={(text) => {
-                setTempProvince(text);
+                setTempDistrict(text);
               }}
-              items={provinceItems}
-              value={tempProvince}
+              items={districtItems}
+              value={tempDistrict}
             />
             <Text style={styles.header}>Kelurahan</Text>
             <Dropdown
               onItemSelect={(item) => {
-                setProvince(item);
-                setTempProvince(item.name);
+                setSubDistrict(item);
+                setTempSubDistrict(item.name);
               }}
               onTextChange={(text) => {
-                setTempProvince(text);
+                setTempSubDistrict(text);
               }}
-              items={provinceItems}
-              value={tempProvince}
+              items={subDistrictItems}
+              value={tempSubDistrict}
             />
             <Text style={styles.header}>Kecamatan</Text>
             <Dropdown
               onItemSelect={(item) => {
-                setProvince(item);
-                setTempProvince(item.name);
+                setVillage(item);
+                setTempVillage(item.name);
               }}
               onTextChange={(text) => {
-                setTempProvince(text);
+                setTempVillage(text);
               }}
-              items={provinceItems}
-              value={tempProvince}
+              items={villageItems}
+              value={tempVillage}
             />
             {/* Add disctrict, sub district, villages dropdown */}
           </>
