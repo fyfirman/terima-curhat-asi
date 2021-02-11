@@ -27,6 +27,7 @@ const ProfileSelf = ({ user, setUser }) => {
   const [pob, setPob] = useState(user?.profile?.pob);
   const [dob, setDob] = useState(new Date(user?.profile?.dob));
   const [gender, setGender] = useState(user?.profile?.gender);
+  const [address, setAddress] = useState(user?.profile?.address);
 
   const showModal = (type) => {
     setModal(type);
@@ -112,7 +113,7 @@ const ProfileSelf = ({ user, setUser }) => {
       pob,
       dob: `${dob.getFullYear()}-${dob.getMonth() + 1}-${dob.getDate()}`,
       gender,
-      address: user?.profile?.address,
+      address,
       province_id: user.profile?.village?.sub_district?.district?.province?.id,
       district_id: user.profile?.village?.sub_district?.district?.id,
       sub_district_id: user.profile?.village?.sub_district?.id,
@@ -176,6 +177,13 @@ const ProfileSelf = ({ user, setUser }) => {
               status={gender === 'male' ? 'checked' : 'unchecked'}
               value="male"
             />
+          </>
+        );
+      case 'address':
+        return (
+          <>
+            <Text style={styles.header}>Alamat</Text>
+            <TextInput onChangeText={(text) => setAddress(text)} />
           </>
         );
       default:
