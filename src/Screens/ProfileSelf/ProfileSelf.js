@@ -182,14 +182,14 @@ const ProfileSelf = ({ user, setUser }) => {
         return (
           <>
             <Text style={styles.header}>Nama</Text>
-            <TextInput onChangeText={(text) => setName(text)} />
+            <TextInput onChangeText={(text) => setName(text)} value={name} />
           </>
         );
       case 'birth':
         return (
           <>
             <Text style={styles.header}>Tempat Lahir</Text>
-            <TextInput onChangeText={(text) => setPob(text)} />
+            <TextInput onChangeText={(text) => setPob(text)} value={pob} />
             <Text style={styles.header}>Tanggal Lahir</Text>
             <DatePicker
               date={dob}
@@ -226,7 +226,10 @@ const ProfileSelf = ({ user, setUser }) => {
         return (
           <>
             <Text style={styles.header}>Alamat</Text>
-            <TextInput onChangeText={(text) => setAddress(text)} />
+            <TextInput
+              onChangeText={(text) => setAddress(text)}
+              value={address}
+            />
           </>
         );
       case 'domicile':

@@ -1,3 +1,5 @@
-import { FontFamily, Colors } from '../../Theme';
-
 export const root = {};
+
+export const header = {
+  marginTop: 16
+};
