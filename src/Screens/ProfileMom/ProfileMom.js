@@ -21,25 +21,7 @@ const ProfileMom = (props) => {
   const { route } = props;
   const { user } = route.params;
 
-  const [profile, setProfile] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const fetchConsultation = () => {
-      CoreServices.getMomsProfile(user.id).then(
-        (res) => {
-          setProfile(res.payload);
-          setIsLoaded(true);
-        },
-        (error) => {
-          ToastAndroid.show(error.message, ToastAndroid.LONG);
-          console.error(error);
-        }
-      );
-    };
-
-    fetchConsultation();
-  }, []);
+  const { profile } = user;
 
   return (
     <>
@@ -49,46 +31,42 @@ const ProfileMom = (props) => {
         photo={user.profile?.picture?.original}
       />
 
-      {isLoaded ? (
-        <Tab.Navigator
-          tabBarOptions={{
-            activeTintColor: Colors.persianPink,
-            labelStyle: styles.tabLabelStyle,
-            inactiveTintColor: Colors.textSecondary,
-            indicatorStyle: styles.tabIndicatorStyle,
-            scrollEnabled: true,
-            tabStyle: styles.tabStyle,
-            style: styles.tabContainer
-          }}
-        >
-          <Tab.Screen
-            name="Moms"
-            component={Moms}
-            options={{ tabBarLabel: 'Ibu' }}
-            initialParams={{ user }}
-          />
-          <Tab.Screen
-            name="Pregnancy"
-            component={Pregnancy}
-            options={{ tabBarLabel: 'Kehamilan' }}
-            initialParams={{ pregnancy: profile.pregnancy }}
-          />
-          <Tab.Screen
-            name="Baby"
-            component={Baby}
-            options={{ tabBarLabel: 'Bayi' }}
-            initialParams={{ baby: profile.baby }}
-          />
-          <Tab.Screen
-            name="Husband"
-            component={Husband}
-            options={{ tabBarLabel: 'Anggota Keluarga Lain' }}
-            initialParams={{ husband: profile.husband }}
-          />
-        </Tab.Navigator>
-      ) : (
-        <LoadingContent />
-      )}
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: Colors.persianPink,
+          labelStyle: styles.tabLabelStyle,
+          inactiveTintColor: Colors.textSecondary,
+          indicatorStyle: styles.tabIndicatorStyle,
+          scrollEnabled: true,
+          tabStyle: styles.tabStyle,
+          style: styles.tabContainer
+        }}
+      >
+        <Tab.Screen
+          name="Moms"
+          component={Moms}
+          options={{ tabBarLabel: 'Ibu' }}
+          initialParams={{ user }}
+        />
+        <Tab.Screen
+          name="Pregnancy"
+          component={Pregnancy}
+          options={{ tabBarLabel: 'Kehamilan' }}
+          initialParams={{ pregnancy: profile.pregnancy }}
+        />
+        <Tab.Screen
+          name="Baby"
+          component={Baby}
+          options={{ tabBarLabel: 'Bayi' }}
+          initialParams={{ baby: profile.baby }}
+        />
+        <Tab.Screen
+          name="Husband"
+          component={Husband}
+          options={{ tabBarLabel: 'Anggota Keluarga Lain' }}
+          initialParams={{ husband: profile.husband }}
+        />
+      </Tab.Navigator>
     </>
   );
 };
