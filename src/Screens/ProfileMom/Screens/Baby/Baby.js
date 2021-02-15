@@ -34,9 +34,12 @@ const Baby = (props) => {
         info={`${baby.pregnancy_weeks} minggu`}
       />
       <ProfileInfoItem label="Berat Badan Bayi" info={`${baby.weight} kg`} />
-      <ProfileInfoItem label="Panjang Badan Bayi" info={`${baby.height} cm`} />
       <ProfileInfoItem
-        label="Diameter Kepala Bayi"
+        label="Panjang/Tinggi Badan Bayi"
+        info={`${baby.height} cm`}
+      />
+      <ProfileInfoItem
+        label="Diameter Lingkar Kepala Bayi"
         info={`${baby.diameter} cm`}
       />
       <ProfileInfoItem
