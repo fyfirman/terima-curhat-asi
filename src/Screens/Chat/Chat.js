@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ToastAndroid } from 'react-native';
+import {
+  View,
+  FlatList,
+  ToastAndroid,
+  Text,
+  TouchableOpacity
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // Internal
 import { CoreServices, ChatServices } from '../../Services';
 import { LoadingContent, EmptyInfo } from '../../Components';
 import * as styles from './styles';
-import { ChatBubble, AppBar, InputBar, VoiceNoteBubble } from './Components';
+import {
+  ChatBubble,
+  AppBar,
+  InputBar,
+  VoiceNoteBubble,
+  FloatingInfo
+} from './Components';
 import { DateFormatter, UriHelper } from '../../Helper';
+import { Colors } from '../../Theme';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -121,6 +135,12 @@ const Chat = (props) => {
         ) : (
           <LoadingContent containerStyles={styles.loadingContentStyles} />
         )}
+        <FloatingInfo
+          data={[
+            { label: 'Ini label', info: 'Ini infonya1' },
+            { label: 'Ini label2', info: 'Ini infonya2' }
+          ]}
+        />
       </View>
     </>
   );
