@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  FlatList,
-  ToastAndroid,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import { View, FlatList, ToastAndroid } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 // Internal
 import { CoreServices, ChatServices } from '../../Services';
@@ -22,7 +15,6 @@ import {
   FloatingInfo
 } from './Components';
 import { DateFormatter, UriHelper } from '../../Helper';
-import { Colors } from '../../Theme';
 
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,

@@ -66,14 +66,6 @@ const ChatAppBar = (props) => {
         color="white"
         onPress={() => navigation.navigate('ProfileMom', { user })}
       />
-      <TouchableOpacity onPress={() => {}}>
-        <Icon
-          name="information-circle"
-          style={styles.backIcon}
-          size={30}
-          color="white"
-        />
-      </TouchableOpacity>
       <Menu
         visible={menuVisible}
         onDismiss={toggleMenu}
