@@ -58,15 +58,14 @@ const ChatBubble = (props) => {
         )}
         <View style={styles.container(self)}>
           {!self && <Text style={styles.name}>{senderName || 'User'}</Text>}
-          {!imageResource ?? (
+          {imageResource ? (
             <TouchableOpacity onPress={() => setImageViewer(true)}>
               <Image
                 style={styles.imageStyle}
                 source={{ uri: imageResource }}
               />
             </TouchableOpacity>
-          )}
-          {!imageResource && (
+          ) : (
             <HighlightUrlText style={styles.message}>
               {message}
             </HighlightUrlText>
