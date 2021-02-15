@@ -66,7 +66,37 @@ const Chat = (props) => {
 
     listenChatServices();
     fetchConsultationPost();
+    parseInfo();
   }, []);
+
+  const parseInfo = () => {
+    const {
+      age,
+      bab,
+      bak,
+      feed,
+      height,
+      weight,
+      other_food,
+      feeds_using,
+      other_food_given
+    } = consultation.info;
+
+    console.log({ other_food_given, other_food });
+    return [
+      { label: 'Usia Bayi', info: `${age} tahun` },
+      { label: 'Berat Badan Bayi', info: `${weight} kg` },
+      { label: 'Panjang/Tinggi Badan Bayi', info: `${height} cm` },
+      { label: 'Rata-rata BAK Bayi', info: `${bak} kali/hari` },
+      { label: 'Rata-rata BAB Bayi', info: `${bab} minggu` },
+      { label: 'Asupan Bayi', info: feed },
+      { label: 'Alat Pemberian ASI', info: feeds_using },
+      {
+        label: 'Makanan Lain yang diberikan',
+        info: other_food_given !== '0' ? other_food : 'Tidak ada'
+      }
+    ];
+  };
 
   const renderItem = ({ item }) => {
     if (item.voice_note_id !== null) {
@@ -127,12 +157,7 @@ const Chat = (props) => {
         ) : (
           <LoadingContent containerStyles={styles.loadingContentStyles} />
         )}
-        <FloatingInfo
-          data={[
-            { label: 'Ini label', info: 'Ini infonya1' },
-            { label: 'Ini label2', info: 'Ini infonya2' }
-          ]}
-        />
+        <FloatingInfo data={parseInfo()} />
       </View>
     </>
   );
