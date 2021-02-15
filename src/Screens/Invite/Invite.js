@@ -40,6 +40,8 @@ const Invite = (props) => {
       case 'kdr':
         return CoreServices.getMidwifes();
       case 'bdn':
+        return CoreServices.getConselor();
+      case 'cons':
         return CoreServices.getDoctorGeneral();
       case 'du':
         return CoreServices.getDoctorSpecialist();
