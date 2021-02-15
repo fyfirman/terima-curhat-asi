@@ -18,7 +18,7 @@ const FloatingInfo = (props) => {
   const [showInfo, setShowInfo] = useState(false);
 
   const renderItem = (key, label, info) => (
-    <View key={key} style={styles.infoContainer}>
+    <View key={key} style={styles.infoItem}>
       <Text style={styles.label}>{label}</Text>
       <Text style={styles.info}>{info}</Text>
     </View>
@@ -32,9 +32,11 @@ const FloatingInfo = (props) => {
 
   return (
     <View style={styles.root}>
-      {showInfo && renderInfo()}
+      <View style={styles.infoContainer(showInfo)}>
+        {showInfo && renderInfo()}
+      </View>
       <TouchableWithoutFeedback onPress={() => setShowInfo(!showInfo)}>
-        <View style={styles.button}>
+        <View style={styles.button(showInfo)}>
           <Text style={styles.buttonText}>
             {!showInfo ? 'Informasi konsultasi' : 'Sembunyikan'}
           </Text>

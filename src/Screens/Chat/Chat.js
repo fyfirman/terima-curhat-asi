@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, ToastAndroid } from 'react-native';
 import PropTypes from 'prop-types';
@@ -6,6 +7,7 @@ import { connect } from 'react-redux';
 // Internal
 import { CoreServices, ChatServices } from '../../Services';
 import { LoadingContent, EmptyInfo } from '../../Components';
+import { FeedInfo, FeedsUsingInfo } from '../../Constant';
 import * as styles from './styles';
 import {
   ChatBubble,
@@ -82,15 +84,14 @@ const Chat = (props) => {
       other_food_given
     } = consultation.info;
 
-    console.log({ other_food_given, other_food });
     return [
-      { label: 'Usia Bayi', info: `${age} tahun` },
+      { label: 'Usia Bayi', info: `${age} minggu` },
       { label: 'Berat Badan Bayi', info: `${weight} kg` },
       { label: 'Panjang/Tinggi Badan Bayi', info: `${height} cm` },
       { label: 'Rata-rata BAK Bayi', info: `${bak} kali/hari` },
-      { label: 'Rata-rata BAB Bayi', info: `${bab} minggu` },
-      { label: 'Asupan Bayi', info: feed },
-      { label: 'Alat Pemberian ASI', info: feeds_using },
+      { label: 'Rata-rata BAB Bayi', info: `${bab} kali/minggu` },
+      { label: 'Asupan Bayi', info: FeedInfo[feed] },
+      { label: 'Alat Pemberian ASI', info: FeedsUsingInfo[feeds_using] },
       {
         label: 'Makanan Lain yang diberikan',
         info: other_food_given !== '0' ? other_food : 'Tidak ada'

@@ -1,5 +1,7 @@
 import { FontFamily, Colors } from '../../../../Theme';
 
+const BORDER_RADIUS = 8;
+
 export const root = {
   position: 'absolute',
   width: '100%',
@@ -7,27 +9,41 @@ export const root = {
   padding: 8
 };
 
-export const button = {
+export const button = (showInfo) => ({
+  elevation: 1,
   backgroundColor: 'white',
   paddingVertical: 8,
   paddingHorizontal: 16,
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
-  borderRadius: 4
-};
+  borderBottomLeftRadius: BORDER_RADIUS,
+  borderBottomRightRadius: BORDER_RADIUS,
+  ...(!showInfo && {
+    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopRightRadius: BORDER_RADIUS
+  })
+});
 
 export const buttonText = {
   color: Colors.textPrimary,
   fontFamily: FontFamily.OpenSans.semiBold
 };
 
-export const infoContainer = {
-  backgroundColor: '#F0F0F0',
+export const infoContainer = (showInfo) => ({
+  elevation: 1,
+  backgroundColor: '#FBFBFB',
+  ...(showInfo && {
+    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopRightRadius: BORDER_RADIUS
+  })
+});
+
+export const infoItem = {
   paddingVertical: 8,
   paddingHorizontal: 16,
-  borderBottomWidth: 0.5,
-  borderColor: 'white'
+  borderColor: 'rgba(0,0,0,0.2)',
+  borderBottomWidth: 0.5
 };
 
 export const label = {
