@@ -9,7 +9,12 @@ import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
 import { ComboInput, ProfileInfoItem, TextInput } from '../../Components';
-import { TopSection, Modal, RadioButton } from './Components';
+import {
+  TopSection,
+  Modal,
+  RadioButton,
+  DomicileComboInput
+} from './Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -230,58 +235,28 @@ const ProfileSelf = ({ user, setUser }) => {
       case 'domicile':
         return (
           <>
-            <ComboInput
-              initialIndex={0}
-              items={provinceItems.map((value) => ({
-                label: value.name,
-                value: value.id
-              }))}
+            <DomicileComboInput
+              items={provinceItems}
               label="Provinsi"
-              onChange={(newProvince) =>
-                setProvince({
-                  id: newProvince.value,
-                  name: newProvince.label
-                })}
+              onChange={setProvince}
+            />
+            <DomicileComboInput
+              items={districtItems}
+              label="Kota/Kabupaten"
+              onChange={setDistrict}
               disabled
             />
-            <ComboInput
-              initialIndex={0}
-              items={districtItems.map((value) => ({
-                label: value.name,
-                value: value.id
-              }))}
-              label="Kota/Kabupaten"
-              onChange={(newDistrict) =>
-                setDistrict({
-                  id: newDistrict.value,
-                  name: newDistrict.label
-                })}
-            />
-            <ComboInput
-              initialIndex={0}
-              items={subDistrictItems.map((value) => ({
-                label: value.name,
-                value: value.id
-              }))}
+            <DomicileComboInput
+              items={subDistrictItems}
               label="Kelurahan"
-              onChange={(newSubDistrict) =>
-                setSubDistrict({
-                  id: newSubDistrict.value,
-                  name: newSubDistrict.label
-                })}
+              onChange={setSubDistrict}
+              disabled
             />
-            <ComboInput
-              initialIndex={0}
-              items={villageItems.map((value) => ({
-                label: value.name,
-                value: value.id
-              }))}
+            <DomicileComboInput
+              items={villageItems}
               label="Kecamatan"
-              onChange={(newVillage) =>
-                setVillage({
-                  id: newVillage.value,
-                  name: newVillage.label
-                })}
+              onChange={setVillage}
+              disabled
             />
           </>
         );

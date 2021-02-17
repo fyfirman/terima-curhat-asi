@@ -8,7 +8,9 @@ const propTypes = {
   initialIndex: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.any),
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  buttonTextStyle: PropTypes.objectOf(PropTypes.any),
+  buttonStyle: PropTypes.objectOf(PropTypes.any)
 };
 
 const defaultProps = {
@@ -16,11 +18,21 @@ const defaultProps = {
   initialIndex: null,
   items: {},
   onChange: () => {},
-  disabled: false
+  disabled: false,
+  buttonTextStyle: {},
+  buttonStyle: {}
 };
 
 const ComboInput = (props) => {
-  const { initialIndex, items, onChange, label, disabled } = props;
+  const {
+    initialIndex,
+    items,
+    onChange,
+    label,
+    disabled,
+    buttonTextStyle,
+    buttonStyle
+  } = props;
 
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
 
@@ -72,11 +84,11 @@ const ComboInput = (props) => {
       <View>
         {label && <Text style={styles.labelText}>{label}</Text>}
         <TouchableOpacity
-          style={styles.button}
+          style={{ ...styles.button, ...buttonStyle }}
           onPress={() => setOptionVisible(true)}
           disabled={disabled}
         >
-          <Text style={styles.buttonText}>
+          <Text style={{ ...styles.buttonText, ...buttonTextStyle }}>
             {items[selectedIndex] ? items[selectedIndex].label : 'Pilih satu'}
           </Text>
         </TouchableOpacity>
