@@ -47,6 +47,8 @@ const ProfileSelf = ({ user, setUser }) => {
   const [village, setVillage] = useState(user.profile?.village);
   const [villageItems, setVillageItems] = useState([]);
 
+  const [step, setStep] = useState(0);
+
   useEffect(() => {
     CoreServices.getProvinces().then((res) => {
       setProvinceItems(res);
@@ -238,25 +240,37 @@ const ProfileSelf = ({ user, setUser }) => {
             <DomicileComboInput
               items={provinceItems}
               label="Provinsi"
-              onChange={setProvince}
+              onChange={(newProvince) => {
+                setStep(1);
+                setProvince(newProvince);
+              }}
             />
             <DomicileComboInput
               items={districtItems}
               label="Kota/Kabupaten"
-              onChange={setDistrict}
-              disabled
+              onChange={(newDistrict) => {
+                setStep(2);
+                setDistrict(newDistrict);
+              }}
+              disabled={step < 1}
             />
             <DomicileComboInput
               items={subDistrictItems}
               label="Kelurahan"
-              onChange={setSubDistrict}
-              disabled
+              onChange={(newSubDistrict) => {
+                setStep(3);
+                setSubDistrict(newSubDistrict);
+              }}
+              disabled={step < 2}
             />
             <DomicileComboInput
               items={villageItems}
               label="Kecamatan"
-              onChange={setVillage}
-              disabled
+              onChange={(newVillage) => {
+                setStep(4);
+                setVillage(newVillage);
+              }}
+              disabled={step < 3}
             />
           </>
         );
@@ -312,7 +326,10 @@ const ProfileSelf = ({ user, setUser }) => {
       <ProfileInfoItem
         label="Domisili"
         info={`${user?.profile?.domicile}, ${user.profile?.village?.sub_district?.district?.province?.name}`}
-        onPressEditButton={() => showModal('domicile')}
+        onPressEditButton={() => {
+          setStep(0);
+          showModal('domicile');
+        }}
         editable
       />
     </>
