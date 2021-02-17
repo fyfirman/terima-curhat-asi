@@ -8,7 +8,7 @@ import ImagePicker from 'react-native-image-picker';
 import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
-import { ComboInput, ProfileInfoItem, TextInput } from '../../Components';
+import { ProfileInfoItem, TextInput } from '../../Components';
 import {
   TopSection,
   Modal,
@@ -25,6 +25,7 @@ const propTypes = {
 const defaultProps = {};
 
 const ProfileSelf = ({ user, setUser }) => {
+  // TODO: refactor this pretty much state & modals
   const [visible, setVisible] = useState(false);
   const [modal, setModal] = useState(null);
   const [name, setName] = useState(user?.profile?.name);
