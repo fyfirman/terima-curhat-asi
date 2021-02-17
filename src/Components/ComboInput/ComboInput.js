@@ -7,18 +7,20 @@ const propTypes = {
   label: PropTypes.string,
   initialIndex: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.any),
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 const defaultProps = {
   label: null,
   initialIndex: null,
   items: {},
-  onChange: () => {}
+  onChange: () => {},
+  disabled: false
 };
 
 const ComboInput = (props) => {
-  const { initialIndex, items, onChange, label } = props;
+  const { initialIndex, items, onChange, label, disabled } = props;
 
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
 
@@ -72,6 +74,7 @@ const ComboInput = (props) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => setOptionVisible(true)}
+          disabled={disabled}
         >
           <Text style={styles.buttonText}>
             {items[selectedIndex] ? items[selectedIndex].label : 'Pilih satu'}

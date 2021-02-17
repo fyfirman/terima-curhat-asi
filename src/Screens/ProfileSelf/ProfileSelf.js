@@ -242,6 +242,7 @@ const ProfileSelf = ({ user, setUser }) => {
                   id: newProvince.value,
                   name: newProvince.label
                 })}
+              disabled
             />
             <ComboInput
               initialIndex={0}
