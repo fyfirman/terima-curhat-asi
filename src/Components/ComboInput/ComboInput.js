@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import * as styles from './styles';
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   initialIndex: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.any),
   onChange: PropTypes.func
 };
 
 const defaultProps = {
+  label: null,
   initialIndex: null,
   items: {},
   onChange: () => {}
@@ -67,7 +68,7 @@ const ComboInput = (props) => {
         </View>
       </Modal>
       <View>
-        <Text style={styles.labelText}>{label}</Text>
+        {label && <Text style={styles.labelText}>{label}</Text>}
         <TouchableOpacity
           style={styles.button}
           onPress={() => setOptionVisible(true)}
