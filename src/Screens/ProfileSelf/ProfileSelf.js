@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
 import { ComboInput, ProfileInfoItem, TextInput } from '../../Components';
-import { TopSection, Modal, RadioButton, Dropdown } from './Components';
+import { TopSection, Modal, RadioButton } from './Components';
 import * as styles from './styles';
 
 const propTypes = {
@@ -30,20 +30,16 @@ const ProfileSelf = ({ user, setUser }) => {
   const [province, setProvince] = useState(
     user.profile?.village?.sub_district?.district?.province
   );
-  const [tempProvince, setTempProvince] = useState(null);
   const [provinceItems, setProvinceItems] = useState([]);
   const [district, setDistrict] = useState(
     user.profile?.village?.sub_district?.district
   );
-  const [tempDistrict, setTempDistrict] = useState(null);
   const [districtItems, setDistrictItems] = useState([]);
   const [subDisctric, setSubDistrict] = useState(
     user.profile?.village?.sub_district
   );
-  const [tempSubDistrict, setTempSubDistrict] = useState(null);
   const [subDistrictItems, setSubDistrictItems] = useState([]);
   const [village, setVillage] = useState(user.profile?.village);
-  const [tempVillage, setTempVillage] = useState(null);
   const [villageItems, setVillageItems] = useState([]);
 
   useEffect(() => {
@@ -133,7 +129,6 @@ const ProfileSelf = ({ user, setUser }) => {
     CoreServices.getProfile()
       .then(
         (res) => {
-          console.log(res.payload);
           setUser(res.payload);
         },
         (error) => {
