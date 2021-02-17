@@ -8,3 +8,10 @@ export const buttonStyle = {
 };
 
 export const buttonTextStyle = { color: Colors.textPrimary };
+
+export const disabledButtonStyle = {
+  ...buttonStyle,
+  backgroundColor: '#f3f3f3'
+};
+
+export const disabledButtonTextStyle = { color: Colors.textSecondary };

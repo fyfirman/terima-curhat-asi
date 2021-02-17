@@ -6,15 +6,17 @@ import * as styles from './styles';
 const propTypes = {
   items: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   onChange: PropTypes.func.isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 const defaultProps = {
-  label: null
+  label: null,
+  disabled: false
 };
 
 const DomicileComboInput = (props) => {
-  const { items, onChange, label, ...rest } = props;
+  const { items, onChange, label, disabled, ...rest } = props;
 
   return (
     <ComboInput
@@ -29,8 +31,11 @@ const DomicileComboInput = (props) => {
           id: newProvince.value,
           name: newProvince.label
         })}
-      buttonStyle={styles.buttonStyle}
-      buttonTextStyle={styles.buttonTextStyle}
+      buttonStyle={!disabled ? styles.buttonStyle : styles.disabledButtonStyle}
+      buttonTextStyle={
+        !disabled ? styles.buttonTextStyle : styles.disabledButtonTextStyle
+      }
+      disabled={disabled}
       {...rest}
     />
   );
