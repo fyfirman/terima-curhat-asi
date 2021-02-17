@@ -8,7 +8,7 @@ import ImagePicker from 'react-native-image-picker';
 import { bindActionCreators } from 'redux';
 import { CoreServices } from '../../Services';
 import { UserAction } from '../../Redux/Actions';
-import { ProfileInfoItem, TextInput } from '../../Components';
+import { ComboInput, ProfileInfoItem, TextInput } from '../../Components';
 import { TopSection, Modal, RadioButton, Dropdown } from './Components';
 import * as styles from './styles';
 
@@ -235,55 +235,58 @@ const ProfileSelf = ({ user, setUser }) => {
       case 'domicile':
         return (
           <>
-            <Text style={styles.header}>Provinsi</Text>
-            <Dropdown
-              onItemSelect={(item) => {
-                setProvince(item);
-                setTempProvince(item.name);
-              }}
-              onTextChange={(text) => {
-                setTempProvince(text);
-              }}
-              items={provinceItems}
-              value={tempProvince}
+            <ComboInput
+              initialIndex={0}
+              items={provinceItems.map((value) => ({
+                label: value.name,
+                value: value.id
+              }))}
+              label="Provinsi"
+              onChange={(newProvince) =>
+                setProvince({
+                  id: newProvince.value,
+                  name: newProvince.label
+                })}
             />
-            <Text style={styles.header}>Kota/Kabupaten</Text>
-            <Dropdown
-              onItemSelect={(item) => {
-                setDistrict(item);
-                setTempDistrict(item.name);
-              }}
-              onTextChange={(text) => {
-                setTempDistrict(text);
-              }}
-              items={districtItems}
-              value={tempDistrict}
+            <ComboInput
+              initialIndex={0}
+              items={districtItems.map((value) => ({
+                label: value.name,
+                value: value.id
+              }))}
+              label="Kota/Kabupaten"
+              onChange={(newDistrict) =>
+                setDistrict({
+                  id: newDistrict.value,
+                  name: newDistrict.label
+                })}
             />
-            <Text style={styles.header}>Kelurahan</Text>
-            <Dropdown
-              onItemSelect={(item) => {
-                setSubDistrict(item);
-                setTempSubDistrict(item.name);
-              }}
-              onTextChange={(text) => {
-                setTempSubDistrict(text);
-              }}
-              items={subDistrictItems}
-              value={tempSubDistrict}
+            <ComboInput
+              initialIndex={0}
+              items={subDistrictItems.map((value) => ({
+                label: value.name,
+                value: value.id
+              }))}
+              label="Kelurahan"
+              onChange={(newSubDistrict) =>
+                setSubDistrict({
+                  id: newSubDistrict.value,
+                  name: newSubDistrict.label
+                })}
             />
-            <Text style={styles.header}>Kecamatan</Text>
-            <Dropdown
-              onItemSelect={(item) => {
-                setVillage(item);
-                setTempVillage(item.name);
-              }}
-              onTextChange={(text) => {
-                setTempVillage(text);
-              }}
-              items={villageItems}
-              value={tempVillage}
+            <ComboInput
+              initialIndex={0}
+              items={villageItems.map((value) => ({
+                label: value.name,
+                value: value.id
+              }))}
+              label="Kecamatan"
+              onChange={(newVillage) =>
+                setVillage({
+                  id: newVillage.value,
+                  name: newVillage.label
+                })}
             />
-            {/* Add disctrict, sub district, villages dropdown */}
           </>
         );
       default:
