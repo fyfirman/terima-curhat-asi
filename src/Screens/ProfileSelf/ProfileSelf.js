@@ -41,7 +41,7 @@ const ProfileSelf = ({ user, setUser }) => {
     user.profile?.village?.sub_district?.district
   );
   const [districtItems, setDistrictItems] = useState([]);
-  const [subDisctric, setSubDistrict] = useState(
+  const [subDistrict, setSubDistrict] = useState(
     user.profile?.village?.sub_district
   );
   const [subDistrictItems, setSubDistrictItems] = useState([]);
@@ -69,10 +69,10 @@ const ProfileSelf = ({ user, setUser }) => {
   }, [district]);
 
   useEffect(() => {
-    CoreServices.getVillages(subDisctric.id).then((res) => {
+    CoreServices.getVillages(subDistrict.id).then((res) => {
       setVillageItems(res);
     });
-  }, [subDisctric]);
+  }, [subDistrict]);
 
   const showModal = (type) => {
     setModal(type);
@@ -162,7 +162,7 @@ const ProfileSelf = ({ user, setUser }) => {
       address,
       province_id: province?.id,
       district_id: district?.id,
-      sub_district_id: subDisctric?.id,
+      sub_district_id: subDistrict?.id,
       village_id: village?.id
     };
 
@@ -179,6 +179,22 @@ const ProfileSelf = ({ user, setUser }) => {
     );
   };
 
+  const handleCancel = () => {
+    hideModal();
+    resetState();
+  };
+
+  const resetState = () => {
+    setName(user?.profile?.name);
+    setPob(user?.profile?.pob);
+    setDob(new Date(user?.profile?.dob));
+    setGender(user?.profile?.gender);
+    setAddress(user?.profile?.address);
+    setProvince(user.profile?.village?.sub_district?.district?.province);
+    setDistrict(user.profile?.village?.sub_district?.district);
+    setSubDistrict(user.profile?.village?.sub_district);
+    setVillage(user.profile?.village);
+  };
   const renderModal = () => {
     switch (modal) {
       case 'name':
@@ -288,8 +304,8 @@ const ProfileSelf = ({ user, setUser }) => {
     <>
       <Portal>
         <Modal
-          onDismiss={hideModal}
-          onCancel={hideModal}
+          onDismiss={handleCancel}
+          onCancel={handleCancel}
           visible={visible}
           onSave={handleEdit}
         >
