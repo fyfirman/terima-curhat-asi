@@ -12,7 +12,8 @@ const propTypes = {
   dateSent: PropTypes.instanceOf(Date),
   self: PropTypes.bool,
   photoUri: PropTypes.string,
-  imageResource: PropTypes.string
+  imageResource: PropTypes.string,
+  userGroup: PropTypes.string
 };
 
 const defaultProps = {
@@ -21,7 +22,8 @@ const defaultProps = {
   dateSent: new Date(),
   self: false,
   photoUri: null,
-  imageResource: null
+  imageResource: null,
+  userGroup: 'Tidak memiliki jabatan'
 };
 
 const ChatBubble = (props) => {
@@ -31,7 +33,8 @@ const ChatBubble = (props) => {
     dateSent,
     self,
     photoUri,
-    imageResource
+    imageResource,
+    userGroup
   } = props;
   const [imageViewer, setImageViewer] = useState(false);
 
@@ -57,7 +60,13 @@ const ChatBubble = (props) => {
           />
         )}
         <View style={styles.container(self)}>
-          {!self && <Text style={styles.name}>{senderName || 'User'}</Text>}
+          {!self && (
+            <View style={styles.nameContainer}>
+              <Text style={styles.name}>
+                {`${senderName} - ${userGroup}` || 'User'}
+              </Text>
+            </View>
+          )}
           {imageResource ? (
             <TouchableOpacity onPress={() => setImageViewer(true)}>
               <Image

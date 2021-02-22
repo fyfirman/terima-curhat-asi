@@ -113,7 +113,8 @@ const Chat = (props) => {
     }
     const chatBubble = (
       <ChatBubble
-        senderName={item.user.profile?.name}
+        userGroup={item.user.user_group.name}
+        senderName={item.user?.profile?.name}
         message={item.message}
         time={DateFormatter.convertStringToDate(item.created_at)}
         self={item.user.id === user.id}
