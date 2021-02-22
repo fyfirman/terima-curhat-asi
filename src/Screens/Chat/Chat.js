@@ -136,6 +136,7 @@ const Chat = (props) => {
           keyExtractor={(item) => item.id}
           initialNumToRender={10}
           initialScrollIndex={messages - 1}
+          contentContainerStyle={{ paddingBottom: 60 }}
           inverted
         />
       );
