@@ -47,10 +47,10 @@ const Baby = (props) => {
         info={baby.gender === 'male' ? 'Laki-laki' : 'Perempuan'}
       />
       <ProfileInfoItem label="IMD" info={baby.imd ? 'Ya' : 'Tidak'} />
-      <ProfileInfoItem
+      {/* <ProfileInfoItem
         label="Peletakan 1 jam"
         info={baby.one_hour_init ? 'Ya' : 'Tidak'}
-      />
+      /> */}
       <ProfileInfoItem label="Asupan" info={getFeeds()} />
     </ScrollView>
   ) : (
