@@ -78,14 +78,18 @@ const ChatAppBar = (props) => {
           />
         }
       >
-        <Menu.Item
-          onPress={() => {
-            navigation.navigate('Invite', { consultation });
-            toggleMenu();
-          }}
-          title="Tambahkan konselor"
-        />
-        <Divider />
+        {user.user_group.id !== 'dsp' && (
+          <>
+            <Menu.Item
+              onPress={() => {
+                navigation.navigate('Invite', { consultation });
+                toggleMenu();
+              }}
+              title="Tambahkan konselor"
+            />
+            <Divider />
+          </>
+        )}
         <Menu.Item onPress={handleEndChat} title="Akhiri" />
       </Menu>
     </Appbar>
