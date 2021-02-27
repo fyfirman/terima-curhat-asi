@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
+import { CommonActions } from '@react-navigation/native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -63,7 +64,12 @@ const CustomDrawer = (props) => {
     setProfileIsLoaded(false);
     flushSession();
     flushUser();
-    navigation.navigate('Login');
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'Login' }]
+      })
+    );
   };
 
   const renderAvatar = () => {
