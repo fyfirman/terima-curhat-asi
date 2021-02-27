@@ -13,8 +13,7 @@ const getConsultationPost = (id) =>
     Config.withToken()
   );
 const getMidwifes = () => get('api/midwifes', Config.withToken());
-// TODO: Ensure conselor API
-const getConselor = () => get('api/conselor', Config.withToken());
+const getConselor = () => get('api/conselors', Config.withToken());
 const getDoctorGeneral = () => get('api/doctor-general', Config.withToken());
 const getDoctorSpecialist = () =>
   get('api/doctor-specialist', Config.withToken());
