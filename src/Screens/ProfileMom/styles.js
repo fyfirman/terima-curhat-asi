@@ -19,5 +19,5 @@ export const tabIndicatorStyle = {
 
 export const tabLabelStyle = {
   fontFamily: FontFamily.OpenSans.semiBold,
-  fontSize: 12
+  fontSize: 11
 };
