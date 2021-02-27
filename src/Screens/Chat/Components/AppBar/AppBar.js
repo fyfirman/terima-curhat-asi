@@ -3,6 +3,10 @@ import { ToastAndroid, TouchableOpacity } from 'react-native';
 import { Appbar, Menu, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
+
+// Redux
+import { connect } from 'react-redux';
+
 import { CoreServices } from '../../../../Services';
 import { Avatar } from '../../../../Components';
 import * as styles from './styles';
@@ -10,15 +14,23 @@ import * as styles from './styles';
 const propTypes = {
   navigation: PropTypes.objectOf(PropTypes.any).isRequired,
   user: PropTypes.objectOf(PropTypes.any).isRequired,
+  selfUser: PropTypes.objectOf(PropTypes.any).isRequired,
   consultation: PropTypes.objectOf(PropTypes.any).isRequired
 };
 
 const defaultProps = {};
 
 const ChatAppBar = (props) => {
-  const { navigation, user, consultation } = props;
+  const { navigation, user, consultation, selfUser } = props;
 
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const inviteMatchup = {
+    kdr: 'Bidan',
+    bdn: 'Konselor',
+    cons: 'Dokter Umum',
+    du: 'Dokter Spesialis'
+  };
 
   const toggleMenu = () => {
     setMenuVisible((value) => !value);
@@ -78,14 +90,14 @@ const ChatAppBar = (props) => {
           />
         }
       >
-        {user.user_group.id !== 'dsp' && (
+        {selfUser.user_group.id !== 'dsp' && (
           <>
             <Menu.Item
               onPress={() => {
                 navigation.navigate('Invite', { consultation });
                 toggleMenu();
               }}
-              title="Tambahkan konselor"
+              title={`Tambahkan ${inviteMatchup[selfUser.user_group.id]}`}
             />
             <Divider />
           </>
@@ -99,4 +111,8 @@ const ChatAppBar = (props) => {
 ChatAppBar.propTypes = propTypes;
 ChatAppBar.defaultProps = defaultProps;
 
-export default ChatAppBar;
+const mapStateToProps = (state) => ({
+  selfUser: state.user
+});
+
+export default connect(mapStateToProps)(ChatAppBar);
