@@ -16,20 +16,21 @@ const Pregnancy = (props) => {
 
   return pregnancy ? (
     <ScrollView>
+      {/* TODO: make sure atribute used */}
       <ProfileInfoItem
-        label="Tinggi Badan Sebelum Hamil"
+        label="Tinggi Badan"
         info={`${pregnancy.height_before} cm`}
       />
-      <ProfileInfoItem
+      {/* <ProfileInfoItem
         label="Tinggi Badan Setelah Hamil"
         info={`${pregnancy.height_during} cm`}
-      />
+      /> */}
       <ProfileInfoItem
         label="Berat Badan Sebelum Hamil"
         info={`${pregnancy.weight_before} kg`}
       />
       <ProfileInfoItem
-        label="Berat Badan Setelah Hamil"
+        label="Berat Badan Setelah Melahirkan"
         info={`${pregnancy.weight_during} kg`}
       />
       <ProfileInfoItem
