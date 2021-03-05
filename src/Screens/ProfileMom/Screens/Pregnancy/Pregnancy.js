@@ -37,7 +37,14 @@ const Pregnancy = (props) => {
         label="Pernah Keguguran"
         info={pregnancy.abortus_experienced ? 'Ya' : 'Tidak'}
       />
-      <ProfileInfoItem label="Kehamilan ke-" info={pregnancy.pregnancy_num} />
+      <ProfileInfoItem
+        label="Jumlah Riwayat Keguguran"
+        info={pregnancy.abortus_num}
+      />
+      <ProfileInfoItem
+        label="Jumlah Riwayat Kehamilan"
+        info={pregnancy.pregnancy_num}
+      />
       <ProfileInfoItem
         label="Penyakit/Keluhan Saat Hamil"
         info={pregnancy.pregnancy_complaints}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, ScrollView } from 'react-native';
+import { FeedInfo, BirthProcessInfo } from '../../../../Constant';
 import { ProfileInfoItem } from '../../../../Components';
 import * as styles from './styles';
 
@@ -13,19 +14,6 @@ const defaultProps = {};
 const Baby = (props) => {
   const { route } = props;
   const { baby } = route.params;
-
-  const getFeeds = () => {
-    switch (baby.feeds) {
-      case 'breastfeed':
-        return 'ASI';
-      case 'mixed':
-        return 'Campuran';
-      case 'formula':
-        return 'Susu Formula';
-      default:
-        return '-';
-    }
-  };
 
   return baby ? (
     <ScrollView>
@@ -47,6 +35,10 @@ const Baby = (props) => {
         info={baby.gender === 'male' ? 'Laki-laki' : 'Perempuan'}
       />
       <ProfileInfoItem
+        label="Cara Persalinan"
+        info={BirthProcessInfo[baby.birth_process]}
+      />
+      <ProfileInfoItem
         label="IMD (Inisiasi Menyusui Dini)"
         info={baby.imd ? 'Ya' : 'Tidak'}
       />
@@ -54,7 +46,7 @@ const Baby = (props) => {
         label="Lama waktu IMD"
         info={baby.one_hour_init ? 'Satu jam' : 'Dibawah satu jam'}
       />
-      <ProfileInfoItem label="Asupan" info={getFeeds()} />
+      <ProfileInfoItem label="Asupan" info={FeedInfo[baby.feeds]} />
     </ScrollView>
   ) : (
     <View style={styles.infoContainer}>
