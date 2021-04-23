@@ -18,6 +18,10 @@ const Baby = (props) => {
   return baby ? (
     <ScrollView>
       <ProfileInfoItem
+        label="Tanggal Lahir Bayi (Usia)"
+        info={baby.dob ? `${baby.dob} (${baby.age})` : '-'}
+      />
+      <ProfileInfoItem
         label="Usia Kehamilan Saat Melahirkan"
         info={`${baby.pregnancy_weeks} minggu`}
       />
