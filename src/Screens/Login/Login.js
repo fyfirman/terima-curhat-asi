@@ -34,6 +34,8 @@ const defaultProps = {};
 const Login = (props) => {
   const { navigation, setUser, setSession } = props;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const [formState, setFormState] = useState({
     phoneNumber: '',
     pin: '',
@@ -55,7 +57,7 @@ const Login = (props) => {
       grant_type: 'password',
       password: formState.pin
     };
-
+    setIsLoading(true);
     CoreServices.postGenerateToken(body)
       .then(
         (res) => {
@@ -68,6 +70,7 @@ const Login = (props) => {
           });
           setUser({ isLoggedIn: true });
 
+          setIsLoading(false);
           navigation.navigate('MenuDrawer');
         },
         (error) => {
@@ -79,6 +82,7 @@ const Login = (props) => {
               ToastAndroid.SHORT
             );
             console.error(error.response);
+            setIsLoading(false);
           }
         }
       )
@@ -146,7 +150,11 @@ const Login = (props) => {
             ]}
           />
           <View style={styles.buttonLogin}>
-            <Button title="Masuk" onPress={submit} disabled={!isValid()} />
+            <Button
+              title="Masuk"
+              onPress={submit}
+              disabled={!isValid() && !isLoading}
+            />
           </View>
           <View style={styles.forgotTextContainer}>
             <Text style={styles.forgotPinText}>Anda lupa PIN? </Text>
