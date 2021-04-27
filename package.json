@@ -10,7 +10,8 @@
     "lint": "eslint ./src && prettier --write ./src",
     "release": "react-native run-android --variant=release",
     "build:assemble": "set ENVFILE=.env.production && cd android && gradlew assembleRelease",
-    "build:bundle": "set ENVFILE=.env.production && cd android && gradlew bundleRelease"
+    "build:bundle": "set ENVFILE=.env.production && cd android && gradlew bundleRelease",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "@codler/react-native-keyboard-aware-scroll-view": "git+https://github.com/codler/react-native-keyboard-aware-scroll-view.git",
@@ -70,6 +71,7 @@
     "jest": "^26.1.0",
     "metro-react-native-babel-preset": "^0.60.0",
     "react-native-dotenv": "^0.2.0",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
