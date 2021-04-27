@@ -42,6 +42,8 @@ const postChangeProfilePicture = (data) =>
   post(`api/profile/picture`, data, Config.withToken());
 const postUpdateProfile = (data) =>
   post(`api/profile`, data, Config.withToken());
+const postForgotPassword = (data) =>
+  post(`api/password/forgot`, data, Config.withToken());
 
 // Put
 const putCloseConsulation = (id) =>
@@ -70,6 +72,7 @@ const CoreServices = {
   postInviteUserToConsultation,
   postChangeProfilePicture,
   postUpdateProfile,
+  postForgotPassword,
   putCloseConsulation
 };
 
