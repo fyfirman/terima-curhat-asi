@@ -85,13 +85,19 @@ const Chat = (props) => {
     } = consultation.info;
 
     return [
-      { label: 'Usia Bayi', info: `${age} minggu` },
-      { label: 'Berat Badan Bayi', info: `${weight} kg` },
-      { label: 'Panjang/Tinggi Badan Bayi', info: `${height} cm` },
-      { label: 'Rata-rata BAK Bayi', info: `${bak} kali/hari` },
-      { label: 'Rata-rata BAB Bayi', info: `${bab} kali/minggu` },
-      { label: 'Asupan Bayi', info: FeedInfo[feed] },
-      { label: 'Alat Pemberian ASI', info: FeedsUsingInfo[feeds_using] },
+      { label: 'Usia Bayi', info: age ? `${age} minggu` : '-' },
+      { label: 'Berat Badan Bayi', info: weight ? `${weight} kg` : '-' },
+      {
+        label: 'Panjang/Tinggi Badan Bayi',
+        info: height ? `${height} cm` : '-'
+      },
+      { label: 'Rata-rata BAK Bayi', info: bak ? `${bak} kali/hari` : '-' },
+      { label: 'Rata-rata BAB Bayi', info: bab ? `${bab} kali/minggu` : '-' },
+      { label: 'Asupan Bayi', info: feed ? FeedInfo[feed] : '-' },
+      {
+        label: 'Alat Pemberian ASI',
+        info: feeds_using ? FeedsUsingInfo[feeds_using] : '-'
+      },
       {
         label: 'Makanan Lain yang diberikan',
         info: other_food_given !== '0' ? other_food : 'Tidak ada'
