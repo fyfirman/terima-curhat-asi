@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "set ENVFILE=.env.development && react-native run-android",
+    "android:production": "set ENVFILE=.env.production && react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",

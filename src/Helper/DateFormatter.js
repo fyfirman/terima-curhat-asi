@@ -27,7 +27,7 @@ const convertStringToDate = (dateString) => {
   const minute = dateString.substring(14, 16);
   const second = dateString.substring(17, 19);
 
-  return new Date(year, month - 1, day, parseInt(hour, 10) + 7, minute, second);
+  return new Date(year, month - 1, day, parseInt(hour, 10), minute, second);
 };
 
 const DateFormatter = {

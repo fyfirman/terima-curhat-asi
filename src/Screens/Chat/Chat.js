@@ -111,12 +111,13 @@ const Chat = (props) => {
         />
       );
     }
+
     const chatBubble = (
       <ChatBubble
         userGroup={item.user.user_group.name}
         senderName={item.user?.profile?.name}
         message={item.message}
-        time={DateFormatter.convertStringToDate(item.created_at)}
+        dateSent={item.created_at.substring(11, 16)}
         self={item.user.id === user.id}
         imageResource={
           item.picture_id ? UriHelper.getStorage(item.picture.original) : null

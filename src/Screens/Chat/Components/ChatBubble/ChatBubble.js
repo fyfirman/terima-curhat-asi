@@ -9,7 +9,7 @@ import * as styles from './styles';
 const propTypes = {
   message: PropTypes.string,
   senderName: PropTypes.string,
-  dateSent: PropTypes.instanceOf(Date),
+  dateSent: PropTypes.string,
   self: PropTypes.bool,
   photoUri: PropTypes.string,
   imageResource: PropTypes.string,
@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
   message: '',
   senderName: 'User',
-  dateSent: new Date(),
+  dateSent: '',
   self: false,
   photoUri: null,
   imageResource: null,
@@ -79,7 +79,7 @@ const ChatBubble = (props) => {
               {message}
             </HighlightUrlText>
           )}
-          <TimeSection date={dateSent} />
+          <TimeSection string={dateSent} />
         </View>
       </View>
     </>

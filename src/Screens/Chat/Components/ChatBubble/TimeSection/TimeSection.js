@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 import * as styles from './styles';
 
 const propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired
+  date: PropTypes.instanceOf(Date),
+  string: PropTypes.string
 };
 
-const TimeSection = ({ date }) => {
+const defaultProps = {
+  date: new Date(),
+  string: ''
+};
+
+const TimeSection = ({ date, string }) => {
   const addZero = (time) => {
     if (time < 9) return `0${time}`;
     return time;
@@ -15,11 +21,14 @@ const TimeSection = ({ date }) => {
 
   return (
     <Text style={styles.time}>
-      {`${addZero(date.getHours())}:${addZero(date.getMinutes())}`}
+      {string !== ''
+        ? string
+        : `${addZero(date.getHours())}:${addZero(date.getMinutes())}`}
     </Text>
   );
 };
 
 TimeSection.propTypes = propTypes;
+TimeSection.defaultProps = defaultProps;
 
 export default TimeSection;
