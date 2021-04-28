@@ -1,6 +1,6 @@
 {
   "name": "TerimaCurhatAsi",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "android": "set ENVFILE=.env.development && react-native run-android",
